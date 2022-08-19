@@ -1,0 +1,293 @@
+<head>
+    <title>Littlepriceonu - Snuke</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap');
+        .mainbody {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow:hidden;
+
+            position:relative;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            height:100%;
+            width:100%;
+            margin: 0;
+
+            /*
+            overflow-y: hidden;
+            overflow-x: hidden; */
+        }
+
+        canvas {
+            position: absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+        }
+
+        h1.pausedtext {
+            background-color: rgba(0, 0, 0, 0.719);
+            z-index: 1;
+            display: none;
+            font-family:'Courier New', Courier, monospace;
+            color: blue;
+        }
+
+        div.snukeholder {
+            background-color: rgb(32, 32, 32);
+            width: 100%;
+            height: 100%;
+
+            display :flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        img.snukeimg {
+            z-index: 1;
+        }
+
+        input.play {
+            width: 10%;
+            height: 10%;
+            background-color: rgb(11, 4, 15);
+            cursor: pointer;
+            outline: none;
+            border: none;
+            outline: none;
+            color:rgb(132, 132, 255);
+        }
+
+        p {
+            font-size: 130%;
+            text-align: center;
+            color: white;
+        }
+
+        p.appletext {
+            color: red;
+            margin: 0;
+            margin-top:1%;
+        }
+
+        input.applebutton {
+            color: red;
+            margin-top: 4%;
+        }
+
+        p.multitext {
+            margin:0;
+            color: blue;
+        }
+
+        input.multibutton {
+            margin-top:1%;
+        }
+
+        p.instructiontext {
+            font-size: large;
+            width: 70%;
+            color:plum;
+        }
+
+        div.deathscreen {
+            z-index: 1;
+        
+            background-color: rgba(32, 32, 32, 0.877);
+            width: 100%;
+            height: 100%;
+
+            display :flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        p.deathtext {
+            color: red;
+            font-size:250%;
+        }
+
+        p.score {
+            color: rgb(0, 38, 255);
+            font-size:200%;
+        }
+
+        p.bestscore {
+            color: rgb(114, 6, 216);
+            font-size:200%;
+        }
+
+        input.retry {
+            color: rgb(255, 0, 0);
+            background-color: rgb(0, 17, 255);
+            font-size: 150%;
+        }
+
+        input.quit {
+            color: rgb(255, 0, 0);
+            margin-top:2.5%;
+            background-color: rgb(0, 17, 255);
+            font-size: 150%;
+        }
+
+        input.snuke1color {
+            margin-top:2%;
+        }
+
+        p.snuke1colortext {
+            margin: 0;
+            margin-top: 2%;
+        }
+
+        input.snuke2color {
+            margin-top:2%;
+            background-color: black;
+        }
+
+        p.snuke2colortext {
+            margin:0;
+            margin-top: 2%;
+        }
+
+        p.snukecolortext {
+            color:aqua;
+            font-size: medium;
+        }
+
+        div.overlay {
+            display: none;
+            justify-content:center;
+            align-items:flex-start;
+            z-index: 1;
+            position: relative;
+            left:0;
+            top:0;
+            margin:0;
+            width:100%;
+            height:100%;
+        }
+
+        input.toggletimedmode {
+            margin-top: 1%;
+            color: red;
+        }
+
+        h1.time {
+            font-family: 'PT Sans Narrow', sans-serif;
+            color: white;
+        }
+
+        .settings {
+            margin-top: 2%;
+            width:51.8px;
+            height:51.8px;
+            cursor:pointer;
+        }
+
+        div.settingsmenu {
+            position: absolute;
+            width:50%;
+            height:50%;
+            background-color: rgb(46, 46, 46);
+            left:50%;
+            top:50%;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            display: none;
+            gap: 1%;
+            column-count: 3;
+
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-template-columns: auto auto auto;
+
+            border-radius: 3%;
+            border-color: rgb(16, 16, 16);
+            border-style: inset;
+
+            border-width: 2px;
+        }
+
+        div.griditem{
+            size: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            
+            border-color: rgb(57, 57, 57);
+            border-style:   solid;
+
+            border-width: 2px;
+        }
+
+        p.helpfultext {
+            font-size: large;
+        }
+    </style>
+</head>
+
+
+<body class="mainbody">
+    <div class="overlay" id="overlay">
+        <h1 class="time" id="time">150</h1>
+    </div>
+
+    <div class="settingsmenu" id="settingsmenu">
+        <div class="griditem">
+            <input type="checkbox" name="Multiple Apples" id="applebutton" class="applebutton">
+            <p class="appletext">Enable Multiple Apples</p> 
+        </div>
+        <div class="griditem">
+            <input type="checkbox" name="Local Multiplayer" id="multibutton" class="multibutton">
+            <p class="multitext">Local Multiplayer</p> 
+            <p class="multitext">(Arrow keys & WASD)</p> 
+        </div>
+        <div class="griditem">
+            <input type="button" value="Close Settings" id="closesettings" class="closesettings">
+        </div>
+    </div>
+
+    <div class="snukeholder" id="snukeholder">
+        <img class="snukeimg" src="/Snuke.png" alt="./Snuke V1.png">
+
+        <input id="play" class="play" type="button" value="Play!">
+
+        <img src="/settings.png" alt="Settings Menu" id="settings" class="settings">
+
+        <input type="button" value="Toggle Timed Mode" class="toggletimedmode" id="toggletimedmode">
+
+        <p class="snuke1colortext" id="snuke1colortext">Change Snuke 1 Color</p>
+        <input type="text" id="snuke1color" class="snuke1color">
+        <p class="snuke2colortext" id="snuke2colortext">Change Snuke 2 Color</p>
+        <input type="text" id="snuke2color" class="snuke2color">
+        <p class="snukecolortext">These Inputs Are To Change The Color Of Your Snuke. It won't work if your color isn't a vaild CSS color</p>
+
+        <p class="instructiontext">Press Enter To Start, Press E to enable and disable the grid, Press Q to reroll apple position / Spawn More Apples, Press R to restart the game, And Press ESC to pause</p>
+        <p class="helpfultext">Helpful Tip: When Playing This Game only TAP keys dont hold down any keys. This is just what happens with one of the anti-bug features I implemented</p>
+    </div>
+    <!-- <canvas id="canvas"></canvas> No Longer Needed Due To CanvasManger in main.js -->
+    <div class="deathscreen" id="deathscreen">
+        <p class="deathtext">You Died!</p>
+        <p class="score" id="score">Your Score: </p>
+        <p class="bestscore" id="bestscore">Your Best Score: </p>
+        <input type="button" value="Retry" id="retry" class="retry">
+        <input type="button" value="Quit" id="quit" class="quit">
+    </div>
+    <h1 class="pausedtext" id="pausedtext" >Paused! (Press Escape To Un-Pause)</h1>
+</body>
+
+<body class="scriptwrapper"><script src="./snuke.js"></script></body>
