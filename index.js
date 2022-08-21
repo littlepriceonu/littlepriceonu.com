@@ -11,7 +11,7 @@ var options = {
 app.get('/', (req, res) => { 
     res.sendFile("src/home.html", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
+            console.log("Error Occured!: home.html")
         }
         else {
             console.log("home.html delivered")
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.sendFile("src/about/about.html", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
+            console.log("Error Occured!: about.html")
         }
         else {
             console.log("about.html delivered")
@@ -33,7 +33,7 @@ app.get('/about', (req, res) => {
 app.get('/projects', (req, res) => {
     res.sendFile("src/projects/projects.html", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
+            console.log("Error Occured!: projects.html")
         }
         else {
             console.log("projects.html delivered")
@@ -44,7 +44,7 @@ app.get('/projects', (req, res) => {
 app.get('/snuke', (req, res) => {
     res.sendFile("snuke/index.html", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
+            console.log("Error Occured!: index.html")
         }
         else {
             console.log("snuke/index.html delivered")
@@ -56,7 +56,7 @@ app.get('/snuke', (req, res) => {
 app.get('/index.css', (req, res) => {
     res.sendFile("/dist/output.css", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
+            console.log("Error Occured!: index.css")
         }
         else {
             console.log("index.css delivered")
@@ -67,10 +67,10 @@ app.get('/index.css', (req, res) => {
 app.get('/snuke.js', (req, res) => {
     res.sendFile("snuke/index.js", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
+            console.log("Error Occured!: snuke.js")
         }
         else {
-            console.log("index.css delivered")
+            console.log("snuke.js delivered")
         }
     })
 })
@@ -78,10 +78,7 @@ app.get('/snuke.js', (req, res) => {
 app.get('/discord.png', (req, res) => {
     res.sendFile("/img/discord.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("discord.png delivered")
+            console.log("Error Occured!: discord.png")
         }
     })
 })
@@ -89,10 +86,7 @@ app.get('/discord.png', (req, res) => {
 app.get('/email.png', (req, res) => {
     res.sendFile("/img/email.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("email.png delivered")
+            console.log("Error Occured!: email.png")
         }
     })
 })
@@ -100,10 +94,7 @@ app.get('/email.png', (req, res) => {
 app.get('/github.png', (req, res) => {
     res.sendFile("/img/github.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("github.png delivered")
+            console.log("Error Occured!: github.png")
         }
     })
 })
@@ -111,10 +102,7 @@ app.get('/github.png', (req, res) => {
 app.get('/PFP.gif', (req, res) => {
     res.sendFile("/img/PFP.gif", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("PFP.gif delivered")
+            console.log("Error Occured!: PFP.gif")
         }
     })
 })
@@ -122,10 +110,7 @@ app.get('/PFP.gif', (req, res) => {
 app.get('/Snuke.png', (req, res) => {
     res.sendFile("/img/Snuke.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("Snuke.png delivered")
+            console.log("Error Occured!: Snuke.png")
         }
     })
 })
@@ -133,10 +118,7 @@ app.get('/Snuke.png', (req, res) => {
 app.get('/steam.png', (req, res) => {
     res.sendFile("/img/steam.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("steam.png delivered")
+            console.log("Error Occured!: steam.png")
         }
     })
 })
@@ -144,10 +126,7 @@ app.get('/steam.png', (req, res) => {
 app.get('/twitter.png', (req, res) => {
     res.sendFile("/img/twitter.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("twitter.png delivered")
+            console.log("Error Occured!: twitter.png")
         }
     })
 })
@@ -155,10 +134,7 @@ app.get('/twitter.png', (req, res) => {
 app.get('/web.png', (req, res) => {
     res.sendFile("/img/web.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("web.png delivered")
+            console.log("Error Occured!: web.png")
         }
     })
 })
@@ -166,10 +142,7 @@ app.get('/web.png', (req, res) => {
 app.get('/settings.png', (req, res) => {
     res.sendFile("/img/settings.png", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("settings.png delivered")
+            console.log("Error Occured!: settings.png")
         }
     })
 })
@@ -177,10 +150,7 @@ app.get('/settings.png', (req, res) => {
 app.get('/favico.ico', (req, res) => {
     res.sendFile("/favicon/favico.ico", options, function(err) {
         if (err) {
-            console.log("Error Occured!")
-        }
-        else {
-            console.log("favico.ico delivered")
+            console.log("Error Occured!: favico.ico")
         }
     })
 })
