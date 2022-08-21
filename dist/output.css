@@ -908,6 +908,10 @@ video {
   --scrollbar-thumb: #374151 !important;
 }
 
+:root {
+  color-scheme: dark;
+}
+
 .hover\:cursor-pointer:hover {
   cursor: pointer;
 }
