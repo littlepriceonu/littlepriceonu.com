@@ -41,17 +41,6 @@ app.get('/projects', (req, res) => {
     })
 })
 
-app.get('/snuke', (req, res) => {
-    res.sendFile("snuke/index.html", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: index.html")
-        }
-        else {
-            console.log("snuke/index.html delivered")
-        }
-    })
-})
-
 
 app.get('/index.css', (req, res) => {
     res.sendFile("/dist/output.css", options, function(err) {
@@ -60,17 +49,6 @@ app.get('/index.css', (req, res) => {
         }
         else {
             console.log("index.css delivered")
-        }
-    })
-})
-
-app.get('/snuke.js', (req, res) => {
-    res.sendFile("snuke/index.js", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: snuke.js")
-        }
-        else {
-            console.log("snuke.js delivered")
         }
     })
 })
@@ -135,14 +113,6 @@ app.get('/web.png', (req, res) => {
     res.sendFile("/img/web.png", options, function(err) {
         if (err) {
             console.log("Error Occured!: web.png")
-        }
-    })
-})
-
-app.get('/settings.png', (req, res) => {
-    res.sendFile("/img/settings.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: settings.png")
         }
     })
 })
