@@ -1,0 +1,25 @@
+{
+  "name": "littlepriceonu.com",
+  "version": "1.0.0",
+  "description": "My Personal Site, Hosted On AWS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littlepriceonu/littlepriceonu.com.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littlepriceonu/littlepriceonu.com/issues"
+  },
+  "homepage": "https://github.com/littlepriceonu/littlepriceonu.com#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "serve-favicon": "^2.5.0",
+    "tailwind": "^4.0.0",
+    "tailwind-scrollbar": "^2.0.1"
+  }
+}

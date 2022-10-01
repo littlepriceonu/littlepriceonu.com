@@ -9,3 +9,5 @@ module.exports = {
       require('tailwind-scrollbar'),
     ],
 }
+
+// Commmand to start tailwind: npx tailwindcss -i ./src/styles.css -o ./dist/output.css --watch
