@@ -9,12 +9,8 @@
     <link href="/index.css" rel="stylesheet">
 </head>
 
-<!--
-    md:overflow-hidden
--->
-
-<body class="text-slate-50 md:overflow-hidden bg-gradient-to-r from-sky-600 to-purple-700">
-    <div class="w-full h-14 z-10 flex flex-row space-x-5 items-center justify-center bg-slate-900">
+<body class="text-slate-50 bg-gradient-to-r from-sky-600 to-purple-700 scrollbar scrollbar-thumb-gray-700 scrollbar-track-transparent hover:scrollbar-thumb-gray-800">
+    <nav class="w-full h-14 z-10 flex flex-row space-x-5 items-center justify-center bg-slate-900">
         <div class="flex items-center justify-center">
             <a href="/" class="text-base hover:underline hover:cursor-pointer">
                 Home
@@ -32,9 +28,26 @@
                 About Me
             </a>
         </div>
-    </div>
+    </nav>
 
     <div class="flex flex-col columns-1 bg-neutral-900 h-fit w-full">
+
+        <div class="w-full h-fit bg-gradient-to-r from-sky-600 to-purple-700 flex flex-col space-y-3 items-center justify-center text-center pb-9">
+            <h1 class="text-4xl pr-2 pl-2 pt-9">
+               My <mark class="bg-transparent font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-orange-500">Projects</mark>
+            </h1>
+            <h2>
+                A collection of some of my projects!
+            </h2>
+            <h5 class="pl-20 pr-20 lg:pl-60 lg:pr-60">
+                Most of my projects are tools to help other people (programmers) do things easier, some of them are stuff that can actually be used. Some of them may be missing from this page, check out my <a class="underline" href="https://github.com/littlepriceonu">Github</a>!
+            </h5>
+        </div>
+
+
+        <div class="flex flex-row items-center justify-center bg-gradient-to-r from-sky-600 to-purple-700 border-transparent">
+            <hr class="h-1 rounded bg-slate-800 w-60 md:w-7/12 border-slate-800">
+        </div> 
 
         <div class="w-full h-fit bg-gradient-to-r from-sky-600 to-purple-700 flex flex-col space-y-3 items-center justify-center text-center">
             <img src="/Snuke.png" alt="Recreated Snake Called Snuke!" class="w-2/3 md:w-2/12 pt-4">
@@ -101,22 +114,63 @@
             </div>
         </div>
 
-        <div class="text-center w-full h-fit flex space-x-5 flex-row items-center justify-center bg-gradient-to-r from-sky-600 to-purple-700 pt-3 pb-3 pl-2 pr-2 border-t-indigo-900 border-t-4">
-            <h1>
-                Adding More Soon! ❤️
+        <div class="flex flex-row items-center justify-center bg-gradient-to-r from-sky-600 to-purple-700 border-transparent">
+            <hr class="h-1 rounded bg-slate-800 w-60 md:w-7/12 border-slate-800">
+        </div> 
+
+        <div class="w-full h-fit bg-gradient-to-r from-sky-600 to-purple-700 flex flex-col space-y-3 items-center justify-center text-center">
+           
+            <h1 class="text-2xl pr-2 pl-2 pt-9">
+               Observe<mark class="bg-transparent font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-orange-500 font-mono">.js</mark> Library
             </h1>
-            <h1>
-                Delivered Using Amazon Web Services!
-            </h1>
-            <div class="text-center flex flex-row space-x-5 text-gray-900">
-                <h1>
-                    
-                </h1>
-                <h1>
-                    
-                </h1>
+            <h2 class="pr-4 pl-4">
+                Allows for For You To Create On Scroll Animations. Alot Easier Than Intersection Observers
+            </h2>
+            <h2>
+                View The End Of Main.js For A Example!
+            </h2>
+            <div class="flex flex-row space-x-5 justify-center items-center pb-12">
+                <a href="https://www.github.com/littlepriceonu/Observe.js">
+                    <img src="/github.png" alt="The Github Logo" class="w-12 h-12">
+                </a>
             </div>
         </div>
+
+        <div class="flex flex-row items-center justify-center bg-gradient-to-r from-sky-600 to-purple-700 border-transparent">
+            <hr class="h-1 rounded bg-slate-800 w-60 md:w-7/12 border-slate-800">
+        </div> 
+
+        <div class="w-full h-fit bg-gradient-to-r from-sky-600 to-purple-700 flex flex-col space-y-3 items-center justify-center text-center">
+           
+            <h1 class="text-2xl pr-2 pl-2 pt-9">
+               Turtle <mark class="bg-transparent font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-orange-500">Notifications</mark> Library
+            </h1>
+            <h2 class="pr-4 pl-4">
+                A Roblox notifications library that includes a notification "queueing" system, also has popups
+            </h2>
+            <h2>
+                See README.MD for full documentation!
+            </h2>
+            <div class="flex flex-row space-x-5 justify-center items-center pb-12">
+                <a href="https://github.com/Turtle-Brand/Turtle-Notifications">
+                    <img src="/github.png" alt="The Github Logo" class="w-12 h-12">
+                </a>
+            </div>
+        </div>
+
+        <footer class="text-center w-full h-fit flex space-x-5 flex-row flex-auto items-center justify-center bg-slate-900 pt-3 pb-3 pl-2 pr-2">
+            <h1 class="">
+                Adding More Soon! ❤️
+            </h1>
+
+            <a href="/projects" class="underline text-blue-600">
+                Back To Top
+            </a>
+
+            <h1 class="">
+                Delivered Using AWS!
+            </h1>
+        </footer>
     </div>
 </body>
 </html>

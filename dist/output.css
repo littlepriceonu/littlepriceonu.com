@@ -610,6 +610,43 @@ video {
   width: 66.666667%;
 }
 
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+@-webkit-keyframes scrollingGradientframes {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scrollingGradientframes {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fastScrollingGradient {
+  -webkit-animation: scrollingGradientframes 5s ease infinite;
+          animation: scrollingGradientframes 5s ease infinite;
+}
+
 .columns-1 {
   -moz-columns: 1;
        columns: 1;
@@ -657,10 +694,6 @@ video {
   border-radius: 0.25rem;
 }
 
-.border-t-4 {
-  border-top-width: 4px;
-}
-
 .border-slate-800 {
   --tw-border-opacity: 1;
   border-color: rgb(30 41 59 / var(--tw-border-opacity));
@@ -668,11 +701,6 @@ video {
 
 .border-transparent {
   border-color: transparent;
-}
-
-.border-t-indigo-900 {
-  --tw-border-opacity: 1;
-  border-top-color: rgb(49 46 129 / var(--tw-border-opacity));
 }
 
 .bg-slate-900 {
@@ -715,12 +743,50 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.via-purple-900 {
+  --tw-gradient-to: rgb(88 28 135 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #581c87, var(--tw-gradient-to);
+}
+
+.via-teal-500 {
+  --tw-gradient-to: rgb(20 184 166 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #14b8a6, var(--tw-gradient-to);
+}
+
+.via-rose-900 {
+  --tw-gradient-to: rgb(136 19 55 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #881337, var(--tw-gradient-to);
+}
+
+.via-green-800 {
+  --tw-gradient-to: rgb(22 101 52 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #166534, var(--tw-gradient-to);
+}
+
+.via-yellow-500 {
+  --tw-gradient-to: rgb(234 179 8 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #eab308, var(--tw-gradient-to);
+}
+
+.via-orange-500 {
+  --tw-gradient-to: rgb(249 115 22 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), #f97316, var(--tw-gradient-to);
+}
+
 .to-purple-700 {
   --tw-gradient-to: #7e22ce;
 }
 
 .to-orange-500 {
   --tw-gradient-to: #f97316;
+}
+
+.to-yellow-500 {
+  --tw-gradient-to: #eab308;
+}
+
+.bg-gradientSize {
+  background-size: 400% 400%;
 }
 
 .bg-clip-text {
@@ -804,6 +870,30 @@ video {
   padding-bottom: 3rem;
 }
 
+.pr-4 {
+  padding-right: 1rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pl-60 {
+  padding-left: 15rem;
+}
+
+.pr-60 {
+  padding-right: 15rem;
+}
+
+.pr-20 {
+  padding-right: 5rem;
+}
+
+.pl-20 {
+  padding-left: 5rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -859,9 +949,14 @@ video {
   color: transparent;
 }
 
-.text-gray-900 {
+.text-blue-600 {
   --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
+  color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .scrollbar {
@@ -956,6 +1051,31 @@ video {
           text-decoration-line: underline;
 }
 
+.hover\:scrollbar-thumb-gray-900 {
+  --scrollbar-thumb-hover: #111827 !important;
+}
+
+.hover\:scrollbar-thumb-gray-800 {
+  --scrollbar-thumb-hover: #1f2937 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce\:animate-none {
+    -webkit-animation: none;
+            animation: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:pl-20 {
+    padding-left: 5rem;
+  }
+
+  .sm\:pr-20 {
+    padding-right: 5rem;
+  }
+}
+
 @media (min-width: 768px) {
   .md\:h-20 {
     height: 5rem;
@@ -989,6 +1109,14 @@ video {
     padding-right: 13rem;
   }
 
+  .md\:pl-20 {
+    padding-left: 5rem;
+  }
+
+  .md\:pr-20 {
+    padding-right: 5rem;
+  }
+
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
@@ -1002,5 +1130,21 @@ video {
 
   .lg\:pr-96 {
     padding-right: 24rem;
+  }
+
+  .lg\:pr-20 {
+    padding-right: 5rem;
+  }
+
+  .lg\:pl-20 {
+    padding-left: 5rem;
+  }
+
+  .lg\:pl-60 {
+    padding-left: 15rem;
+  }
+
+  .lg\:pr-60 {
+    padding-right: 15rem;
   }
 }
