@@ -19,7 +19,7 @@ var options = {
 
 app.get("/UPGIT", async (req, res) => {
     console.log("UP Git requested")
-    if (req.params.SEC == secret) {
+    if (req.query.SEC == secret) {
         console.log("SEC confirmed")
         await exec("git pull", {
             cwd: "/home/ec2-user/site/littlepriceonu.com/"
@@ -28,8 +28,6 @@ app.get("/UPGIT", async (req, res) => {
         process.exit(0)
     }
     else {
-        console.log(req.params)
-        console.log(req.query)
         res.send("SEC Returned False")
     }
 })
