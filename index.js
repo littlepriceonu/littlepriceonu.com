@@ -18,7 +18,9 @@ var options = {
 };
 
 app.get("/UPGIT", async (req, res) => {
+    console.log("UP Git requested")
     if (req.params.SEC == secret) {
+        console.log("SEC confirmed")
         await exec("git pull", {
             cwd: "/home/ec2-user/site/littlepriceonu.com/"
         } )
