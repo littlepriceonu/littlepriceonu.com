@@ -4,6 +4,7 @@
   "description": "My Personal Site, Hosted On AWS",
   "main": "index.js",
   "scripts": {
+    "start": "forever start index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +18,9 @@
   },
   "homepage": "https://github.com/littlepriceonu/littlepriceonu.com#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
+    "forever": "^4.0.3",
     "serve-favicon": "^2.5.0",
     "tailwind": "^4.0.0",
     "tailwind-scrollbar": "^2.0.1"

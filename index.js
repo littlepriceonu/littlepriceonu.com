@@ -2,11 +2,29 @@ const express = require('express')
 const favicon = require('serve-favicon')
 const app = express()
 const path = require('path')
+
+const util = require("node:util")
+const { exec } = util.promisify(require('child_process').exec);
+
 const port = 3000
+
+require('dotenv').config();
+
+const secret = process.env.SECRET
 
 var options = {
     root: path.join(__dirname)
 };
+
+app.post("/UPGIT", async (req, res) => {
+    if (req.body == secret) {
+        await exec("git pull", {
+            cwd: "/home/ec2-user/site/littlepriceonu.com/"
+        } )
+        res.send("Git Pulled!")
+        process.exit(0)
+    }
+})
 
 app.get('/', (req, res) => { 
     res.sendFile("src/home.html", options, function(err) {

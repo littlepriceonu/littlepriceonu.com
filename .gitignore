@@ -3,3 +3,5 @@ tests
 node_modules
 
 clientel
+
+.env
