@@ -27,6 +27,9 @@ app.get("/UPGIT", async (req, res) => {
         res.send("Git Pulled!")
         process.exit(0)
     }
+    else {
+        res.send("SEC Returned False")
+    }
 })
 
 app.get('/', (req, res) => { 
