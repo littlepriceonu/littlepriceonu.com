@@ -24,6 +24,7 @@ app.get("/UPGIT", async (req, res) => {
         await exec("git pull", {
             cwd: "/home/ec2-user/site/littlepriceonu.com/"
         } )
+        console.log("Pull Finished!")
         res.send("Git Pulled!")
         process.exit(0)
     }
