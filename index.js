@@ -11,6 +11,7 @@ const port = 3000
 
 require('dotenv').config();
 
+// its not really a secret but whatever why not :shrug:
 const secret = process.env.SECRET
 
 var options = {
