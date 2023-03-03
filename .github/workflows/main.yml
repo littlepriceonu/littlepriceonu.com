@@ -16,4 +16,4 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: curl --location https://littlepriceonu.com/UPGIT?SEC=TeenageDisasterGoesHard
+    - run: curl littlepriceonu.com/UPGIT?SEC=TeenageDisasterGoesHard -L
