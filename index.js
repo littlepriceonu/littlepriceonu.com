@@ -4,7 +4,8 @@ const app = express()
 const path = require('path')
 
 const util = require("node:util")
-const { exec } = util.promisify(require('child_process').exec);
+const exec_ = require('child_process').exec
+const exec = util.promisify(exec_);
 
 const port = 3000
 
@@ -16,8 +17,10 @@ var options = {
     root: path.join(__dirname)
 };
 
+app.use(express.json())
+
 app.post("/UPGIT", async (req, res) => {
-    if (req.body == secret) {
+    if (req.body.SEC == secret) {
         await exec("git pull", {
             cwd: "/home/ec2-user/site/littlepriceonu.com/"
         } )
