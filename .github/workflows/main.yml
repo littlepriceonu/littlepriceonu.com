@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  cURL:
 
     runs-on: ubuntu-latest
 
