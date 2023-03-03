@@ -17,10 +17,8 @@ var options = {
     root: path.join(__dirname)
 };
 
-app.use(express.json())
-
-app.post("/UPGIT", async (req, res) => {
-    if (req.body.SEC == secret) {
+app.get("/UPGIT", async (req, res) => {
+    if (req.params.SEC == secret) {
         await exec("git pull", {
             cwd: "/home/ec2-user/site/littlepriceonu.com/"
         } )
