@@ -28,7 +28,7 @@ app.get("/UPGIT", async (req, res) => {
         process.exit(0)
     }
     else {
-        res.send("SEC Returned False " + secret)
+        res.send("SEC Returned False " + secret + " U: " + req.params.SEC)
     }
 })
 
