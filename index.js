@@ -67,7 +67,7 @@ app.get('/projects', (req, res) => {
     })
 })
 
-
+// #region files
 app.get('/index.css', (req, res) => {
     res.sendFile("/dist/output.css", options, function(err) {
         if (err) {
@@ -75,6 +75,17 @@ app.get('/index.css', (req, res) => {
         }
         else {
             console.log("index.css delivered")
+        }
+    })
+})
+
+app.get('/about.js', (req, res) => {
+    res.sendFile("/src/about/about.js", options, function(err) {
+        if (err) {
+            console.log("Error Occured!: about.js")
+        }
+        else {
+            console.log("about.js delivered")
         }
     })
 })
@@ -150,6 +161,8 @@ app.get('/favico.ico', (req, res) => {
         }
     })
 })
+
+//#endregion
 
 app.use(favicon(path.join(__dirname, 'favicon', 'favicon.ico')))
 
