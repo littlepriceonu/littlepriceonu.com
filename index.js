@@ -6,6 +6,7 @@ const path = require('path')
 const util = require("node:util")
 const exec_ = require('child_process').exec
 const exec = util.promisify(exec_);
+const fs = require('fs');
 
 const port = 3000
 
@@ -17,6 +18,21 @@ const secret = process.env.SECRET
 var options = {
     root: path.join(__dirname)
 };
+
+app.get("/senddata", async (req, res) => {
+    console.log("Data Append Requested...")
+    if (req.query.SEC == secret && req.query.u) {
+        console.log("SEC confirmed")
+        fs.writeFile('/data.txt', req.query.u, { flag: 'a+' }, err => {
+            console.log("Error occured during file write attempt!", err)
+        });
+        console.log("Data Save Attempted!")
+        res.send("SAVED!")
+    }
+    else {
+        res.send("SEC Returned False Or No U Queried")
+    }
+})
 
 app.get("/UPGIT", async (req, res) => {
     console.log("UP Git requested")
