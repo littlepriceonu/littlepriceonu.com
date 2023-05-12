@@ -15,8 +15,6 @@ require('dotenv').config();
 // its not really a secret but whatever why not :shrug:
 const secret = process.env.SECRET
 
-const writePath = process.env.PATH
-
 var options = {
     root: path.join(__dirname)
 };
@@ -25,7 +23,7 @@ app.get("/senddata", async (req, res) => {
     console.log("Data Append Requested...")
     if (req.query.SEC == secret && req.query.u) {
         console.log("SEC confirmed")
-        fs.writeFile(writePath, req.query.u, { flag: 'a+' }, err => {
+        fs.writeFile(`${__dirname}\\data.txt`, req.query.u, { flag: 'a+' }, err => {
             console.log("Error occured during file write attempt!", err)
         });
         console.log("Data Save Attempted!")
