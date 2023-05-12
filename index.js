@@ -24,16 +24,15 @@ app.get("/senddata", async (req, res) => {
     if (req.query.SEC == secret && req.query.u) {
         console.log("SEC confirmed")
         console.log("Data Received: " + req.query.u)
-        fs.writeFile(`${__dirname}\\data.txt`, req.query.u, { flag: 'a' }, err => {
-            if (err) {
-                console.log("Error occured during file write attempt!", err)
-                res.send("ERROR!")
-            }
-            else{
-                console.log("Data Save Succesful!")
-                res.send("SAVED!")
-            }
-        });
+        try {
+            fs.appendFileSync(`${options.root}\\data.txt`, req.query.u);
+            console.log("Data Save Succesful!")
+            res.send("SAVED!")
+        }
+        catch (err) {
+            console.log("Error occured during file write attempt!", err)
+            res.send("ERROR!")
+        }
     }
     else {
         res.send("SEC Returned False Or No U Queried")
