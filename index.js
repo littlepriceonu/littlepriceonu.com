@@ -24,7 +24,7 @@ app.get("/senddata", async (req, res) => {
     if (req.query.SEC == secret && req.query.u) {
         console.log("SEC confirmed")
         console.log("Data Received: " + req.query.u)
-        fs.writeFile(`${__dirname}\\data.txt`, req.query.u, { flag: 'a+' }, err => {
+        fs.writeFile(`${__dirname}\\data.txt`, req.query.u, { flag: 'a' }, err => {
             if (err) {
                 console.log("Error occured during file write attempt!", err)
                 res.send("ERROR!")
