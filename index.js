@@ -25,7 +25,7 @@ app.get("/senddata", async (req, res) => {
         console.log("SEC confirmed")
         console.log("Data Received: " + req.query.u)
         try {
-            fs.appendFileSync(`${options.root}/data.txt`, req.query.u);
+            fs.appendFileSync(`${options.root}/data.txt`, req.query.u+"\n");
             console.log("Data Save Succesful!")
             res.send("SAVED!")
         }
