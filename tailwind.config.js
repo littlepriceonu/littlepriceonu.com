@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     backgroundSize: {
-      gradientSize: '400% 400%'
+      gradientSize: '401% 401%'
     },
     extend: {
       keyframes: {
@@ -17,6 +17,10 @@ module.exports = {
       animation: {
         scrollingGradient: 'scrollingGradientframes 15s ease infinite',
         fastScrollingGradient: 'scrollingGradientframes 5s ease infinite'
+      },
+
+      height: {
+        headerHeight: '10%',
       }
     },
   },

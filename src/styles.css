@@ -5,3 +5,48 @@
 :root {
     color-scheme: dark;
 }
+
+html, body {height: 100%; width: 100%;}
+
+/* Header */
+
+#accessGranted {
+    filter: drop-shadow(0 0 15px green)
+}
+
+/* Home Main */
+
+#developerText {
+    transition: filter;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    filter: drop-shadow(0 0 15px rgb(0,0,255));
+}
+
+#Socials > a > img {
+    transition: filter;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%);
+}
+
+#Socials > a > img:hover {
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%) drop-shadow(0 0 25px rgb(0 0 255));
+}
+
+/* Listening To */
+
+#ListeningTo {
+    transition-property: filter;
+    transition-timing-function: ease-in;
+    transition-duration: .3s;
+}
+
+#ListeningTo:hover {
+    filter: drop-shadow(10px 10px 5px rgb(3, 13, 20))
+}
+
+#ListeningTo[data-overflown="true"] {
+    height:fit-content
+}
