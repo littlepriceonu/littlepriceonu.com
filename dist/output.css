@@ -573,6 +573,18 @@ video {
   margin-top: 2.5rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -607,6 +619,18 @@ video {
   height: fit-content;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-3 {
+  height: 0.75rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
 .h-24 {
   height: 6rem;
 }
@@ -621,6 +645,10 @@ video {
 
 .w-3\/4 {
   width: 75%;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 @-webkit-keyframes scrollingGradientframes {
@@ -722,6 +750,11 @@ video {
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -1003,6 +1036,10 @@ html, body {
   height:-webkit-fit-content;
   height:-moz-fit-content;
   height:fit-content
+}
+
+.bar {
+  transition: height 0.8s ease-in;
 }
 
 @media (prefers-reduced-motion: reduce) {

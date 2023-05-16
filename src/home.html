@@ -20,7 +20,7 @@
 
 <body class="w-full h-full bg-slate-900 scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 pl-14 pr-14">
     <header class="sticky top-0 bg-transparent w-full h-headerHeight flex flex-row items-center justify-end space-x-12">
-        <h1 id="accessGranted" class="mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('User seems to have interacted with the terminal... how strange...')" >ACCESS GRANTED</h1>
+        <h1 id="accessGranted" class="font-mono mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('User seems to have interacted with the terminal... how strange...')" >ACCESS GRANTED</h1>
         
         <a class="text-3xl font-bold text-transparent bg-clip-text bg-gradientSize bg-gradient-to-r from-cyan-500 to-blue-900 animate-fastScrollingGradient motion-reduce:animate-none motion-reduce:bg-auto" href="/">Home</a>
         <a class="text-3xl" href="">Projects</a>
@@ -55,13 +55,17 @@
         </div>
 
         <div id="ListeningTo" data-overflown="false" class="flex flex-col items-center justify-start mt-10 w-3/4 lg:w-1/3 2xl:w-1/4 h-fit min-h-[25%]  bg-gray-800 rounded-md">
-            <h1 id="NowListening" class="font-bold pt-2 w-full text-left pl-3 font-mono" >NOW LISTENING TO...</h1>
+            <div class="w-full flex flex-row justify-start items-center"> <h1 id="NowListening" class="font-bold pt-2 w-full text-left pl-3 font-mono" >NOW LISTENING TO...</h1> 
+                <div class="bar w-1 h-6 bg-blue-600 mr-1 mt-2"></div>
+                <div class="bar w-1 h-3 bg-blue-600 mr-1 mt-2"></div>
+                <div class="bar w-1 h-5 bg-blue-600 mr-2 mt-2"></div>
+            </div>
             <div class="flex w-full flex-row mt-4 justify-start items-center pl-6">
-                <img id="AlbumImage" crossorigin="anonymous" class="mb-auto h-24 rounded-md" src="https://lastfm.freetls.fastly.net/i/u/174s/efed33e6c4315d2603232e50f2c4abd2.jpg" alt="Album Image">
+                <img id="AlbumImage" crossorigin="anonymous" class="mb-auto h-24 rounded-md" src="https://images.genius.com/28bff45b39ecc8c7b6f26bef075d3600.500x500x1.jpg" alt="Album Image">
                 <div class="w-full flex flex-col items-center justify-center ml text-xl pl-5 text-center">
                     <h1 id="SongName" class="pr-5 font-bold"> Loading... </h1>
                     <p  id="AlbumName" class="text-sm pt-1 text-gray-400 pr-5">Loading...</p> 
-                    <p  id="ArtistName" class="text-sm pt-3 text-gray-400 pb-3">Loading...</p>
+                    <p  id="ArtistName" class="text-sm pt-3 text-gray-400 pb-3 pr-5">Loading...</p>
                 </div>
             </div>
         </div>

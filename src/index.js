@@ -3,10 +3,18 @@
 // USER ACCESSED INTERAL OPERATIONS
 // ! MONITORING HAS BEEN ESCALATED TO A LEVEL *2* !
 
+console.log("USER AUTHORIZED. Unknown datascale, attemping to search again")
+
 // TODO
 //
 
 //#region Misc. Functions
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 //#endregion
 
@@ -40,6 +48,7 @@ const AlbumName = document.getElementById("AlbumName")
 const ArtistName = document.getElementById("ArtistName")
 const NowListening = document.getElementById("NowListening")
 const ListeningTo = document.getElementById("ListeningTo")
+const Bars = Array.from(document.getElementsByClassName("bar"))
 
 fetch("/api/getListeningData").then(data => data.json()).then(data => {
 
@@ -47,9 +56,21 @@ fetch("/api/getListeningData").then(data => data.json()).then(data => {
 
     if (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying) {
         NowListening.innerText = "NOW LISTENING TO..."
+        Bars.forEach(el => {
+            setInterval(()=>{
+                el.style.height = getRandomInt(1,24).toString() + "px"
+            }, 700)
+        })
     }
     else {
         NowListening.innerText = "RECENTLY LISTENED TO..."
+        Bars.forEach(el => {
+            el.remove()
+        })
+    }
+
+    if (SongName.innerText == "iamsuicidal") {
+        data.recenttracks.track[0].image[2]["#text"] = "https://images.genius.com/28bff45b39ecc8c7b6f26bef075d3600.500x500x1.jpg"
     }
 
     AlbumName.innerText = data.recenttracks.track[0].album["#text"]

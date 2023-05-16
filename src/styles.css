@@ -50,3 +50,7 @@ html, body {height: 100%; width: 100%;}
 #ListeningTo[data-overflown="true"] {
     height:fit-content
 }
+
+.bar {
+    transition: height 0.8s ease-in;
+}
