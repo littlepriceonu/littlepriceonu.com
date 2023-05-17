@@ -138,7 +138,7 @@ app.get("/api/getListeningData", (req, res) => {
 
 // #region File Delivery
 
-var FILES = [
+const FILES = [
     // Pages
     ["", "/src/home.html"],
 
@@ -155,6 +155,9 @@ var FILES = [
     ["email.png", "/img/email.png"],
     ["lastfm.png", "/img/lastfm.png"],
 
+    // Album Covers
+    ["fricksuckaz.jpg", "/img/AlbumCovers/fricksuckaz.jpg"],
+    ["stardust.jpg", "/img/AlbumCovers/stardust.jpg"],
 
     ["favicon.ico", "/favicon/favicon.ico"],
 ]
