@@ -20,7 +20,7 @@
 
 <body class="w-full h-full bg-slate-900 scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 pl-14 pr-14">
     <header class="sticky top-0 bg-transparent w-full h-headerHeight flex flex-row items-center justify-end space-x-12">
-        <h1 id="accessGranted" class="font-mono mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('User seems to have interacted with the terminal... how strange...')" >ACCESS GRANTED</h1>
+        <h1 id="accessGranted" class="font-mono mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('%cUSER SEEMS TO HAVE INTERACTED WITH THE TERMINAL... HOW...' + '%cSTRANGE ' + '%c...', 'color: red; font-family: monospace;', 'font-family: monospace; font-weight: 800; color: blue;', 'font-family: monospace; color: red;')" >ACCESS GRANTED</h1>
         
         <a class="text-3xl font-bold text-transparent bg-clip-text bg-gradientSize bg-gradient-to-r from-cyan-500 to-blue-900 animate-fastScrollingGradient motion-reduce:animate-none motion-reduce:bg-auto" href="/">Home</a>
         <a class="text-3xl" href="">Projects</a>
@@ -28,9 +28,13 @@
     </header>
 
     <div class="h-full pt-40 2xl:pt-52 pl-24">
-        <img class="h-44 rounded-lg" src="/PFP.gif" alt="Vault Boy Being Tired :>">
+        <img id="PFP" class="h-44 rounded-lg" src="/PFP.gif" alt="Vault Boy Being Tired :>">
+            <div id="OuterStatus" class="rounded-full h-12 w-12 bg-slate-900 z-10 relative flex items-center justify-center">
+                <div id="Status" class="rounded-full w-6 h-6 bg-green-500"></div>
+            </div>
+        </img>
         <h1 class="pt-3 text-5xl font-bold">Littlepriceonu</h1>
-        <h2 class="text-2xl pt-1">Full Stack <mark id="developerText" class="font-bold text-transparent bg-gradientSize animate-fastScrollingGradient bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-900 motion-reduce:animate-none motion-reduce:bg-auto">Developer</mark></h2>
+        <h2 class="text-2xl pt-1">Full Stack <mark id="developerText" class="font-bold text-transparent bg-gradientSize animate-fastScrollingGradient bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-900 motion-reduce:animate-none motion-reduce:bg-auto">Web Developer</mark></h2>
         
         <div id="Socials" class="flex flex-row items-center justify-start space-x-6 pt-5">
             <a target="_blank" href="https://github.com/Littlepriceonu">
@@ -54,7 +58,7 @@
             </a>
         </div>
 
-        <div id="ListeningTo" class="flex flex-col items-center justify-start mt-5 3xl:mt-10 w-3/4 lg:w-1/3 2xl:w-1/4 h-fit min-h-[30%] 2xl:min-h-[25%]  bg-gray-800 rounded-md">
+        <div id="ListeningTo" class="flex flex-col items-center justify-start mt-5 3xl:mt-10 w-3/4 lg:w-1/3 2xl:w-1/4 h-fit min-h-[27%] 2xl:min-h-[25%]  bg-gray-800 rounded-md">
             <div class="w-full flex flex-row justify-start items-center"> <h1 id="NowListening" class="font-bold pt-2 w-full text-left pl-3 font-mono" >Loading Module...</h1> 
                 <div class="bar w-1 h-6 bg-blue-600 mr-1 mt-2"></div>
                 <div class="bar w-1 h-3 bg-blue-600 mr-1 mt-2"></div>

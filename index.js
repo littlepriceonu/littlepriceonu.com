@@ -3,20 +3,24 @@
 // FALSE 404 BYPASSED
 // USER HAS BREACHED SERVER AND IS BROWSING SERVER FILES
 // FAILURE TO TERMINATE CONNECTION WILL LEAD TO BREACH OF CONTRACT
+// ITS ALL UP TO YOU NOW. DO YOUR JOB
 // ! MONITORING HAS BEEN ESCALATED TO A LEVEL *3* !
 
-// Express imports
+//#region Express imports
 const express = require('express')
 const favicon = require('serve-favicon')
 const app = express()
+//#endregion
 
-// Misc. imports
+//#region Misc. imports
 const path = require('path')
 const util = require("node:util")
 const exec_ = require('child_process').exec
 const exec = util.promisify(exec_);
 const fs = require('fs');
 require('dotenv').config();
+//#endregion
+
 
 // MAIN PORT ASSIGNED
 const port = 3000
@@ -24,6 +28,7 @@ const port = 3000
 // DATA DETECTED UNDER PROCESS... MANAGING...
 const secret = process.env.SECRET
 const LASTFM_KEY = process.env.LASTFM_KEY
+// DATA MANAGED AND ASSIGNED
 
 var options = {
     root: path.join(__dirname)
@@ -44,10 +49,15 @@ var payload = {
     'limit': '1'
 }
 
+// Request = time in milliseconds since last request
+// Response = response of last request
+// Debounce = time in seconds to wait unil the server is allowed to make another request
 var lastFMRequest = 0
 var lastFMResponse = ""
+const lastFMDebounce = 5
 
-// rate 1 : sec
+// rate limiting when >1 request : second
+// so I made the timeout before an update 5 secs just in case :shrug:
 function LastFMFetch(payload) {
     payload['api_key'] = LASTFM_KEY
     payload['format'] = 'json'
@@ -80,10 +90,7 @@ function LastFMFetch(payload) {
 }
 
 function FMTimeoutComplete() {
-    if (Date.now() - lastFMRequest > 5000) {
-        return true
-    }
-
+    if (Date.now() - lastFMRequest > lastFMDebounce * 1000) return true;
     return false
 }
 
@@ -154,6 +161,7 @@ const FILES = [
     ["github.png", "/img/github.png"],
     ["email.png", "/img/email.png"],
     ["lastfm.png", "/img/lastfm.png"],
+    ["status.png", "/img/Status.png"],
 
     // Album Covers
     ["fricksuckaz.jpg", "/img/AlbumCovers/fricksuckaz.jpg"],

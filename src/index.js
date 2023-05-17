@@ -3,25 +3,36 @@
 // USER ACCESSED INTERAL OPERATIONS
 // ! MONITORING HAS BEEN ESCALATED TO A LEVEL *2* !
 
-console.log("USER AUTHORIZED. Unknown datascale, attemping to search again")
+console.log("%cUSER AUTHORIZED. ! Unknown datascale, attemping to search again !", "color: red;")
 
 // TODO
-//
+// a tool tip on the status thing
+// mobile support
+// lyric thing on right of name
 
 //#region Variables
 
-const SONGS = [
-    ["iamsuicidal", "https://images.genius.com/28bff45b39ecc8c7b6f26bef075d3600.500x500x1.jpg"],
-    ["COCKNBALLTORTURE", "https://images.genius.com/d11ccddb4dbc5d7964e54102cbfe5525.1000x1000x1.png"],
-    ["B*******E (feat. Lil D****e)", "https://cdns-images.dzcdn.net/images/cover/d4de137520fee181a4d3d89e453290a5/500x500.jpg"],
-    ["warm rain", "https://i.scdn.co/image/ab67616d0000b2735b3e06096b1604016b729a93"],
-    ["when the world end", "https://i1.sndcdn.com/artworks-0xZLnKADQJHhFEoI-06nAKw-t500x500.jpg"],
-    ["RUN", "https://i1.sndcdn.com/artworks-Mbwvi7htzOpNHV7o-kixKIw-t500x500.jpg"],
-    ["Hall of Fame (feat. Lake Kyle & Lil D****e)", "https://i.scdn.co/image/ab67616d00001e023f3a016617a325b1dfc4dd5d"],
-    ["frick suckaz", "/fricksuckaz.jpg"],
-    ["stardust", "/stardust.jpg"],
-    ["No Hook, Pt. 2", "https://i.scdn.co/image/ab67616d00001e02d3800d40e3f17986fd0a4f9f"]
-]
+const SONGS = {
+    "iamsuicidal": "https://images.genius.com/28bff45b39ecc8c7b6f26bef075d3600.500x500x1.jpg",
+    "COCKNBALLTORTURE": "https://images.genius.com/d11ccddb4dbc5d7964e54102cbfe5525.1000x1000x1.png",
+    "B*******E (feat. Lil D****e)": "https://cdns-images.dzcdn.net/images/cover/d4de137520fee181a4d3d89e453290a5/500x500.jpg",
+    "warm rain": "https://i.scdn.co/image/ab67616d0000b2735b3e06096b1604016b729a93",
+    "when the world end": "https://i1.sndcdn.com/artworks-0xZLnKADQJHhFEoI-06nAKw-t500x500.jpg",
+    "RUN": "https://i1.sndcdn.com/artworks-Mbwvi7htzOpNHV7o-kixKIw-t500x500.jpg",
+    "Hall of Fame (feat. Lake Kyle & Lil D****e)": "https://i.scdn.co/image/ab67616d00001e023f3a016617a325b1dfc4dd5d",
+    "frick suckaz": "/fricksuckaz.jpg",
+    "stardust": "/stardust.jpg",
+    "No Hook, Pt. 2": "https://i.scdn.co/image/ab67616d00001e02d3800d40e3f17986fd0a4f9f",
+    "D****e Still Cannot Rap Pt. 1 (Remix)": "https://i1.sndcdn.com/artworks-nxOhOCH4l4wJk3Pj-EqfEGQ-t500x500.jpg",
+    "is there anyone home?": "https://i.scdn.co/image/ab67616d0000b27398bc0cadfed62e38f5a7455d",
+}
+
+const COLORS = {
+    online: "rgb(67, 181, 129)",
+    dnd: "rgb(244, 70, 72)",
+    idle: "rgb(248, 166, 25)",
+    offline: "rgb(115, 126, 141)",
+}
 
 //#endregion
 
@@ -32,11 +43,47 @@ function getRandomInt(min, max) {
 }
 
 function checkSongNameWithCover(name, data) {
-    SONGS.forEach(cover => {
-        if (name == cover[0]) {
-            data.recenttracks.track[0].image[2]["#text"] = cover[1]
-            return
-        }
+    if (SONGS[name]) {
+        data.recenttracks.track[0].image[2]["#text"] = SONGS[name]
+    }
+}
+
+function getDiscordData() {
+    return new Promise(res => {
+        fetch("https://api.lanyard.rest/v1/users/526120594929090561").then(body => body.json()).then(data => {
+            if (data.success) {
+                res(data)
+            }
+            else {
+                error("Lanyard API had and error grabbing Discord data")
+            }
+        })
+    })
+}
+
+//#endregion
+
+//#region Status
+
+const OuterStatus = document.getElementById("OuterStatus")
+const PFP = document.getElementById("PFP")
+
+function HandleStatus() {
+    OuterStatus.style.top = "-" +(PFP.clientHeight + PFP.clientHeight/8).toString()+"px"
+
+    OuterStatus.style.left = (PFP.clientWidth - PFP.clientWidth/6).toString()+"px"
+
+    getDiscordData().then(discord => {
+        OuterStatus.style.setProperty("--status-color", COLORS[discord.data.discord_status])
+    })
+}
+
+if (PFP.complete) {
+    HandleStatus()
+}
+else {
+    PFP.addEventListener("load", ()=>{
+        HandleStatus()
     })
 }
 
