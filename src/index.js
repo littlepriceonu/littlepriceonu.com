@@ -66,6 +66,7 @@ function getDiscordData() {
 //#region Status
 
 const OuterStatus = document.getElementById("OuterStatus")
+const Status = document.getElementById("Status")
 const PFP = document.getElementById("PFP")
 
 function HandleStatus() {
@@ -75,6 +76,7 @@ function HandleStatus() {
 
     getDiscordData().then(discord => {
         OuterStatus.style.setProperty("--status-color", COLORS[discord.data.discord_status])
+        Status.setAttribute("data-status", discord.data.discord_status)
     })
 }
 

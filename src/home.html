@@ -27,10 +27,13 @@
         <a class="text-3xl" href="">Something Else</a>
     </header>
 
-    <div class="h-full pt-40 2xl:pt-52 pl-24">
+    <div class="h-full pt-28 xl:pt-40 3xl:pt-52 pl-24">
         <img id="PFP" class="h-44 rounded-lg" src="/PFP.gif" alt="Vault Boy Being Tired :>">
             <div id="OuterStatus" class="rounded-full h-12 w-12 bg-slate-900 z-10 relative flex items-center justify-center">
-                <div id="Status" class="rounded-full w-6 h-6 bg-green-500"></div>
+                <div id="Status" data-status="offline" class="rounded-full w-6 h-6 bg-green-500">
+                    <div id="dndBar" class="w-3 h-1 bg-red-900 class hidden"></div>
+                    <div id="idleCircle" class="w-6 h-6 rounded-full bg-slate-900 class hidden"></div>
+                </div>
             </div>
         </img>
         <h1 class="pt-3 text-5xl font-bold">Littlepriceonu</h1>
@@ -58,14 +61,14 @@
             </a>
         </div>
 
-        <div id="ListeningTo" class="flex flex-col items-center justify-start mt-5 3xl:mt-10 w-3/4 lg:w-1/3 2xl:w-1/4 h-fit min-h-[27%] 2xl:min-h-[25%]  bg-gray-800 rounded-md">
+        <div id="ListeningTo" class="flex flex-col items-center justify-start mt-5 3xl:mt-10 w-fit min-w-[75%] lg:min-w-[33.333333%] 2xl:min-w-[25%] h-fit min-h-[27%] 2xl:min-h-[25%]  bg-gray-800 rounded-md">
             <div class="w-full flex flex-row justify-start items-center"> <h1 id="NowListening" class="font-bold pt-2 w-full text-left pl-3 font-mono" >Loading Module...</h1> 
                 <div class="bar w-1 h-6 bg-blue-600 mr-1 mt-2"></div>
                 <div class="bar w-1 h-3 bg-blue-600 mr-1 mt-2"></div>
                 <div class="bar w-1 h-5 bg-blue-600 mr-2 mt-2"></div>
             </div>
             <div class="flex w-full flex-row mt-4 justify-start items-center pl-6">
-                <img id="AlbumImage" crossorigin="anonymous" class="mb-auto h-32 2xl:h-24 rounded-md" src="" alt="Loading Image...">
+                <img id="AlbumImage" crossorigin="anonymous" class="mb-auto h-32 rounded-md" src="" alt="Loading Image...">
                 <div class="w-full flex flex-col items-center justify-center ml text-xl pl-5 text-center">
                     <h1 id="SongName" class="pr-5 font-bold"> Loading... </h1>
                     <p  id="AlbumName" class="text-sm pt-1 text-gray-400 pr-5">Loading...</p> 

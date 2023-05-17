@@ -11,6 +11,7 @@
 :root {
     color-scheme: dark;
     --status-color: rgb(115, 126, 141);
+    --background-color: rgb(15 23 42);
 }
 
 html, body {height: 100%; width: 100%;}
@@ -26,6 +27,35 @@ html, body {height: 100%; width: 100%;}
 #Status {
     filter: drop-shadow(0 0 10px var(--status-color));
     background-color: var(--status-color);
+}
+
+#Status[data-status="dnd"] > div#dndBar {
+    display: block;
+}
+
+#Status[data-status="dnd"] {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+#Status[data-status="offline"] {
+    background-color: var(--background-color);
+    border: var(--status-color) solid 5px;
+}
+
+#Status[data-status="idle"] {
+    overflow:hidden;
+}
+
+
+#Status[data-status="idle"] > div#idleCircle {
+    display: block;
+    position: relative;
+    left:-8px;
+    top:-6px;
+
+    background-color: rgb(158, 109, 25);
 }
 
 #developerText {
