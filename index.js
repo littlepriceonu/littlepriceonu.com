@@ -151,7 +151,8 @@ const FILES = [
 
     // Other Files
     ["index.css", "/dist/output.css"],
-    ["index.js", "/src/index.js"],
+    ["index.js", "/dist/scripts/index.js"],
+    ["index.js.map", "/dist/scripts/index.js.map"],
 
     // Images
     ["PFP.gif", "/img/PFP.gif"],

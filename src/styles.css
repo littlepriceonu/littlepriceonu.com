@@ -16,6 +16,17 @@
 
 html, body {height: 100%; width: 100%;}
 
+/* Loading Screen */
+
+#loadingScreen {
+    transition: opacity .5s ease-in;
+}
+
+#loadingBar {
+    background-color: rgb(67, 181, 129);
+    transition: width 0.5s ease-in;
+}
+
 /* Header */
 
 #accessGranted {
@@ -23,6 +34,10 @@ html, body {height: 100%; width: 100%;}
 }
 
 /* Home Main */
+
+#contentHolder {
+    transition: opacity 0.8s ease-in;
+}
 
 #Status {
     filter: drop-shadow(0 0 10px var(--status-color));
@@ -36,7 +51,7 @@ html, body {height: 100%; width: 100%;}
 #Status[data-status="dnd"] {
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
 }
 
 #Status[data-status="offline"] {
@@ -46,6 +61,8 @@ html, body {height: 100%; width: 100%;}
 
 #Status[data-status="idle"] {
     overflow:hidden;
+
+    border: var(--status-color) solid 0.05px;
 }
 
 
