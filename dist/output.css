@@ -593,10 +593,6 @@ video {
   z-index: 10;
 }
 
-.z-50 {
-  z-index: 50;
-}
-
 .mr-auto {
   margin-right: auto;
 }
@@ -887,16 +883,20 @@ video {
   padding-right: 3.5rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
 .pt-28 {
   padding-top: 7rem;
 }
 
 .pl-24 {
   padding-left: 6rem;
-}
-
-.pt-1 {
-  padding-top: 0.25rem;
 }
 
 .pt-5 {
@@ -943,14 +943,14 @@ video {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-3xl {
@@ -981,6 +981,11 @@ video {
   font-weight: 700;
 }
 
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .text-green-500 {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
@@ -993,26 +998,6 @@ video {
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-.text-orange-900 {
-  --tw-text-opacity: 1;
-  color: rgb(124 45 18 / var(--tw-text-opacity));
-}
-
-.text-\[\#402201\] {
-  --tw-text-opacity: 1;
-  color: rgb(64 34 1 / var(--tw-text-opacity));
-}
-
-.text-\[\#7a4100\] {
-  --tw-text-opacity: 1;
-  color: rgb(122 65 0 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -1194,13 +1179,16 @@ html, body {
 /* Listening To */
 
 #ListeningTo {
-  transition-property: filter;
+  transition-property: filter, transform;
   transition-timing-function: ease-in;
-  transition-duration: .3s;
+  transition-duration: .25s;
 }
 
 #ListeningTo:hover {
-  filter: drop-shadow(10px 10px 5px rgb(3, 13, 20))
+  filter: drop-shadow(10px 10px 5px rgb(3, 13, 20));
+  transform: scale(1.02, 1.02);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 #ListeningTo[data-overflown="true"] {

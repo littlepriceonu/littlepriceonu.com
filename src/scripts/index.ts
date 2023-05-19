@@ -11,7 +11,7 @@ console.log("%cUSER AUTHORIZED. ! Unknown datascale, attemping to search again !
 // TODO
 // a tool tip on the status thing
 // mobile support
-// lyric thing on right of name
+// lyric thing on right of name (remove if screen too small?)
 // change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120))
 
 //#region Declarations
@@ -42,12 +42,14 @@ const SONGS = {
     "When You Gone": "https://i.scdn.co/image/ab67616d00001e023a4882894fe2fa490340235c",
     "don't think": "https://i1.sndcdn.com/artworks-s9jV0rcQINSxv4io-qGSjAQ-t500x500.jpg",
     "they just put my dog down (RIP TUGBOAT RIP PERCY) [feat. Lil D****e & Wendigo]": "https://i1.sndcdn.com/artworks-jy3lqiZdzeudarPo-cb3fTQ-t500x500.jpg",
-    "love (demo)": "https://images.genius.com/80460f1ef4675f4231c9f80932b04ef6.1000x1000x1.png",
-    "song for woman beaters and drug dealers": "https://images.genius.com/80460f1ef4675f4231c9f80932b04ef6.1000x1000x1.png",
-    "PISS SHOWER": "https://images.genius.com/80460f1ef4675f4231c9f80932b04ef6.1000x1000x1.png",
     "LISTENING TO BIRDS": "https://i1.sndcdn.com/artworks-0YtmVgIroROVgXkK-n8bz2Q-t500x500.jpg",
     "WEATHERMAN": "https://images.genius.com/bae5e1f333458df3e176e9508cfeee86.1000x1000x1.jpg",
     "reminding": "https://images.genius.com/9071d579e081380bf254418d64164b9e.500x500x1.jpg",
+}
+
+const ALBUMS = {
+    "SUPER DARK VR": "https://i1.sndcdn.com/artworks-000475938783-ej4tvp-t500x500.jpg",
+    "WE ARE BEHIND AN OBJECT (a spider gang thing)": "https://images.genius.com/80460f1ef4675f4231c9f80932b04ef6.1000x1000x1.png"
 }
 
 const COLORS = {
@@ -62,6 +64,16 @@ var LOADING_PROGRESS = {
     DiscordIntergration: false,
 }
 
+const LENNYS = [
+    "<mark style='background-color:transparent; color:blue;'>◑</mark>.<mark style='background-color:transparent; color:blue;'>◑</mark>",
+    "<mark style='background-color:transparent; color:saddlebrown;'>ʕ•́ᴥ•̀ʔっ</mark><mark style='background-color:transparent; color:red;'>♡</mark>",
+    "<mark style='background-color:transparent; color:red;'>( ◥◣_◢◤ )</mark>",
+    "<mark style='background-color:transparent; color:blue;'>（◞‸◟）</mark>",
+    "<mark style='background-color:transparent; color:green;'>(•‿•)</mark>",
+    "<mark style='background-color:transparent; color:yellow;'>(◑‿◐)</mark>",
+    "<mark style='background-color:transparent; color:green;'>┗(^o^　)┓</mark>三"
+]
+
 //#endregion
 
 //#region Misc. Functions
@@ -70,9 +82,19 @@ function getRandomNumber(min:number, max: number): number {
     return Math.random() * (max - min) + min;
 }
 
-function checkSongNameWithCover(name: string, data) {
+function getRandomInterger(min:number, max:number): number {
+    return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+function checkSongNameWithCover(name: string, data: LastFMData) {
     if (SONGS[name]) {
         data.recenttracks.track[0].image[2]["#text"] = SONGS[name]
+    }
+}
+
+function checkAlbumNameWithCover(name: string, data: LastFMData) {
+    if (ALBUMS[name]) {
+        data.recenttracks.track[0].image[2]["#text"] = ALBUMS[name]
     }
 }
 
@@ -97,9 +119,12 @@ function getDiscordData(): Promise<DiscordData> {
 
 const loadingScreen = <HTMLDivElement>document.getElementById("loadingScreen")!
 const contentHolder = <HTMLDivElement>document.getElementById("contentHolder")!
+const lennyFace =  <HTMLTextAreaElement>document.getElementById("lennyFace")!
 
 const loadingBarBackground = <HTMLDivElement>document.getElementById("loadingBarBackground")!
 const loadingBar = <HTMLDivElement>document.getElementById("loadingBar")!
+
+lennyFace.innerHTML = LENNYS[getRandomInterger(0, LENNYS.length)]
 
 const PROGRESS_DEFAULT = Object.keys(LOADING_PROGRESS).length + 1
 
@@ -221,6 +246,7 @@ fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData)
     }
 
     SongName.innerText = data.recenttracks.track[0].name
+    AlbumName.innerText = data.recenttracks.track[0].album["#text"]
 
     if (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying) {
         NowListening.innerText = "NOW LISTENING TO..."
@@ -240,8 +266,8 @@ fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData)
     }
 
     checkSongNameWithCover(SongName.innerText, data)
+    checkAlbumNameWithCover(AlbumName.innerText, data)
 
-    AlbumName.innerText = data.recenttracks.track[0].album["#text"]
     ArtistName.innerText = data.recenttracks.track[0].artist["#text"]
     AlbumImage.src = data.recenttracks.track[0].image[2]["#text"]
 

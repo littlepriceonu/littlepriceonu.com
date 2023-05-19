@@ -145,31 +145,37 @@ app.get("/api/getListeningData", (req, res) => {
 
 // #region File Delivery
 
-const FILES = [
+var FILES = [
     // Pages
     ["", "/src/home.html"],
 
     // Other Files
     ["index.css", "/dist/output.css"],
-    ["index.js", "/dist/scripts/index.js"],
-    ["index.js.map", "/dist/scripts/index.js.map"],
-
-    // Images
-    ["PFP.gif", "/img/PFP.gif"],
-    ["discord.png", "/img/discord.png"],
-    ["steam.png", "/img/steam.png"],
-    ["twitter.png", "/img/twitter.png"],
-    ["github.png", "/img/github.png"],
-    ["email.png", "/img/email.png"],
-    ["lastfm.png", "/img/lastfm.png"],
-    ["status.png", "/img/Status.png"],
-
-    // Album Covers
-    ["fricksuckaz.jpg", "/img/AlbumCovers/fricksuckaz.jpg"],
-    ["stardust.jpg", "/img/AlbumCovers/stardust.jpg"],
 
     ["favicon.ico", "/favicon/favicon.ico"],
 ]
+
+const FOLDERS = {
+    "/img": ["png", "jpg"],
+    "/img/AlbumCovers": ["png", "jpg"],
+    "/dist/scripts": ["js", "map"],
+}
+
+Object.entries(FOLDERS).forEach(folder => {
+    fs.readdirSync(options.root + folder[0]).forEach(file=>{
+
+        const endings = file.split(".")
+        const fileEnding = endings[endings.length-1]
+
+        if (folder[1].find((ending) => {
+            if (ending == fileEnding) {
+                return true
+            }
+        })) {
+            FILES.push([file, "" + folder[0] + "/" + file])
+        }
+    })
+})
 
 FILES.forEach((file) => {
     let networkName = file[0]

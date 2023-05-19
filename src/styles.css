@@ -97,13 +97,16 @@ html, body {height: 100%; width: 100%;}
 /* Listening To */
 
 #ListeningTo {
-    transition-property: filter;
+    transition-property: filter, transform;
     transition-timing-function: ease-in;
-    transition-duration: .3s;
+    transition-duration: .25s;
+    
 }
 
 #ListeningTo:hover {
-    filter: drop-shadow(10px 10px 5px rgb(3, 13, 20))
+    filter: drop-shadow(10px 10px 5px rgb(3, 13, 20));
+    transform: scale(1.02, 1.02);
+    backface-visibility: hidden;
 }
 
 #ListeningTo[data-overflown="true"] {
