@@ -9,6 +9,7 @@
 //#region Express imports
 const express = require('express')
 const favicon = require('serve-favicon')
+
 const app = express()
 //#endregion
 
@@ -18,6 +19,7 @@ const util = require("node:util")
 const exec_ = require('child_process').exec
 const exec = util.promisify(exec_);
 const fs = require('fs');
+const fetch = require("node-fetch")
 require('dotenv').config();
 //#endregion
 
@@ -121,12 +123,17 @@ app.get("/senddata", async (req, res) => {
 app.get("/UPGIT", async (req, res) => {
     console.log("UP Git requested")
     if (req.query.SEC == secret) {
+        
         console.log("SEC confirmed")
+
         await exec("git pull", {
             cwd: "/home/ec2-user/site/littlepriceonu.com/"
         } )
+
         console.log("Pull Finished!")
+
         res.send("Git Pulled!")
+
         process.exit(0)
     }
     else {
@@ -156,7 +163,7 @@ var FILES = [
 ]
 
 const FOLDERS = {
-    "/img": ["png", "jpg"],
+    "/img": ["png", "jpg", "gif"],
     "/img/AlbumCovers": ["png", "jpg"],
     "/dist/scripts": ["js", "map"],
 }
