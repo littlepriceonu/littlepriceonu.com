@@ -45,6 +45,7 @@ const SONGS = {
     "LISTENING TO BIRDS": "https://i1.sndcdn.com/artworks-0YtmVgIroROVgXkK-n8bz2Q-t500x500.jpg",
     "WEATHERMAN": "https://images.genius.com/bae5e1f333458df3e176e9508cfeee86.1000x1000x1.jpg",
     "reminding": "https://images.genius.com/9071d579e081380bf254418d64164b9e.500x500x1.jpg",
+    "TRANSSEXUAL APPRECIATION DAY": "https://i1.sndcdn.com/artworks-dWruiiQqAPCpp0Bv-zLKHJA-t500x500.jpg",
 }
 
 const ALBUMS = {

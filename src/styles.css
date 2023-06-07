@@ -8,6 +8,18 @@
     initial-value: rgb(115, 126, 141);
 }
 
+@keyframes scrollingGradient {
+    0% { 
+        background-position: 0% 50%
+    }
+    50% { 
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
 :root {
     color-scheme: dark;
     --status-color: rgb(115, 126, 141);

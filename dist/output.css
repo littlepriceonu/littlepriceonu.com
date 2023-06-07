@@ -931,6 +931,10 @@ video {
   padding-bottom: 0.75rem;
 }
 
+.pt-36 {
+  padding-top: 9rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1091,6 +1095,34 @@ video {
   initial-value: rgb(115, 126, 141);
 }
 
+@-webkit-keyframes scrollingGradient {
+  0% {
+    background-position: 0% 50%
+  }
+
+  50% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes scrollingGradient {
+  0% {
+    background-position: 0% 50%
+  }
+
+  50% {
+    background-position: 100% 50%
+  }
+
+  100% {
+    background-position: 0% 50%
+  }
+}
+
 :root {
   color-scheme: dark;
   --status-color: rgb(115, 126, 141);
@@ -1241,5 +1273,9 @@ html, body {
 
   .\32xl\:max-w-\[30\%\] {
     max-width: 30%;
+  }
+
+  .\32xl\:pt-52 {
+    padding-top: 13rem;
   }
 }

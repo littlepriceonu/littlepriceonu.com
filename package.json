@@ -21,6 +21,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "forever": "^4.0.3",
+    "node-fetch": "^2.6.11",
     "serve-favicon": "^2.5.0",
     "tailwind": "^4.0.0",
     "tailwind-scrollbar": "^2.0.1"
