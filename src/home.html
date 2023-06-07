@@ -1,64 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
-<html class="overflow-y-hidden">
 <head>
-    <title>Littlepriceonu - Home</title>
+    <!-- ! WARNING WARNING WARNING ! -->
+    <!-- USER SEEMS TO BE BROWSING SOURCE. CONTINUE TO MONITOR FOR FURTHER IMPROPER USE -->
+    <!-- ! MONITORING HAS BEEN ESCALATED TO A LEVEL *1* ! -->
+
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/index.css" rel="stylesheet">
+
+    <title>Littlepriceonu | ACCESS GRANTED</title>
+
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="index.js" defer></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 </head>
 
-<body class="overflow-y-hidden text-slate-50">
+<body class="w-full h-full bg-slate-900 scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 pl-14 pr-14 overflow-y-hidden">
+    <div id="loadingScreen" class="flex flex-col justify-center items-center absolute z-20 top-0 left-0 w-full h-full">
+        <h2 id="lennyFace" class="text-xl text-white text-center w-96" ></h2>
 
-    <nav class="w-full h-14 z-10 flex flex-row space-x-5 items-center justify-center bg-slate-900">
-        <div class="flex items-center justify-center">
-            <a href="/" class="text-base font-bold hover:underline hover:cursor-pointer">
-                Home
-            </a>
-        </div>
+        <h1 class="text-4xl font-mono text-center pb-2 pt-1">! Loading !</h1>
 
-        <div class="flex items-center justify-center">
-            <a href="/projects" class="text-base hover:underline hover:cursor-pointer">
-                Projects
-            </a>
-        </div>
-
-        <div class="flex items-center justify-center">
-            <a href="/about" class="text-base hover:underline hover:cursor-pointer">
-                About Me
-            </a>
-        </div>
-    </nav>
-
-    <div class="pb-10 flex justify-center items-center w-screen h-screen bg-gradient-to-r from-sky-600 to-purple-700 flex-col space-y-3"> 
-        <div class="flex justify-center items-center space-x-3">
-            <img src="/PFP.gif" alt="My Profile Picture" class="w-12 h-12 md:w-20 md:h-20 rounded">
-            <h1 class="text-5xl font-bold">
-                Littlepriceonu
-            </h1>
-        </div>
-        <h2 class="text-2xl">
-            Full Stack <mark class="bg-transparent font-extrabold text-transparent bg-clip-text bg-gradient-to-r animate-fastScrollingGradient bg-gradientSize from-red-700 via-orange-500 to-yellow-500 font-mono motion-reduce:animate-none">Programmer</mark>!
-        </h2>
-        <div class="flex space-x-5 justify-center items-center">
-            <a href="https://www.github.com/littlepriceonu">
-                <img src="/github.png" alt="The Github Logo" class="w-12 h-12">
-            </a>
-            <a href="https://www.twitter.com/littlepriceonu">
-                <img src="/twitter.png" alt="The Twitter Logo" class="w-12 h-12">
-            </a>
-            <a href="mailto:littlepriceonu@gmail.com">
-                <img src="/email.png" alt="An Email Logo" class="w-12 h-12">
-            </a>
-            <a href="https://steamcommunity.com/id/littlepriceonu/home ">
-                <img src="/steam.png" alt="The Steam Logo" class="w-12 h-12">
-            </a>
-        </div>
-        <div class="flex justify-center items-center space-x-3">
-            <img src="/discord.png" alt="The Discord Logo" class="w-12 h-12 rounded">
-            <h1 class="text-1xl bg-transparent font-extrabold text-transparent bg-clip-text bg-black">Littlepriceonu#0001</h1>
+        <div id="loadingBarBackground" class="h-6 w-96 bg-slate-700 rounded-md">
+            <div id="loadingBar" class="h-full w-0 z-30 rounded-md"></div>
         </div>
     </div>
+
+    <div id="contentHolder" class="w-full h-full bg-slate-900 opacity-0">
+        <header class="sticky top-0 bg-transparent w-full h-headerHeight flex flex-row items-center justify-end space-x-12">
+            <h1 id="accessGranted" class="font-mono mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('%cUSER SEEMS TO HAVE INTERACTED WITH THE TERMINAL... HOW... ' + '%cSTRANGE' + '%c...', 'color: red; font-family: monospace;', 'font-family: monospace; font-weight: 800; color: green;', 'font-family: monospace; color: red;')" >ACCESS GRANTED</h1>
+            
+            <a class="text-3xl font-bold text-transparent bg-clip-text bg-gradientSize bg-gradient-to-r from-cyan-500 to-blue-900 animate-fastScrollingGradient motion-reduce:animate-none motion-reduce:bg-auto" href="/">Home</a>
+            <a class="text-3xl" href="">Projects</a>
+            <a class="text-3xl" href="">Something Else</a>
+        </header>
+    
+        <div class="h-full pt-28 xl:pt-40 3xl:pt-52 pl-24">
+            <img id="PFP" class="h-44 rounded-lg relative top-[40px]" src="/PFP.gif" alt="Vault Boy Being Tired :>">
+            
+            <div id="OuterStatus" class="rounded-full h-12 w-12 bg-slate-900 z-10 relative flex items-center justify-center">
+                    <div id="Status" data-status="offline" class="rounded-full w-6 h-6 bg-green-500">
+                        <div id="dndBar" class="w-4 h-[4px] bg-red-900 class hidden"></div>
+                        <div id="idleCircle" class="w-6 h-6 rounded-full bg-slate-900 class hidden"></div>
+                    </div>
+            </div>
+
+            <h1 class="text-5xl font-bold">Littlepriceonu</h1>
+            <h2 class="text-2xl pt-1">Full Stack <mark id="developerText" class="font-bold text-transparent bg-gradientSize animate-fastScrollingGradient bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-900 motion-reduce:animate-none motion-reduce:bg-auto">Web Developer</mark></h2>
+    
+            <div id="Socials" class="flex flex-row items-center justify-start space-x-6 pt-5">
+                <a target="_blank" href="https://github.com/Littlepriceonu">
+                    <img class="h-12 select-none" src="/github.png" alt="Github Logo">
+                </a>
+    
+                <a target="_blank" href="https://discord.com/users/526120594929090561">
+                    <img class="h-12 select-none" src="/discord.png" alt="Discord Logo">
+                </a>
+    
+                <a target="_blank" href="https://steamcommunity.com/id/littlepriceonu/">
+                    <img class="h-12 select-none" src="/steam.png" alt="Steam Logo">
+                </a>
+    
+                <a target="_blank" href="https://twitter.com/littlepriceonu">
+                    <img class="h-12 select-none" src="/twitter.png" alt="Steam Logo">
+                </a>
+    
+                <a target="_blank" href="https://www.last.fm/user/littlepriceonu">
+                    <img class="h-12 select-none" src="/lastfm.png" alt="Steam Logo">
+                </a>
+            </div>
+    
+            <div id="ListeningTo" class="flex flex-col items-center justify-start mt-5 3xl:mt-10 w-fit min-w-[85%] md:min-w-[60%] lg:max-w-[45%] lg:min-w-[40.333333%] 2xl:max-w-[30%] 2xl:min-w-[25%] h-fit min-h-[27%] 2xl:min-h-[25%]  bg-gray-800 rounded-md">
+                <div class="w-full flex flex-row justify-start items-center"> <h1 id="NowListening" class="font-bold pt-2 w-full text-left pl-3 font-mono" >Loading Module...</h1> 
+                    <div class="bar w-[3px] h-6 bg-blue-600 mr-1 mt-2"></div>
+                    <div class="bar w-[3px] h-3 bg-blue-600 mr-1 mt-2"></div>
+                    <div class="bar w-[3px] h-5 bg-blue-600 mr-2 mt-2"></div>
+                </div>
+                <div class="flex w-full flex-row mt-4 justify-start items-center pl-6">
+                    <img id="AlbumImage" crossorigin="anonymous" class="mb-auto h-32 rounded-md" src="" alt="Loading Image...">
+                    <div class="w-full flex flex-col items-center justify-center ml text-xl pl-5 text-center">
+                        <h1 id="SongName" class="pr-5 font-bold"> Loading... </h1>
+                        <p  id="AlbumName" class="text-sm pt-1 text-gray-400 pr-5">Loading...</p> 
+                        <p  id="ArtistName" class="text-sm pt-3 text-gray-400 pb-3 pr-5">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute top-0 left-0 pt-"></div>
+    </div>
 </body>
+
 </html>

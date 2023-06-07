@@ -1,23 +1,102 @@
+
+// ! WARNING WARNING WARNING!
+// FALSE 404 BYPASSED
+// USER HAS BREACHED SERVER AND IS BROWSING SERVER FILES
+// FAILURE TO TERMINATE CONNECTION WILL LEAD TO BREACH OF CONTRACT
+// ITS ALL UP TO YOU NOW. DO YOUR JOB
+// ! MONITORING HAS BEEN ESCALATED TO A LEVEL *3* !
+
+//#region Express imports
 const express = require('express')
 const favicon = require('serve-favicon')
 const app = express()
-const path = require('path')
+//#endregion
 
+//#region Misc. imports
+const path = require('path')
 const util = require("node:util")
 const exec_ = require('child_process').exec
 const exec = util.promisify(exec_);
 const fs = require('fs');
+require('dotenv').config();
+//#endregion
 
+
+// MAIN PORT ASSIGNED
 const port = 3000
 
-require('dotenv').config();
-
-// its not really a secret but whatever why not :shrug:
+// DATA DETECTED UNDER PROCESS... MANAGING...
 const secret = process.env.SECRET
+const LASTFM_KEY = process.env.LASTFM_KEY
+// DATA MANAGED AND ASSIGNED
 
 var options = {
     root: path.join(__dirname)
 };
+
+//#region Functions
+
+function HandlePostDelivering(err) {
+    if (err) {
+        console.warn("Error occured during file delivery!")
+        console.log(err)
+    }
+}
+
+var payload = {
+    'method': 'user.getRecentTracks',
+    'user': 'littlepriceonu',
+    'limit': '1'
+}
+
+// Request = time in milliseconds since last request
+// Response = response of last request
+// Debounce = time in seconds to wait unil the server is allowed to make another request
+var lastFMRequest = 0
+var lastFMResponse = ""
+const lastFMDebounce = 5
+
+// rate limiting when >1 request : second
+// so I made the timeout before an update 5 secs just in case :shrug:
+function LastFMFetch(payload) {
+    payload['api_key'] = LASTFM_KEY
+    payload['format'] = 'json'
+
+    let params = "?"
+    
+    Object.entries(payload).forEach(load => {
+        let key = load[0]
+        let data = load[1]
+
+        params += key + "=" + data + "&" 
+    })
+    
+    return new Promise((resolve, reject) => {
+        if (FMTimeoutComplete()) {
+            fetch("https://ws.audioscrobbler.com/2.0/" + params, {
+                method: "GET",
+                mode: "cors",
+            }).then(data => data.text()).then(data => {
+                lastFMResponse = data; 
+                lastFMRequest = Date.now();
+
+                resolve(data)
+            })
+        }
+        else {
+            resolve(lastFMResponse)
+        }
+    })
+}
+
+function FMTimeoutComplete() {
+    if (Date.now() - lastFMRequest > lastFMDebounce * 1000) return true;
+    return false
+}
+
+//#endregion
+
+//#region Network Functions
 
 app.get("/senddata", async (req, res) => {
     console.log("Data Append Requested...")
@@ -55,131 +134,55 @@ app.get("/UPGIT", async (req, res) => {
     }
 })
 
-app.get('/', (req, res) => { 
-    res.sendFile("src/home.html", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: home.html")
-        }
-        else {
-            console.log("home.html delivered")
+app.get("/api/getListeningData", (req, res) => {
+    LastFMFetch(payload).then(data => {
+        res.type('json')
+        res.send(data)
+    })
+})
+
+//#endregion
+
+// #region File Delivery
+
+var FILES = [
+    // Pages
+    ["", "/src/home.html"],
+
+    // Other Files
+    ["index.css", "/dist/output.css"],
+
+    ["favicon.ico", "/favicon/favicon.ico"],
+]
+
+const FOLDERS = {
+    "/img": ["png", "jpg"],
+    "/img/AlbumCovers": ["png", "jpg"],
+    "/dist/scripts": ["js", "map"],
+}
+
+Object.entries(FOLDERS).forEach(folder => {
+    fs.readdirSync(options.root + folder[0]).forEach(file=>{
+
+        const endings = file.split(".")
+        const fileEnding = endings[endings.length-1]
+
+        if (folder[1].find((ending) => {
+            if (ending == fileEnding) {
+                return true
+            }
+        })) {
+            FILES.push([file, "" + folder[0] + "/" + file])
         }
     })
 })
 
-app.get('/about', (req, res) => {
-    res.sendFile("src/about/about.html", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: about.html")
-        }
-        else {
-            console.log("about.html delivered")
-        }
-    })
-})
+FILES.forEach((file) => {
+    let networkName = file[0]
+    let localName = file[1]
 
-app.get('/projects', (req, res) => {
-    res.sendFile("src/projects/projects.html", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: projects.html")
-        }
-        else {
-            console.log("projects.html delivered")
-        }
-    })
-})
-
-// #region files
-app.get('/index.css', (req, res) => {
-    res.sendFile("/dist/output.css", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: index.css")
-        }
-        else {
-            console.log("index.css delivered")
-        }
-    })
-})
-
-app.get('/about.js', (req, res) => {
-    res.sendFile("/src/about/about.js", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: about.js")
-        }
-        else {
-            console.log("about.js delivered")
-        }
-    })
-})
-
-app.get('/discord.png', (req, res) => {
-    res.sendFile("/img/discord.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: discord.png")
-        }
-    })
-})
-
-app.get('/email.png', (req, res) => {
-    res.sendFile("/img/email.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: email.png")
-        }
-    })
-})
-
-app.get('/github.png', (req, res) => {
-    res.sendFile("/img/github.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: github.png")
-        }
-    })
-})
-
-app.get('/PFP.gif', (req, res) => {
-    res.sendFile("/img/PFP.gif", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: PFP.gif")
-        }
-    })
-})
-
-app.get('/Snuke.png', (req, res) => {
-    res.sendFile("/img/Snuke.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: Snuke.png")
-        }
-    })
-})
-
-app.get('/steam.png', (req, res) => {
-    res.sendFile("/img/steam.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: steam.png")
-        }
-    })
-})
-
-app.get('/twitter.png', (req, res) => {
-    res.sendFile("/img/twitter.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: twitter.png")
-        }
-    })
-})
-
-app.get('/web.png', (req, res) => {
-    res.sendFile("/img/web.png", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: web.png")
-        }
-    })
-})
-
-app.get('/favico.ico', (req, res) => {
-    res.sendFile("/favicon/favico.ico", options, function(err) {
-        if (err) {
-            console.log("Error Occured!: favico.ico")
-        }
+    app.get('/'+networkName, (req, res) => {
+        res.sendFile(localName, options, HandlePostDelivering)
     })
 })
 

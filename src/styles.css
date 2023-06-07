@@ -2,6 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --status-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(115, 126, 141);
+}
+
 :root {
     color-scheme: dark;
+    --status-color: rgb(115, 126, 141);
+    --background-color: rgb(15 23 42);
+}
+
+html, body {height: 100%; width: 100%;}
+
+/* Loading Screen */
+
+#loadingScreen {
+    transition: opacity .5s ease-in;
+}
+
+#loadingBar {
+    background-color: rgb(67, 181, 129);
+    transition: width 0.5s ease-in;
+}
+
+/* Header */
+
+#accessGranted {
+    filter: drop-shadow(0 0 15px green)
+}
+
+/* Home Main */
+
+#contentHolder {
+    transition: opacity 0.8s ease-in;
+}
+
+#Status {
+    filter: drop-shadow(0 0 10px var(--status-color));
+    background-color: var(--status-color);
+}
+
+#Status[data-status="dnd"] > div#dndBar {
+    display: block;
+}
+
+#Status[data-status="dnd"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Status[data-status="offline"] {
+    background-color: var(--background-color);
+    border: var(--status-color) solid 5px;
+}
+
+#Status[data-status="idle"] {
+    overflow:hidden;
+
+    border: var(--status-color) solid 0.05px;
+}
+
+
+#Status[data-status="idle"] > div#idleCircle {
+    display: block;
+    position: relative;
+    left:-8px;
+    top:-6px;
+
+    background-color: rgb(158, 109, 25);
+}
+
+#developerText {
+    transition: filter;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    filter: drop-shadow(0 0 15px rgb(0,0,255));
+}
+
+#Socials > a > img {
+    transition: filter;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%);
+}
+
+#Socials > a > img:hover {
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%) drop-shadow(0 0 25px rgb(0 0 255));
+}
+
+/* Listening To */
+
+#ListeningTo {
+    transition-property: filter, transform;
+    transition-timing-function: ease-in;
+    transition-duration: .25s;
+    
+}
+
+#ListeningTo:hover {
+    filter: drop-shadow(10px 10px 5px rgb(3, 13, 20));
+    transform: scale(1.02, 1.02);
+    backface-visibility: hidden;
+}
+
+#ListeningTo[data-overflown="true"] {
+    height:fit-content
+}
+
+.bar {
+    transition: height 0.8s ease-in;
 }

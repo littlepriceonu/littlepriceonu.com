@@ -1,7 +1,5 @@
-tests
-
 node_modules
 
-clientel
-
 .env
+
+package-lock.json
