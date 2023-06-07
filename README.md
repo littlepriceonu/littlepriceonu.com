@@ -1,4 +1,5 @@
-# littlepriceonu.com
+# littlepriceonu.com (V2)
 My Personal Site, Hosted On AWS
-# Version 2 in progress
-check the "revision" branch
+
+# Wanna Contribute?
+if you wanna contribute something like a typo or something like that make a pull request to the "revision" branch
