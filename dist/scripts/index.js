@@ -1,7 +1,7 @@
 // ! WARNING WARNING WARNING !
 // USER ACCESSED INTERAL OPERATIONS
 // ! MONITORING HAS BEEN ESCALATED TO A LEVEL *2* !
-console.log("%cUSER AUTHORIZED. ! Unknown datascale, attemping to search again !", "color: red;");
+console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how did you get in? !", "color: red;");
 //#endregion
 //#region Variables
 const SONGS = {

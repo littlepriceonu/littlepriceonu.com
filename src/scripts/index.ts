@@ -6,7 +6,7 @@
 import { DiscordData } from "./DiscordTypes";
 import { LastFMData } from "./LastFMTypes";
 
-console.log("%cUSER AUTHORIZED. ! Unknown datascale, attemping to search again !", "color: red;")
+console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how did you get in? !", "color: red;")
 
 // TODO
 // a tool tip on the status thing
