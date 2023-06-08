@@ -215,6 +215,21 @@ fetch("/api/getListeningData").then(data => data.json()).then((data) => {
         });
     }
 });
+//#endregion
+//#region Home Positioning
+const MainContent = document.getElementById("MainContent");
+var fullHeight = 0;
+Array.from(MainContent.children).forEach(el => {
+    fullHeight += el.getBoundingClientRect().height;
+});
+MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
+addEventListener("resize", () => {
+    fullHeight = 0;
+    Array.from(MainContent.children).forEach(el => {
+        fullHeight += el.getBoundingClientRect().height;
+    });
+    MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
+});
 export {};
 //#endregion
 //# sourceMappingURL=index.js.map

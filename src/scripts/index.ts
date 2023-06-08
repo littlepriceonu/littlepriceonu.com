@@ -298,3 +298,27 @@ fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData)
 })
 
 //#endregion
+
+//#region Home Positioning
+
+const MainContent = <HTMLDivElement>document.getElementById("MainContent")
+
+var fullHeight = 0;
+
+Array.from(MainContent.children).forEach(el => {
+    fullHeight += el.getBoundingClientRect().height
+})
+
+MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
+
+addEventListener("resize", ()=>{
+    fullHeight = 0
+
+    Array.from(MainContent.children).forEach(el => {
+        fullHeight += el.getBoundingClientRect().height
+    })
+
+    MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
+})
+
+//#endregion
