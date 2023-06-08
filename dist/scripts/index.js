@@ -229,6 +229,13 @@ addEventListener("resize", () => {
         fullHeight += el.getBoundingClientRect().height;
     });
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
+    setTimeout(() => {
+        fullHeight = 0;
+        Array.from(MainContent.children).forEach(el => {
+            fullHeight += el.getBoundingClientRect().height;
+        });
+        MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
+    }, 500);
 });
 export {};
 //#endregion

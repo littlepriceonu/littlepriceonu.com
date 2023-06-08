@@ -9,10 +9,18 @@ import { LastFMData } from "./LastFMTypes";
 console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how did you get in? !", "color: red;")
 
 // TODO
-// a tool tip on the status thing
-// mobile support
-// lyric thing on right of name (remove if screen too small?)
+// Tool tips
+//
 // change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120))
+//
+// https://lanyard.eggsy.xyz/api/working-with-websockets lanyard websockets
+//
+// refresh last.fm api every 5 secs so it updates
+//
+// make the listening to thing rotate to your mouse like https://afn.lol
+// make the drop shadow of listening to the color of the image
+//
+// try out https://jariz.github.io/vibrant.js/ (maybe?)
 
 //#region Declarations
 
@@ -319,6 +327,16 @@ addEventListener("resize", ()=>{
     })
 
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
+
+    setTimeout(()=>{
+        fullHeight = 0
+
+        Array.from(MainContent.children).forEach(el => {
+            fullHeight += el.getBoundingClientRect().height
+        })
+    
+        MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
+    }, 500)
 })
 
 //#endregion
