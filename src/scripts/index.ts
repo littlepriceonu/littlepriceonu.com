@@ -15,7 +15,7 @@ console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how 
 //
 // https://lanyard.eggsy.xyz/api/working-with-websockets lanyard websockets
 //
-// refresh last.fm api every 5 secs so it updates
+// refresh last.fm api every 5 secs so it updates (or just update the server to like 1.5 seconds instead of 5 lmao)
 //
 // make the listening to thing rotate to your mouse like https://afn.lol
 // make the drop shadow of listening to the color of the image
