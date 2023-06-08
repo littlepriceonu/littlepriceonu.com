@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 </head>
 
-<body class="w-full h-full bg-slate-900 scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 pl-14 pr-14 overflow-y-hidden">
+<body class="w-full h-full bg-slate-900 scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 pl-6 pr-6 xl:pl-14 xl:pr-14 overflow-y-hidden">
     <div id="loadingScreen" class="flex flex-col justify-center items-center absolute z-20 top-0 left-0 w-full h-full">
         <h2 id="lennyFace" class="text-xl text-white text-center w-96" ></h2>
 
@@ -31,7 +31,7 @@
 
     <div id="contentHolder" class="w-full h-full bg-slate-900 opacity-0">
         <header class="sticky top-0 bg-transparent w-full h-headerHeight flex flex-row items-center justify-end space-x-12">
-            <h1 id="accessGranted" class="font-mono mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('%cUSER SEEMS TO HAVE INTERACTED WITH THE TERMINAL... HOW... ' + '%cSTRANGE' + '%c...', 'color: red; font-family: monospace;', 'font-family: monospace; font-weight: 800; color: green;', 'font-family: monospace; color: red;')" >ACCESS GRANTED</h1>
+            <h1 id="accessGranted" class="hidden xl:block font-mono mr-auto text-xl text-green-500 font-semibold cursor-pointer select-none" onclick="console.log('%cUSER SEEMS TO HAVE INTERACTED WITH THE TERMINAL... HOW... ' + '%cSTRANGE' + '%c...', 'color: red; font-family: monospace;', 'font-family: monospace; font-weight: 800; color: green;', 'font-family: monospace; color: red;')" >ACCESS GRANTED</h1>
             
             <a class="text-3xl font-bold text-transparent bg-clip-text bg-gradientSize bg-gradient-to-r from-cyan-500 to-blue-900 animate-fastScrollingGradient motion-reduce:animate-none motion-reduce:bg-auto" href="/">Home</a>
             <a class="text-3xl" href="">Site Under Construction</a>
@@ -39,7 +39,7 @@
             <a class="text-3xl" href="">Something Else</a> -->
         </header>
     
-        <div class="h-full pt-36 xl:pt-40 2xl:pt-52 pl-24">
+        <div class="h-full pt-[4.5rem] lg:pt-36 xl:pt-40 2xl:pt-52 pl-0 xl:pl-24">
             <img id="PFP" class="h-44 rounded-lg relative top-[40px]" src="/PFP.gif" alt="Vault Boy Being Tired :>">
             
             <div id="OuterStatus" class="rounded-full h-12 w-12 bg-slate-900 z-10 relative flex items-center justify-center">
