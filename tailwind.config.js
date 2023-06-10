@@ -3,7 +3,8 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     backgroundSize: {
-      gradientSize: '401% 401%'
+      gradientSize: '401% 401%',
+      miniGradientSize: '40% 40%'
     },
     extend: {
       keyframes: {
