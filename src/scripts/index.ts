@@ -9,16 +9,25 @@ import { LastFMData } from "./LastFMTypes";
 console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how did you get in? !", "color: red;")
 
 // TODO
-// a tool tip on the status thing
-// mobile support
-// lyric thing on right of name (remove if screen too small?)
+// Tool tips
+//
 // change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120))
+//
+// https://lanyard.eggsy.xyz/api/working-with-websockets lanyard websockets
+//
+// refresh last.fm api every 5 secs so it updates (or just update the server to like 1.5 seconds instead of 5 lmao)
+//
+// make the listening to thing rotate to your mouse like https://afn.lol
+// make the drop shadow of listening to the color of the image
+//
+// try out https://jariz.github.io/vibrant.js/ (maybe?)
 
 //#region Declarations
 
 declare global {
     interface Window {
-        ColorThief: any
+        ColorThief: any;
+        Vibrant: any;
     }
 }
 
@@ -231,8 +240,9 @@ setInterval(() => {
 
 //#region Listening To...
 
-const colorThief = new window.ColorThief()
+const Vibrant = window.Vibrant;
 const AlbumImage = <HTMLImageElement>document.getElementById!("AlbumImage")
+const BlurImage = <HTMLImageElement>document.getElementById!("BlurImage")
 const SongName = <HTMLTextAreaElement>document.getElementById!("SongName")
 const AlbumName = <HTMLTextAreaElement>document.getElementById!("AlbumName")
 const ArtistName = <HTMLTextAreaElement>document.getElementById!("ArtistName")
@@ -271,28 +281,29 @@ fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData)
 
     ArtistName.innerText = data.recenttracks.track[0].artist["#text"]
     AlbumImage.src = data.recenttracks.track[0].image[2]["#text"]
+    BlurImage.src = data.recenttracks.track[0].image[2]["#text"]
 
     if (AlbumImage.complete) {
+        Vibrant.from(AlbumImage.src).quality(1).clearFilters().getPalette().then((palette) => {
+            var rgb = palette.Vibrant.rgb
 
-        var avg: Array<string> = <Array<string>>colorThief.getColor(AlbumImage)
-        var color: string = 'rgb('+avg[0].toString()+' '+avg[1].toString()+ ' '+avg[2].toString() + ')'
-        var filter: string = "drop-shadow(0px 0px 10px "+ color+ ")"
-    
-        AlbumImage.style.filter = filter
-        SongName.style.color = color
+            var color: string = 'rgb('+rgb[0].toString()+' '+rgb[1].toString()+ ' '+rgb[2].toString() + ')'
 
-        LOADING_PROGRESS["LastFMIntergration"] = true
-    } else {
-        AlbumImage.addEventListener('load', function() {
-
-            var avg: Array<string> = <Array<string>>colorThief.getColor(AlbumImage)
-            var color: string = 'rgb('+avg[0].toString()+' '+avg[1].toString()+ ' '+avg[2].toString() + ')'
-            var filter: string = "drop-shadow(0px 0px 10px "+ color+ ")"
-        
-            AlbumImage.style.filter = filter
             SongName.style.color = color
 
             LOADING_PROGRESS["LastFMIntergration"] = true
+        })   
+    } else {
+        AlbumImage.addEventListener('load', function() {
+            Vibrant.from(AlbumImage.src).quality(1).clearFilters().getPalette().then((palette) => {
+                var rgb = palette.Vibrant.rgb
+
+                var color: string = 'rgb('+rgb[0].toString()+' '+rgb[1].toString()+ ' '+rgb[2].toString() + ')'
+
+                SongName.style.color = color
+
+                LOADING_PROGRESS["LastFMIntergration"] = true
+            })   
         });
     }
 })
@@ -319,6 +330,16 @@ addEventListener("resize", ()=>{
     })
 
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
+
+    setTimeout(()=>{
+        fullHeight = 0
+
+        Array.from(MainContent.children).forEach(el => {
+            fullHeight += el.getBoundingClientRect().height
+        })
+    
+        MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
+    }, 500)
 })
 
 //#endregion

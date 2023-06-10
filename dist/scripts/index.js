@@ -163,8 +163,9 @@ setInterval(() => {
 }, 1000);
 //#endregion
 //#region Listening To...
-const colorThief = new window.ColorThief();
+const Vibrant = window.Vibrant;
 const AlbumImage = document.getElementById("AlbumImage");
+const BlurImage = document.getElementById("BlurImage");
 const SongName = document.getElementById("SongName");
 const AlbumName = document.getElementById("AlbumName");
 const ArtistName = document.getElementById("ArtistName");
@@ -196,22 +197,23 @@ fetch("/api/getListeningData").then(data => data.json()).then((data) => {
     checkAlbumNameWithCover(AlbumName.innerText, data);
     ArtistName.innerText = data.recenttracks.track[0].artist["#text"];
     AlbumImage.src = data.recenttracks.track[0].image[2]["#text"];
+    BlurImage.src = data.recenttracks.track[0].image[2]["#text"];
     if (AlbumImage.complete) {
-        var avg = colorThief.getColor(AlbumImage);
-        var color = 'rgb(' + avg[0].toString() + ' ' + avg[1].toString() + ' ' + avg[2].toString() + ')';
-        var filter = "drop-shadow(0px 0px 10px " + color + ")";
-        AlbumImage.style.filter = filter;
-        SongName.style.color = color;
-        LOADING_PROGRESS["LastFMIntergration"] = true;
+        Vibrant.from(AlbumImage.src).quality(1).clearFilters().getPalette().then((palette) => {
+            var rgb = palette.Vibrant.rgb;
+            var color = 'rgb(' + rgb[0].toString() + ' ' + rgb[1].toString() + ' ' + rgb[2].toString() + ')';
+            SongName.style.color = color;
+            LOADING_PROGRESS["LastFMIntergration"] = true;
+        });
     }
     else {
         AlbumImage.addEventListener('load', function () {
-            var avg = colorThief.getColor(AlbumImage);
-            var color = 'rgb(' + avg[0].toString() + ' ' + avg[1].toString() + ' ' + avg[2].toString() + ')';
-            var filter = "drop-shadow(0px 0px 10px " + color + ")";
-            AlbumImage.style.filter = filter;
-            SongName.style.color = color;
-            LOADING_PROGRESS["LastFMIntergration"] = true;
+            Vibrant.from(AlbumImage.src).quality(1).clearFilters().getPalette().then((palette) => {
+                var rgb = palette.Vibrant.rgb;
+                var color = 'rgb(' + rgb[0].toString() + ' ' + rgb[1].toString() + ' ' + rgb[2].toString() + ')';
+                SongName.style.color = color;
+                LOADING_PROGRESS["LastFMIntergration"] = true;
+            });
         });
     }
 });
@@ -229,6 +231,13 @@ addEventListener("resize", () => {
         fullHeight += el.getBoundingClientRect().height;
     });
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
+    setTimeout(() => {
+        fullHeight = 0;
+        Array.from(MainContent.children).forEach(el => {
+            fullHeight += el.getBoundingClientRect().height;
+        });
+        MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
+    }, 500);
 });
 export {};
 //#endregion
