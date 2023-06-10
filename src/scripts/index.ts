@@ -11,7 +11,7 @@ console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how 
 // TODO
 // Tool tips
 //
-// change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120))
+// change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120)) (maybe not anymore because of vibrant.js)
 //
 // https://lanyard.eggsy.xyz/api/working-with-websockets lanyard websockets
 //
@@ -19,14 +19,11 @@ console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how 
 //
 // make the listening to thing rotate to your mouse like https://afn.lol
 // make the drop shadow of listening to the color of the image
-//
-// try out https://jariz.github.io/vibrant.js/ (maybe?)
 
 //#region Declarations
 
 declare global {
     interface Window {
-        ColorThief: any;
         Vibrant: any;
     }
 }
@@ -320,9 +317,21 @@ Array.from(MainContent.children).forEach(el => {
     fullHeight += el.getBoundingClientRect().height
 })
 
+//! please lord help me fix this stupid positioning bug 
+// when you open the page and then open dev tools then close it it'll be different for sum reason
+
+var PositionMap = {
+
+}
+
+PositionMap[innerWidth] = (innerHeight - fullHeight - 150).toString() + "px"
 MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
 
 addEventListener("resize", ()=>{
+    if (PositionMap[innerWidth]) {
+        MainContent.style.paddingTop = PositionMap[innerWidth]
+    }
+
     fullHeight = 0
 
     Array.from(MainContent.children).forEach(el => {
@@ -330,16 +339,7 @@ addEventListener("resize", ()=>{
     })
 
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
-
-    setTimeout(()=>{
-        fullHeight = 0
-
-        Array.from(MainContent.children).forEach(el => {
-            fullHeight += el.getBoundingClientRect().height
-        })
-    
-        MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
-    }, 500)
+    PositionMap[innerWidth] = (innerHeight - fullHeight - 150).toString() + "px"
 })
 
 //#endregion
