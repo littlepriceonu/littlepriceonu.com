@@ -17,6 +17,8 @@ Heres the steps for hosting this site, if you'd like to know!
 * Setup [Nginx](https://awstip.com/installing-nginx-web-server-on-an-aws-ec2-7727811dacec) with the config in the repo
 * Finally, Run `node index.js`!
   
+* If you wish, you can use certbot and set it up with the nginx to have an SSL connection! 
+
 ## 💭 Extras
 
 Heres a few fun facts and such about my site
