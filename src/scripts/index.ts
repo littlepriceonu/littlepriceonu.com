@@ -32,7 +32,7 @@ declare global {
 
 //#region Variables
 
-const SONGS = {
+const SONGS: { [song: string]: string } = {
     "iamsuicidal": "https://images.genius.com/28bff45b39ecc8c7b6f26bef075d3600.500x500x1.jpg",
     "COCKNBALLTORTURE": "https://images.genius.com/d11ccddb4dbc5d7964e54102cbfe5525.1000x1000x1.png",
     "B*******E (feat. Lil D****e)": "https://cdns-images.dzcdn.net/images/cover/d4de137520fee181a4d3d89e453290a5/500x500.jpg",
@@ -54,24 +54,24 @@ const SONGS = {
     "TRANSSEXUAL APPRECIATION DAY": "https://i1.sndcdn.com/artworks-dWruiiQqAPCpp0Bv-zLKHJA-t500x500.jpg",
 }
 
-const ALBUMS = {
+const ALBUMS: { [album: string]: string }  = {
     "SUPER DARK VR": "https://i1.sndcdn.com/artworks-000475938783-ej4tvp-t500x500.jpg",
     "WE ARE BEHIND AN OBJECT (a spider gang thing)": "https://images.genius.com/80460f1ef4675f4231c9f80932b04ef6.1000x1000x1.png"
 }
 
-const COLORS = {
+const COLORS: { [status: string]: string } = {
     online: "rgb(67, 181, 129)",
     dnd: "rgb(244, 70, 72)",
     idle: "rgb(248, 166, 25)",
     offline: "rgb(115, 126, 141)",
 }
 
-var LOADING_PROGRESS = {
+var LOADING_PROGRESS: { [key: string]: boolean } = {
     LastFMIntergration: false,
     DiscordIntergration: false,
 }
 
-const LENNYS = [
+const LENNYS: Array<string> = [
     "<mark style='background-color:transparent; color:blue;'>◑</mark>.<mark style='background-color:transparent; color:blue;'>◑</mark>",
     "<mark style='background-color:transparent; color:saddlebrown;'>ʕ•́ᴥ•̀ʔっ</mark><mark style='background-color:transparent; color:red;'>♡</mark>",
     "<mark style='background-color:transparent; color:red;'>( ◥◣_◢◤ )</mark>",
