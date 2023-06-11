@@ -9,7 +9,7 @@ import { LastFMData } from "./LastFMTypes";
 console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how did you get in? !", "color: red;")
 
 // TODO
-// Tool tips
+// Tool tips (for the discord status, and maybe other stuff on the text page)
 //
 //// change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120)) (maybe not anymore because of vibrant.js)
 //
