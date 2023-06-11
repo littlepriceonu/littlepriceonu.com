@@ -319,27 +319,13 @@ Array.from(MainContent.children).forEach(el => {
 
 //! please lord help me fix this stupid positioning bug 
 // when you open the page and then open dev tools then close it it'll be different for sum reason
+// holy shit I fixed it
+// I actually fixed it
 
-var PositionMap = {
-
-}
-
-PositionMap[innerWidth] = (innerHeight - fullHeight - 150).toString() + "px"
 MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
 
 addEventListener("resize", ()=>{
-    if (PositionMap[innerWidth]) {
-        MainContent.style.paddingTop = PositionMap[innerWidth]
-    }
-
-    fullHeight = 0
-
-    Array.from(MainContent.children).forEach(el => {
-        fullHeight += el.getBoundingClientRect().height
-    })
-
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px"
-    PositionMap[innerWidth] = (innerHeight - fullHeight - 150).toString() + "px"
 })
 
 //#endregion
