@@ -109,10 +109,9 @@ html, body {height: 100%; width: 100%;}
 /* Listening To */
 
 #ListeningTo {
-    transition-property: filter, transform;
+    transition-property: filter, transform, box-shadow;
     transition-timing-function: ease-in;
     transition-duration: .25s;
-    
 }
 
 /* fix blurring issues pls 🥲 */
@@ -121,6 +120,7 @@ html, body {height: 100%; width: 100%;}
 #ListeningTo:hover {
     transform: scale(1.02002, 1.02002) translateZ(0);
     backface-visibility: hidden;
+    box-shadow: 5px 5px 15px rgb(14 18 24);
 }
 
 #ListeningTo[data-overflown="true"] {
