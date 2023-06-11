@@ -115,9 +115,11 @@ html, body {height: 100%; width: 100%;}
     
 }
 
+/* fix blurring issues pls 🥲 */
+/* issues fixed :D */
+
 #ListeningTo:hover {
-    filter: drop-shadow(10px 10px 5px rgb(3, 13, 20));
-    transform: scale(1.02, 1.02);
+    transform: scale(1.02002, 1.02002) translateZ(0);
     backface-visibility: hidden;
 }
 
