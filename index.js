@@ -56,7 +56,7 @@ var payload = {
 // Debounce = time in seconds to wait unil the server is allowed to make another request
 var lastFMRequest = 0
 var lastFMResponse = ""
-const lastFMDebounce = 5
+const lastFMDebounce = 1.25
 
 // rate limiting when >1 request : second
 // so I made the timeout before an update 5 secs just in case :shrug:
@@ -197,6 +197,20 @@ FILES.forEach((file) => {
 
 app.use(favicon(path.join(__dirname, 'favicon', 'favicon.ico')))
 
-app.listen(port, () => {
-    console.log(`Littlepriceonu.com listening at port 3000`)
-})
+try {
+
+    app.listen(port, () => {
+        console.log(`Littlepriceonu.com listening at port 3000`)
+    })
+
+} catch {
+    // I have no clue why the port is still being used after the site is closed
+    // this is my fix
+    // bad idea
+    // but it might just work (it probably wont)
+    setTimeout(() => {
+        app.listen(port, () => {
+            console.log(`Littlepriceonu.com listening at port 3000`)
+        })
+    }, 2000);
+}
