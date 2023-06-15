@@ -28,6 +28,13 @@ declare global {
     }
 }
 
+export interface LanyardSocketResponse {
+    op: number;
+    seq: number;
+    t: string;
+    d: {[dataName: string]: any};
+}
+
 //#endregion
 
 //#region Variables
@@ -180,35 +187,76 @@ var loadingInterval = setInterval(()=>{
 
 //#region Status
 
+
+var Lanyard: WebSocket;
+
+function SendMessageToLanyard(OP:number, data: any) {
+    if (Lanyard.readyState != Lanyard.OPEN) return; 
+
+    Lanyard.send(JSON.stringify({
+        op: OP,
+        d: data,
+    }))
+}
+
+var HeartbeatInterval: number;
+
+const USER_ID = "526120594929090561";
+
+const OPCodeHandlers = {
+    1: function(data: LanyardSocketResponse) {
+        HeartbeatInterval = <unknown>setInterval(()=>{
+            SendMessageToLanyard(3, {})
+        }, data.d.heartbeat_interval) as number     
+
+        SendMessageToLanyard(2, {
+            subscribe_to_id: USER_ID,
+        })
+    },
+
+    0: function(data: LanyardSocketResponse) {
+        HandleStatus(data.d)
+    },
+}
+
 const OuterStatus = <HTMLDivElement>document.getElementById("OuterStatus")
 const Status = <HTMLDivElement>document.getElementById("Status")
 const PFP = <HTMLImageElement>document.getElementById("PFP")
 
-function HandleStatus() {
+function HandleStatus(data: unknown) {
+    const discordData = data as DiscordData
 
+    // Sets the color for the current status, effects status circle and drop shadow
+    OuterStatus.style.setProperty("--status-color", COLORS[discordData.discord_status])
+    // Sets the status on the Circle so it can be used in css selectors
+    Status.setAttribute("data-status", discordData.discord_status)
+
+    if (!LOADING_PROGRESS["DiscordIntergration"]) LOADING_PROGRESS["DiscordIntergration"] = true
+}
+
+function SetupLanyard() {
     OuterStatus.style.top = "5px"
+    // 7 is just a random magic number that I divide the width by to get it in a place I like lmao
     OuterStatus.style.left = (PFP.clientWidth - PFP.clientWidth/7).toString()+"px"
 
-    getDiscordData().then(function (discord: unknown) {
-        const discordData = discord as DiscordData
+    Lanyard = new WebSocket("wss://api.lanyard.rest/socket")
 
-        OuterStatus.style.setProperty("--status-color", COLORS[discordData.data.discord_status])
-        Status.setAttribute("data-status", discordData.data.discord_status)
-    
-        if (discordData.data.discord_status == "dnd") {
-            document.getElementById("idleCircle")!.remove()
-        }
+    Lanyard.onopen = ()=>{
+        console.log("[LANYARD] LANYARD CONNECTION ACTIVE... AWAITING DATA...")
+    }
 
-        LOADING_PROGRESS["DiscordIntergration"] = true
-    })
+    Lanyard.onmessage = (data: any) => {
+        data = JSON.parse(data.data)
+        OPCodeHandlers[data.op](data)
+    }
 }
 
 if (PFP.complete) {
-    HandleStatus()
+    SetupLanyard()
 }
 else {
     PFP.addEventListener("load", ()=>{
-        HandleStatus()
+        SetupLanyard()
     })
 }
 
@@ -255,8 +303,6 @@ function HandleFMData(data: LastFMData) {
 //                                @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true  OR            @attr doesn't exist        AND   lastListeningStatus was false
 //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
     if ((lastTrack == data.recenttracks.track[0].name) && (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (data.recenttracks.track[0]["@attr"] && lastListeningStatus == "recent")) return
-
-    console.log(data)
 
     lastTrack = data.recenttracks.track[0].name
 
@@ -339,7 +385,6 @@ fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData)
 
 setInterval(()=>{
     fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData) => {
-        console.log('Updating Last.Fm...')
         HandleFMData(data)
     })
 }, 2500)

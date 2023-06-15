@@ -1,9 +1,4 @@
 export interface DiscordData {
-  success: boolean
-  data: Data
-}
-  
-export interface Data {
   spotify: any
   listening_to_spotify: boolean
   kv: Kv
