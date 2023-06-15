@@ -171,7 +171,18 @@ const AlbumName = document.getElementById("AlbumName");
 const ArtistName = document.getElementById("ArtistName");
 const NowListening = document.getElementById("NowListening");
 const Bars = Array.from(document.getElementsByClassName("bar"));
-fetch("/api/getListeningData").then(data => data.json()).then((data) => {
+var lastTrack;
+var barInterval = [];
+var lastListeningStatus;
+function HandleFMData(data) {
+    // me explaining check so my brain doesn't shut down 🥲
+    //                                @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true  OR            @attr doesn't exist        AND   lastListeningStatus was false
+    //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
+    if ((lastTrack == data.recenttracks.track[0].name) && (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') || (data.recenttracks.track[0]["@attr"] && lastListeningStatus == "recent"))
+        return;
+    console.log(data);
+    lastTrack = data.recenttracks.track[0].name;
+    // Random stuff for Goonies/Boonies to make it look better lmao
     if (data.recenttracks.track[0].name == "Goonies/Boonies (Prod. lil Judas)") {
         data.recenttracks.track[0].album["#text"] = "Goonies/Boonies (Prod. lil Judas) - Single";
         data.recenttracks.track[0].name = "Goonies/Boonies";
@@ -179,18 +190,27 @@ fetch("/api/getListeningData").then(data => data.json()).then((data) => {
     SongName.innerText = data.recenttracks.track[0].name;
     AlbumName.innerText = data.recenttracks.track[0].album["#text"];
     if (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying) {
+        lastListeningStatus = data.recenttracks.track[0]["@attr"].nowplaying;
         NowListening.innerText = "NOW LISTENING TO...";
         Bars.forEach(el => {
-            el.style.height = getRandomNumber(1, 24).toString() + "px";
-            setInterval(() => {
+            el.style.display = "block";
+            if (barInterval.length < 1) {
                 el.style.height = getRandomNumber(1, 24).toString() + "px";
-            }, 700);
+                barInterval.push(setInterval(() => {
+                    el.style.height = getRandomNumber(1, 24).toString() + "px";
+                }, 700));
+            }
         });
     }
     else {
+        lastListeningStatus = "false";
         NowListening.innerText = "RECENTLY LISTENED TO...";
+        barInterval.forEach(interval => {
+            clearInterval(interval);
+        });
+        barInterval = [];
         Bars.forEach(el => {
-            el.remove();
+            el.style.display = "none";
         });
     }
     checkSongNameWithCover(SongName.innerText, data);
@@ -216,7 +236,16 @@ fetch("/api/getListeningData").then(data => data.json()).then((data) => {
             });
         });
     }
+}
+fetch("/api/getListeningData").then(data => data.json()).then((data) => {
+    HandleFMData(data);
 });
+setInterval(() => {
+    fetch("/api/getListeningData").then(data => data.json()).then((data) => {
+        console.log('Updating Last.Fm...');
+        HandleFMData(data);
+    });
+}, 2500);
 //#endregion
 //#region Home Positioning
 const MainContent = document.getElementById("MainContent");
@@ -233,5 +262,64 @@ addEventListener("resize", () => {
     MainContent.style.paddingTop = (innerHeight - fullHeight - 150).toString() + "px";
 });
 export {};
+//#endregion
+//#region Rotating Module
+// yea fuck that
+// my brain doesn't have enough capacity to understand whats happening 🥲
+// the rotation is really laggy for some reason
+// like I have to stop moving my mouse for it to actually rotate to my mouse
+// I hate javascript sometimes
+//const Rotates = Array.from(document.getElementsByClassName("rotates")) as Array<HTMLDivElement>
+//
+//const MAX_X_ROTATION = 40
+//const MAX_Y_ROTATION = 40
+//
+//Rotates.forEach((el: HTMLDivElement) => {
+//    console.log("Got here")
+//
+//    var interval = -1;
+//    var xOffset: number;
+//    var yOffset: number;
+//
+//    // not setting transform when I add the prespective variable
+//    // I hate this so much :D
+//    // just straight up removed the variable
+//
+//    el.style.transform = `prespective(500px)`
+//
+//    el.addEventListener("mousemove", (mouseMove) => {
+//        const x = mouseMove.clientX 
+//        const y = mouseMove.clientY
+//
+//        var middleX = el.getBoundingClientRect().x + (el.clientWidth /2)
+//        var middleY = el.getBoundingClientRect().y + (el.clientHeight /2)
+//
+//        xOffset = ((x - middleX) / middleX)  * MAX_X_ROTATION
+//        yOffset = ((y - middleY) / middleY) * MAX_Y_ROTATION
+//
+//        console.log(xOffset/MAX_X_ROTATION, -yOffset/MAX_Y_ROTATION)
+//
+//        el.style.setProperty("--xRotate", xOffset.toString()+'deg')
+//        el.style.setProperty("--yRotate", -yOffset.toString()+'deg')
+//        el.style.setProperty("--scale", '1.02')
+//
+//
+//        //if (interval < 0) {
+//        //    interval = setInterval(()=>{
+//        //        el.style.transform = `perspective(500px) rotateX(${-yOffset}deg) rotateY(${xOffset}deg) scale(1.02)`
+//        //    }, 1)
+//        //}
+//
+//    })
+//
+//    el.addEventListener("mouseleave", () => {
+//        console.log("Mouse Left")
+//        clearInterval(interval)
+//        interval = -1
+//        el.style.setProperty("--xRotate", '0deg')
+//        el.style.setProperty("--yRotate", '0deg')
+//        el.style.setProperty("--scale", '1')
+//    })
+//})
 //#endregion
 //# sourceMappingURL=index.js.map

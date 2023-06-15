@@ -25,6 +25,7 @@ Heres a few fun facts and such about my site
 
 ### 🎶 Music Card
 The music card on my site pulls directly from my [last.fm profile](https://www.last.fm/user/littlepriceonu/library) using the last.fm API!
+The color of the text in the music title is the most vibrant color pulled from the album image, using `node-vibrant`
 
 ### 🏷️ Discord Status
 The status in the corner of my profile picture is pulled directly from my discord status using [Lanyard](https://lanyard.eggsy.xyz)! (huge shoutout to lanyard btw)
