@@ -8,16 +8,21 @@ module.exports = {
     },
     extend: {
       keyframes: {
-        scrollingGradientframes: {
+        scrollingGradientFrames: {
           '0%': { backgroundPosition: '0% 50%' },
           '50%' : { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
+        },
+        straightScrollingGradientFrames: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '200% 50%'}
         }
       },
 
       animation: {
-        scrollingGradient: 'scrollingGradientframes 15s ease infinite',
-        fastScrollingGradient: 'scrollingGradientframes 5s ease infinite'
+        scrollingGradient: 'scrollingGradientFrames 15s ease infinite',
+        fastScrollingGradient: 'scrollingGradientFrames 5s ease infinite',
+        straightScrollingGradient: 'straightScrollingGradientFrames 5s linear infinite'
       },
 
       height: {
@@ -27,6 +32,7 @@ module.exports = {
   },
     plugins: [
       require('tailwind-scrollbar'),
+      require('tailwindcss-3d'),
     ],
 }
 

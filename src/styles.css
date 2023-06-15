@@ -8,16 +8,22 @@
     initial-value: rgb(115, 126, 141);
 }
 
-@keyframes scrollingGradient {
-    0% { 
-        background-position: 0% 50%
-    }
-    50% { 
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
+@property --xRotate {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+}
+
+@property --yRotate {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+}
+
+@property --scale {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 1;
 }
 
 :root {
@@ -130,3 +136,11 @@ html, body {height: 100%; width: 100%;}
 .bar {
     transition: height 0.8s ease-in;
 }
+
+/*
+fuck 3d rotation I hate bugs 
+.rotates {
+    transform-style: preserve-3d;
+
+    transform: perspective(500px) rotateX(var(--yRotate)) rotateY(var(--xRotate)) scale(var(--scale));
+} */

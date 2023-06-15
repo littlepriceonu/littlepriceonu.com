@@ -104,14 +104,18 @@ app.get("/senddata", async (req, res) => {
     console.log("Data Append Requested...")
     if (req.query.SEC == secret && req.query.u) {
         console.log("SEC confirmed")
+
         console.log("Data Received: " + req.query.u)
         try {
             fs.appendFileSync(`${options.root}/data.txt`, req.query.u+"\n");
+
             console.log("Data Save Succesful!")
+
             res.send("SAVED!")
         }
         catch (err) {
             console.log("Error occured during file write attempt!", err)
+            
             res.send("ERROR!")
         }
     }
@@ -197,20 +201,10 @@ FILES.forEach((file) => {
 
 app.use(favicon(path.join(__dirname, 'favicon', 'favicon.ico')))
 
-try {
-
+exec("npx kill-port 3000", {
+    cwd: "/home/ec2-user/site/littlepriceonu.com/"
+}).then(()=>{
     app.listen(port, () => {
         console.log(`Littlepriceonu.com listening at port 3000`)
     })
-
-} catch {
-    // I have no clue why the port is still being used after the site is closed
-    // this is my fix
-    // bad idea
-    // but it might just work (it probably wont)
-    setTimeout(() => {
-        app.listen(port, () => {
-            console.log(`Littlepriceonu.com listening at port 3000`)
-        })
-    }, 2000);
-}
+})
