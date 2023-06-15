@@ -122,28 +122,61 @@ var loadingInterval = setInterval(() => {
 }, 100);
 //#endregion
 //#region Status
+var Lanyard;
+function SendMessageToLanyard(OP, data) {
+    if (Lanyard.readyState != Lanyard.OPEN)
+        return;
+    Lanyard.send(JSON.stringify({
+        op: OP,
+        d: data,
+    }));
+}
+var HeartbeatInterval;
+const USER_ID = "526120594929090561";
+const OPCodeHandlers = {
+    1: function (data) {
+        HeartbeatInterval = setInterval(() => {
+            SendMessageToLanyard(3, {});
+        }, data.d.heartbeat_interval);
+        SendMessageToLanyard(2, {
+            subscribe_to_id: USER_ID,
+        });
+    },
+    0: function (data) {
+        HandleStatus(data.d);
+    },
+};
 const OuterStatus = document.getElementById("OuterStatus");
 const Status = document.getElementById("Status");
 const PFP = document.getElementById("PFP");
-function HandleStatus() {
-    OuterStatus.style.top = "5px";
-    OuterStatus.style.left = (PFP.clientWidth - PFP.clientWidth / 7).toString() + "px";
-    getDiscordData().then(function (discord) {
-        const discordData = discord;
-        OuterStatus.style.setProperty("--status-color", COLORS[discordData.data.discord_status]);
-        Status.setAttribute("data-status", discordData.data.discord_status);
-        if (discordData.data.discord_status == "dnd") {
-            document.getElementById("idleCircle").remove();
-        }
+function HandleStatus(data) {
+    const discordData = data;
+    // Sets the color for the current status, effects status circle and drop shadow
+    OuterStatus.style.setProperty("--status-color", COLORS[discordData.discord_status]);
+    // Sets the status on the Circle so it can be used in css selectors
+    Status.setAttribute("data-status", discordData.discord_status);
+    if (!LOADING_PROGRESS["DiscordIntergration"])
         LOADING_PROGRESS["DiscordIntergration"] = true;
-    });
+}
+function SetupLanyard() {
+    OuterStatus.style.top = "5px";
+    // 7 is just a random magic number that I divide the width by to get it in a place I like lmao
+    OuterStatus.style.left = (PFP.clientWidth - PFP.clientWidth / 7).toString() + "px";
+    Lanyard = new WebSocket("wss://api.lanyard.rest/socket");
+    Lanyard.onopen = () => {
+        console.log("[LANYARD] LANYARD CONNECTION ACTIVE... AWAITING DATA...");
+    };
+    Lanyard.onmessage = (data) => {
+        data = JSON.parse(data.data);
+        OPCodeHandlers[data.op](data);
+    };
 }
 if (PFP.complete) {
-    HandleStatus();
+    SetupLanyard();
 }
 else {
     PFP.addEventListener("load", () => {
-        HandleStatus();
+        SetupLanyard();
     });
 }
 //#endregion
@@ -180,7 +213,6 @@ function HandleFMData(data) {
     //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
     if ((lastTrack == data.recenttracks.track[0].name) && (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') || (data.recenttracks.track[0]["@attr"] && lastListeningStatus == "recent"))
         return;
-    console.log(data);
     lastTrack = data.recenttracks.track[0].name;
     // Random stuff for Goonies/Boonies to make it look better lmao
     if (data.recenttracks.track[0].name == "Goonies/Boonies (Prod. lil Judas)") {
@@ -242,7 +274,6 @@ fetch("/api/getListeningData").then(data => data.json()).then((data) => {
 });
 setInterval(() => {
     fetch("/api/getListeningData").then(data => data.json()).then((data) => {
-        console.log('Updating Last.Fm...');
         HandleFMData(data);
     });
 }, 2500);

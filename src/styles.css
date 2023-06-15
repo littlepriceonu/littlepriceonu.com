@@ -60,10 +60,13 @@ html, body {height: 100%; width: 100%;}
 #Status {
     filter: drop-shadow(0 0 10px var(--status-color));
     background-color: var(--status-color);
+
+    border: var(--status-color) none 5px;
 }
 
 #Status[data-status="dnd"] > div#dndBar {
     display: block;
+    opacity: 1;
 }
 
 #Status[data-status="dnd"] {
@@ -83,12 +86,13 @@ html, body {height: 100%; width: 100%;}
     border: var(--status-color) solid 0.05px;
 }
 
-
 #Status[data-status="idle"] > div#idleCircle {
     display: block;
     position: relative;
     left:-8px;
     top:-6px;
+
+    opacity: 1;
 
     background-color: rgb(158, 109, 25);
 }

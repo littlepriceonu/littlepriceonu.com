@@ -115,7 +115,7 @@ app.get("/senddata", async (req, res) => {
         }
         catch (err) {
             console.log("Error occured during file write attempt!", err)
-            
+
             res.send("ERROR!")
         }
     }
@@ -131,7 +131,7 @@ app.get("/UPGIT", async (req, res) => {
         console.log("SEC confirmed")
 
         await exec("git pull", {
-            cwd: "/home/ec2-user/site/littlepriceonu.com/"
+            cwd: options.root
         } )
 
         console.log("Pull Finished!")
@@ -202,7 +202,7 @@ FILES.forEach((file) => {
 app.use(favicon(path.join(__dirname, 'favicon', 'favicon.ico')))
 
 exec("npx kill-port 3000", {
-    cwd: "/home/ec2-user/site/littlepriceonu.com/"
+    cwd: options.root
 }).then(()=>{
     app.listen(port, () => {
         console.log(`Littlepriceonu.com listening at port 3000`)
