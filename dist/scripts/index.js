@@ -208,10 +208,10 @@ var lastTrack;
 var barInterval = [];
 var lastListeningStatus;
 function HandleFMData(data) {
-    // me explaining check so my brain doesn't shut down 🥲
-    //                                @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true  OR            @attr doesn't exist        AND   lastListeningStatus was false
+    //  me explaining check so my brain doesn't shut down 🥲
+    //                                 @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true OR            @attr doesn't exist         AND  lastListeningStatus was false
     //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
-    if ((lastTrack == data.recenttracks.track[0].name) && (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') || (data.recenttracks.track[0]["@attr"] && lastListeningStatus == "recent"))
+    if ((lastTrack == data.recenttracks.track[0].name) && (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') || (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
         return;
     lastTrack = data.recenttracks.track[0].name;
     // Random stuff for Goonies/Boonies to make it look better lmao
