@@ -15,9 +15,19 @@ Heres the steps for hosting this site, if you'd like to know!
 * SSH into the server and clone this repo
 * Run `npm install`
 * Setup [Nginx](https://awstip.com/installing-nginx-web-server-on-an-aws-ec2-7727811dacec) with the config in the repo
-* Finally, Run `npm start!
+* Finally, Run `npm start`!
   
 * If you wish, you can use certbot and set it up with nginx to have an SSL connection! 
+
+## 📺 Dev Enviroment
+
+The developer enviroment of the site consists of the following
+
+* Cloning the repo
+* Running `npm install`
+* Insuring you have typescipt installed on your computer by running `npm i typescript -d`
+* Then starting the Dev Env by running `npm run dev`
+
 
 ## 💭 Extras
 
@@ -29,3 +39,6 @@ The color of the text in the music title is the most vibrant color pulled from t
 
 ### 🏷️ Discord Status
 The status in the corner of my profile picture is pulled directly from my discord status using [Lanyard](https://lanyard.eggsy.xyz)! (huge shoutout to lanyard btw)
+
+### 🔁 CI/CD
+Using Github Actions, I let my server know that the repo was updated. After that it pulls the new files from the repo using `git pull` then restarts the server using [Forever](https://www.npmjs.com/package/forever)

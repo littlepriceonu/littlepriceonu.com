@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "forever start index.js",
-    "test": "start.bat"
+    "dev": "start.bat"
   },
   "repository": {
     "type": "git",
