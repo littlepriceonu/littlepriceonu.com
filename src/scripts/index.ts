@@ -321,7 +321,7 @@ function HandleFMData(data: LastFMData) {
         Bars.forEach(el => {
             el.style.display = "block"
 
-            if (barInterval.length < 1) {
+            if (barInterval.length < 3) {
                 el.style.height = getRandomNumber(1,24).toString() + "px"
 
                 barInterval.push(setInterval(()=>{
