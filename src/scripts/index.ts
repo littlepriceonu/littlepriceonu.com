@@ -11,11 +11,11 @@ console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how 
 // TODO
 // Tool tips (for the discord status, and maybe other stuff on the about/projects page)
 //
-// ❌ change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120)) (maybe not anymore because of vibrant.js)
+// ❌ (probably wont do) change color of the background on nowListening to a brigher color when album cover is dark (color to change to > rgb(82 102 120)) (maybe not anymore because of vibrant.js)
 // ✔️ https://lanyard.eggsy.xyz/api/working-with-websockets lanyard websockets
 // ✔️ refresh last.fm api every 5 secs so it updates (or just update the server to like 1.5 seconds instead of 5 lmao)
 // ✔️ Make the "web developer" text scroll in a single direction
-// ❌ make the listening to thing rotate to your mouse like https://afn.lol (istg that is literal witchery)
+// ❌ (probably wont do) make the listening to thing rotate to your mouse like https://afn.lol (istg that is literal witchery)
 
 //#region Declarations
 
