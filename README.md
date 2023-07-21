@@ -35,10 +35,10 @@ Heres a few fun facts and such about my site
 
 ### 🎶 Music Card
 The music card on my site pulls directly from my [last.fm profile](https://www.last.fm/user/littlepriceonu/library) using the last.fm API!
-The color of the text in the music title is the most vibrant color pulled from the album image, using `node-vibrant`
+The color of the text in the music title is the most vibrant color pulled from the album image, using [`node-vibrant`](https://www.npmjs.com/package/node-vibrant)
 
 ### 🏷️ Discord Status
 The status in the corner of my profile picture is pulled directly from my discord status using [Lanyard](https://lanyard.eggsy.xyz)! (huge shoutout to lanyard btw)
 
 ### 🔁 CI/CD
-Using Github Actions, I let my server know that the repo was updated. After that it pulls the new files from the repo using `git pull` then restarts the server using [Forever](https://www.npmjs.com/package/forever)
+Using Github Actions, I let my server know that the repo was updated. After that it pulls the new files from the repo using `git pull` then restarts the server using [`Forever`](https://www.npmjs.com/package/forever)
