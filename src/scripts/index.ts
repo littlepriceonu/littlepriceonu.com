@@ -44,8 +44,8 @@ const SONGS: { [song: string]: string } = {
     "when the world end": "https://i1.sndcdn.com/artworks-0xZLnKADQJHhFEoI-06nAKw-t500x500.jpg",
     "RUN": "https://i1.sndcdn.com/artworks-Mbwvi7htzOpNHV7o-kixKIw-t500x500.jpg",
     "Hall of Fame (feat. Lake Kyle & Lil D****e)": "https://i.scdn.co/image/ab67616d00001e023f3a016617a325b1dfc4dd5d",
-    "frick suckaz": "/fricksuckaz.jpg",
-    "stardust": "/stardust.jpg",
+    "frick suckaz": "/img/fricksuckaz.jpg",
+    "stardust": "/img/stardust.jpg",
     "No Hook, Pt. 2": "https://i.scdn.co/image/ab67616d00001e02d3800d40e3f17986fd0a4f9f",
     "D****e Still Cannot Rap Pt. 1 (Remix)": "https://i1.sndcdn.com/artworks-nxOhOCH4l4wJk3Pj-EqfEGQ-t500x500.jpg",
     "is there anyone home?": "https://i.scdn.co/image/ab67616d0000b27398bc0cadfed62e38f5a7455d",
@@ -109,18 +109,19 @@ function checkAlbumNameWithCover(name: string, data: LastFMData) {
     }
 }
 
-function getDiscordData(): Promise<DiscordData> {
-    return new Promise(res => {
-        fetch("https://api.lanyard.rest/v1/users/526120594929090561").then(body => body.json()).then(data => {
-            if (data.success) {
-                res(data)
-            }
-            else {
-                throw Error("Lanyard API had and error grabbing Discord data")
-            }
-        })
-    })
-}
+// I use web sockets now lmfao
+//function getDiscordData(): Promise<DiscordData> {
+//    return new Promise(res => {
+//        fetch("https://api.lanyard.rest/v1/users/526120594929090561").then(body => body.json()).then(data => {
+//            if (data.success) {
+//                res(data)
+//            }
+//            else {
+//                throw Error("Lanyard API had and error grabbing Discord data")
+//            }
+//        })
+//    })
+//}
 
 
 
@@ -183,7 +184,6 @@ var loadingInterval = setInterval(()=>{
 //#endregion
 
 //#region Status
-
 
 var Lanyard: WebSocket;
 
@@ -296,7 +296,7 @@ var barInterval: Array<number> = [];
 var lastListeningStatus: string;
 
 function HandleFMData(data: LastFMData) {
-//  me explaining check so my brain doesn't shut down 🥲
+//  me explaining check so my brain doesn't shut down 
 //                                 @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true OR            @attr doesn't exist         AND  lastListeningStatus was false
 //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
 
@@ -308,6 +308,12 @@ function HandleFMData(data: LastFMData) {
     if (data.recenttracks.track[0].name == "Goonies/Boonies (Prod. lil Judas)") {
         data.recenttracks.track[0].album["#text"] = "Goonies/Boonies (Prod. lil Judas) - Single"
         data.recenttracks.track[0].name = "Goonies/Boonies"
+    }
+
+    // More random stuff to make methhead freestyle look better
+    if (data.recenttracks.track[0].name == "Methhead Freestyle (feat. Eric North, JOHNNASCUS, Half Metal Kaiba, BLCKK, Bruhmanegod, LiL CUBENSiS, Royalty the Kidd, Afourteen & WENDIGO)") {
+        data.recenttracks.track[0].album["#text"] = "Methhead Freestyle (feat. Spider Gang) - Single"
+        data.recenttracks.track[0].name = "Methhead Freestyle"
     }
 
     SongName.innerText = data.recenttracks.track[0].name

@@ -1,6 +1,6 @@
 
 // ! WARNING WARNING WARNING!
-// FALSE 404 BYPASSED
+// 404 BYPASSED
 // USER HAS BREACHED SERVER AND IS BROWSING SERVER FILES
 // FAILURE TO TERMINATE CONNECTION WILL LEAD TO BREACH OF CONTRACT
 // ITS ALL UP TO YOU NOW. DO YOUR JOB
@@ -172,18 +172,22 @@ const FOLDERS = {
     "/dist/scripts": ["js", "map"],
 }
 
+// just loops over all the files in the specified directory and then adds them to the server if the filename matches one of the requested extensions
 Object.entries(FOLDERS).forEach(folder => {
     fs.readdirSync(options.root + folder[0]).forEach(file=>{
 
         const endings = file.split(".")
         const fileEnding = endings[endings.length-1]
 
+        // folder[0] is the folder path and folder[1] is a array of file extensions
         if (folder[1].find((ending) => {
             if (ending == fileEnding) {
                 return true
             }
         })) {
-            FILES.push([file, "" + folder[0] + "/" + file])
+            var networkFolder = folder[0].replace("dist/", "").replace("src/", "")
+
+            FILES.push([networkFolder + "/" + file,  folder[0] + "/" + file])
         }
     })
 })
@@ -192,10 +196,17 @@ FILES.forEach((file) => {
     let networkName = file[0]
     let localName = file[1]
 
+    // if the file name on the server starts with a / just remove it cause we add one anyway
+    if (networkName.startsWith("/")) networkName = networkName.replace("/", "")
+
     app.get('/'+networkName, (req, res) => {
         res.sendFile(localName, options, HandlePostDelivering)
     })
 })
+
+app.get("*", (req, res)=>{
+    res.sendFile("/src/404.html", options, HandlePostDelivering)
+})  
 
 //#endregion
 
