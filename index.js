@@ -205,6 +205,7 @@ FILES.forEach((file) => {
 })
 
 app.get("*", (req, res)=>{
+    res.status(404)
     res.sendFile("/src/404.html", options, HandlePostDelivering)
 })  
 
