@@ -421,7 +421,7 @@ addEventListener("resize", ()=>{
 //#region Rotating Module
 
 // yea fuck that
-// my brain doesn't have enough capacity to understand whats happening 🥲
+// my brain doesn't have enough capacity to understand whats happening :-(
 // the rotation is really laggy for some reason
 // like I have to stop moving my mouse for it to actually rotate to my mouse
 // I hate javascript sometimes
