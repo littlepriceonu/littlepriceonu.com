@@ -16,6 +16,9 @@ console.log("%cUSER AUTHORIZED. ! Y-Yo, this dude doesn't have permissions! how 
 // ✔️ refresh last.fm api every 5 secs so it updates (or just update the server to like 1.5 seconds instead of 5 lmao)
 // ✔️ Make the "web developer" text scroll in a single direction
 // ❌ (probably wont do) make the listening to thing rotate to your mouse like https://afn.lol (istg that is literal witchery)
+// ❌ Make the titles (and maybe the album covers) of songs clickable and link to the song
+// ❌ if the song name and album name are the same, just remove the album name (lmfao)
+// ❌ add glow to the song name, which is the color of the text
 
 //#region Declarations
 
