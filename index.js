@@ -19,7 +19,6 @@ const util = require("node:util")
 const exec_ = require('child_process').exec
 const exec = util.promisify(exec_);
 const fs = require('fs');
-const fetch = require("node-fetch")
 require('dotenv').config();
 //#endregion
 

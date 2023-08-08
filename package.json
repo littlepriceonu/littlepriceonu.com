@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/littlepriceonu/littlepriceonu.com#readme",
   "dependencies": {
+    "@littlepriceonu/littleserver": "^1.0.13",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "kill-port": "^2.0.1",
