@@ -6,4 +6,4 @@ require('dotenv').config();
 
 const token = process.env.TOKEN
 
-execSync(`echo @littlepriceonu:registry=https://npm.pkg.github.com◙//npm.pkg.github.com/:_authToken=${token} > .npmrc`)
+execSync(`echo //npm.pkg.github.com/:_authToken=${token}◙@littlepriceonu:registry=https://npm.pkg.github.com > .npmrc`)
