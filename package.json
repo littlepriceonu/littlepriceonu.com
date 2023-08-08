@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "build": "build_commands/build_TS_Tailwind.bat",
-    "vercel-build": "node build_commands/build.js"
+    "vercel-build": "echo No Build Command Is Required..."
   },
   "repository": {
     "type": "git",
