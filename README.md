@@ -1,11 +1,12 @@
+# THIS REPOSITORY IS *IF* I WANT TO MOVE TO VERCEL, MIGHT (PROBABLY) NOT.
+
 # 👽 [My Personal Site!](https://littlepriceonu.com) (V2)
 
-My Personal Site, Hosted Using Amazon Web Services EC2
-Made Using Tailwind & Typescript
+My Personal Site, Hosted Using Vercel and Made Using Tailwind & Typescript.
 
 ## 💭 Extras
 
-Heres a few fun facts and such about my site
+Heres a few fun facts and such about my site,
 
 ### 🎶 Music Card
 The music card on my site pulls directly from my [last.fm profile](https://www.last.fm/user/littlepriceonu/library) using the last.fm API!

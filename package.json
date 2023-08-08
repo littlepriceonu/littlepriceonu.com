@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "build": "build_commands/build_TS_Tailwind.bat",
+    "build": "build",
     "vercel-build": "echo No Build Command Is Required..."
   },
   "repository": {
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/littlepriceonu/littlepriceonu.com#readme",
   "dependencies": {
-    "@littlepriceonu/littleserver": "^1.0.11",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "kill-port": "^2.0.1",
@@ -29,5 +28,12 @@
     "tailwind": "^4.0.0",
     "tailwind-scrollbar": "^2.0.1",
     "tailwindcss-3d": "^0.2.3"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.0.0",
+    "cssnano": "^6.0.1"
   }
 }

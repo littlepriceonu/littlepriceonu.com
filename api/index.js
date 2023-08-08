@@ -1,3 +1,2 @@
-const { execSync } = require("child_process")
+const app = require("express")()
 
-module.exports = require("@littlepriceonu/littleserver")

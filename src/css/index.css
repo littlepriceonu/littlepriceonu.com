@@ -1,0 +1,123 @@
+@import "./etc/propertiesAndVariables.css";
+@import "./util/default.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Loading Screen */
+
+#loadingScreen {
+    transition: opacity .5s ease-in;
+}
+
+#loadingBar {
+    background-color: rgb(67, 181, 129);
+    transition: width 0.5s ease-in;
+}
+
+/* Header */
+
+#accessGranted {
+    filter: drop-shadow(0 0 15px green)
+}
+
+/* Home Main */
+
+#contentHolder {
+    transition: opacity 0.8s ease-in;
+}
+
+#Status {
+    filter: drop-shadow(0 0 10px var(--status-color));
+    background-color: var(--status-color);
+
+    border: var(--status-color) none 5px;
+
+    &[data-status="dnd"] > div#dndBar {
+        display: block;
+        opacity: 1;
+    }
+
+    &[data-status="dnd"] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &[data-status="offline"] {
+        background-color: var(--background-color);
+        border: var(--status-color) solid 5px;
+    }
+
+    &[data-status="idle"] {
+        overflow:hidden;
+    
+        border: var(--status-color) solid 0.05px;
+    }
+
+    &[data-status="idle"] > div#idleCircle {
+        display: block;
+        position: relative;
+        left:-8px;
+        top:-6px;
+    
+        opacity: 1;
+    
+        background-color: rgb(158, 109, 25);
+    }
+}
+
+#developerText {
+    transition: filter;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    filter: drop-shadow(0 0 15px rgb(0,0,255));
+}
+
+#Socials > a > img {
+    transition: filter;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%);
+
+    &:hover {
+        filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%) drop-shadow(0 0 25px rgb(0 0 255));
+    }
+}
+
+/* Listening To */
+
+/* fix blurring issues pls 🥲 */
+/* issues fixed :D */
+
+#ListeningTo {
+    transition-property: filter, transform, box-shadow;
+    transition-timing-function: ease-in;
+    transition-duration: .25s;
+
+    &:hover {
+        transform: scale(1.02002, 1.02002) translateZ(0);
+        backface-visibility: hidden;
+        box-shadow: 5px 5px 15px rgb(14 18 24);
+    }
+
+    &[data-overflown="true"] {
+        height: fit-content;
+    }
+}
+
+
+.bar {
+    transition: height 0.8s ease-in;
+}
+
+/*
+fuck 3d rotation I hate bugs 
+.rotates {
+    transform-style: preserve-3d;
+
+    transform: perspective(500px) rotateX(var(--yRotate)) rotateY(var(--xRotate)) scale(var(--scale));
+} */

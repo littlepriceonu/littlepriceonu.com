@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */ 
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./src/**/*.{html,js}", "./dist/**/*.{html,js}"],
   theme: {
     backgroundSize: {
       gradientSize: '401% 401%',
