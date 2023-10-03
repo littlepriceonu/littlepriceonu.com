@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */ 
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     backgroundSize: {
       gradientSize: '401% 401%',
@@ -32,8 +32,5 @@ module.exports = {
   },
     plugins: [
       require('tailwind-scrollbar'),
-      require('tailwindcss-3d'),
     ],
 }
-
-// Commmand to start tailwind: npx tailwindcss -i ./src/styles.css -o ./dist/output.css --watch

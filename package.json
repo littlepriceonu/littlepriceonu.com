@@ -1,32 +1,32 @@
 {
-  "name": "littlepriceonu.com",
-  "version": "1.0.0",
-  "description": "My Personal Site, Hosted On AWS",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon index.js",
-    "build": "build.bat"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/littlepriceonu/littlepriceonu.com.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/littlepriceonu/littlepriceonu.com/issues"
-  },
-  "homepage": "https://github.com/littlepriceonu/littlepriceonu.com#readme",
-  "dependencies": {
-    "@littlepriceonu/littleserver": "^1.0.13",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.1",
-    "kill-port": "^2.0.1",
-    "node-fetch": "^2.6.11",
-    "nodemon": "^3.0.1",
-    "serve-favicon": "^2.5.0",
-    "tailwind": "^4.0.0",
-    "tailwind-scrollbar": "^2.0.1",
-    "tailwindcss-3d": "^0.2.3"
-  }
+	"name": "my-app",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.20.4",
+		"svelte": "^4.0.5",
+		"svelte-check": "^3.4.3",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^4.4.2"
+	},
+	"type": "module",
+	"dependencies": {
+		"autoprefixer": "^10.4.16",
+		"cssnano": "^6.0.1",
+		"node-vibrant": "^3.1.6",
+		"postcss": "^8.4.31",
+		"postcss-import": "^15.1.0",
+		"postcss-preset-env": "^9.1.4",
+		"tailwind-scrollbar": "^3.0.5",
+		"tailwindcss": "^3.3.3"
+	}
 }

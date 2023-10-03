@@ -1,0 +1,151 @@
+/* @import "./css/base.css"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@property --status-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: rgb(115, 126, 141);
+};
+
+html, body{min-height:100%; height: 100%; min-width: 100%; width: 100%;}
+body{
+    height:100vh;
+
+    @apply w-full h-full bg-slate-900 scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 pl-6 pr-6 xl:pl-14 xl:pr-14 overflow-y-hidden;
+}
+
+:root {
+    color-scheme: dark;
+    --status-color: rgb(115, 126, 141);
+    --background-color: rgb(15 23 42);
+}
+
+/* @property --xRotate {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+};
+
+@property --yRotate {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+};
+
+@property --scale {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 1;
+}; */
+
+/* Loading Screen */
+
+#loadingScreen {
+    transition: opacity .5s ease-in;
+}
+
+#loadingBar {
+    background-color: rgb(67, 181, 129);
+    transition: width 0.5s ease-in;
+}
+
+
+#accessGranted {
+    filter: drop-shadow(0 0 15px green)
+}
+
+
+#contentHolder {
+    transition: opacity 0.8s ease-in;
+}
+
+#Status {
+    filter: drop-shadow(0 0 10px var(--status-color));
+    background-color: var(--status-color);
+
+    border: var(--status-color) none 5px;
+}
+
+#Status[data-status="dnd"] > div#dndBar {
+    display: block;
+    opacity: 1;
+}
+
+#Status[data-status="dnd"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Status[data-status="offline"] {
+    background-color: var(--background-color);
+    border: var(--status-color) solid 5px;
+}
+
+#Status[data-status="idle"] {
+    overflow:hidden;
+
+    border: var(--status-color) solid 0.05px;
+}
+
+#Status[data-status="idle"] > div#idleCircle {
+    display: block;
+    position: relative;
+    left:-8px;
+    top:-6px;
+
+    opacity: 1;
+
+    background-color: rgb(158, 109, 25);
+}
+
+#developerText {
+    transition: filter;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
+    filter: drop-shadow(0 0 15px rgb(0,0,255));
+}
+
+#Socials > a > img {
+    transition: filter;
+    transition-duration: .3s;
+    transition-timing-function: ease-in;
+
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%);
+}
+
+#Socials > a > img:hover {
+    filter: invert(14%) sepia(44%) saturate(6035%) hue-rotate(213deg) brightness(103%) contrast(96%) drop-shadow(0 0 25px rgb(0 0 255));
+}
+
+
+#ListeningTo {
+    transition-property: filter, transform, box-shadow;
+    transition-timing-function: ease-in;
+    transition-duration: .25s;
+}
+
+#ListeningTo:hover {
+    transform: scale(1.02002, 1.02002) translateZ(0);
+    backface-visibility: hidden;
+    box-shadow: 5px 5px 15px rgb(14 18 24);
+}
+
+#ListeningTo[data-overflown="true"] {
+    height:fit-content
+}
+
+.bar {
+    transition: height 0.8s ease-in;
+}
+
+/*
+fuck 3d rotation I hate bugs 
+.rotates {
+    transform-style: preserve-3d;
+
+    transform: perspective(500px) rotateX(var(--yRotate)) rotateY(var(--xRotate)) scale(var(--scale));
+} */
