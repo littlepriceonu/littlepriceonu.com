@@ -359,6 +359,8 @@
         })
         
         setInterval(()=>{
+            console.log("[LAST.FM] UPDATING LAST.FM DATA")
+
             fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData) => {
                 HandleFMData(data)
             })
