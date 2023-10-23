@@ -362,7 +362,7 @@
             fetch("/api/getListeningData").then(data => data.json()).then((data: LastFMData) => {
                 HandleFMData(data)
             })
-        }, 2500)
+        }, 60*1000)
         
         //#endregion
         
