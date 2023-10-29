@@ -1,7 +1,7 @@
 # 👽 [My Personal Site!](https://littlepriceonu.com) (V2)
 
 My Personal Site, Hosted Using Vercel!
-Made Using SvelteKit, PostCSS Tailwind & Typescript
+Made Using SvelteKit, PostCSS, Tailwind & Typescript
 
 ## 💾 Hosting 
 
