@@ -9,6 +9,14 @@
     import type { DiscordData, LanyardSocketResponse } from "$lib/types/DiscordTypes";
     import type { LastFMData } from "$lib/types/LastFMTypes";
 
+    let AlbumImage: HTMLImageElement
+    let BlurImage: HTMLImageElement 
+    let SongName: HTMLHeadingElement
+    let AlbumName: HTMLParagraphElement 
+    let ArtistName: HTMLParagraphElement 
+    let NowListening: HTMLHeadingElement 
+    let Bars: HTMLDivElement[]
+
     onMount(() => {
         // ! WARNING WARNING WARNING !
         // USER ACCESSED INTERAL OPERATIONS
@@ -24,46 +32,30 @@
         // but it only uses base ts
         
         //#region Variables
-        
-        const SONGS: { [song: string]: string } = {
-            "iamsuicidal": "https://images.genius.com/28bff45b39ecc8c7b6f26bef075d3600.500x500x1.jpg",
-            "COCKNBALLTORTURE": "https://images.genius.com/d11ccddb4dbc5d7964e54102cbfe5525.1000x1000x1.png",
-            "B*******E (feat. Lil D****e)": "https://cdns-images.dzcdn.net/images/cover/d4de137520fee181a4d3d89e453290a5/500x500.jpg",
-            "warm rain": "https://i.scdn.co/image/ab67616d0000b2735b3e06096b1604016b729a93",
-            "when the world end": "https://i1.sndcdn.com/artworks-0xZLnKADQJHhFEoI-06nAKw-t500x500.jpg",
-            "RUN": "https://i1.sndcdn.com/artworks-Mbwvi7htzOpNHV7o-kixKIw-t500x500.jpg",
-            "Hall of Fame (feat. Lake Kyle & Lil D****e)": "https://i.scdn.co/image/ab67616d00001e023f3a016617a325b1dfc4dd5d",
-            "frick suckaz": "/img/fricksuckaz.jpg",
-            "stardust": "/img/stardust.jpg",
-            "No Hook, Pt. 2": "https://i.scdn.co/image/ab67616d00001e02d3800d40e3f17986fd0a4f9f",
-            "D****e Still Cannot Rap Pt. 1 (Remix)": "https://i1.sndcdn.com/artworks-nxOhOCH4l4wJk3Pj-EqfEGQ-t500x500.jpg",
-            "is there anyone home?": "https://i.scdn.co/image/ab67616d0000b27398bc0cadfed62e38f5a7455d",
-            "When You Gone": "https://i.scdn.co/image/ab67616d00001e023a4882894fe2fa490340235c",
-            "don't think": "https://i1.sndcdn.com/artworks-s9jV0rcQINSxv4io-qGSjAQ-t500x500.jpg",
-            "they just put my dog down (RIP TUGBOAT RIP PERCY) [feat. Lil D****e & Wendigo]": "https://i1.sndcdn.com/artworks-jy3lqiZdzeudarPo-cb3fTQ-t500x500.jpg",
-            "LISTENING TO BIRDS": "https://i1.sndcdn.com/artworks-0YtmVgIroROVgXkK-n8bz2Q-t500x500.jpg",
-            "WEATHERMAN": "https://images.genius.com/bae5e1f333458df3e176e9508cfeee86.1000x1000x1.jpg",
-            "reminding": "https://images.genius.com/9071d579e081380bf254418d64164b9e.500x500x1.jpg",
-            "TRANSSEXUAL APPRECIATION DAY": "https://i1.sndcdn.com/artworks-dWruiiQqAPCpp0Bv-zLKHJA-t500x500.jpg",
+
+        const NAME_REPLACEMENT: { [ name: string ]: {album: string, title: string} } = {
+            "Methhead Freestyle (feat. Eric North, JOHNNASCUS, Half Metal Kaiba, BLCKK, Bruhmanegod, LiL CUBENSiS, Royalty the Kidd, Afourteen & WENDIGO)": {
+                title: "Methhead Freestyle",
+                album: "Methhead Freestyle (feat. Spider Gang) - Single"
+            },
+            "Goonies/Boonies (Prod. lil Judas)": {
+                title: "Goonies/Boonies",
+                album: "Goonies/Boonies (Prod. lil Judas) - Single"
+            }
         }
-        
-        const ALBUMS: { [album: string]: string }  = {
-            "SUPER DARK VR": "https://i1.sndcdn.com/artworks-000475938783-ej4tvp-t500x500.jpg",
-            "WE ARE BEHIND AN OBJECT (a spider gang thing)": "https://images.genius.com/80460f1ef4675f4231c9f80932b04ef6.1000x1000x1.png"
-        }
-        
+
         const COLORS: { [status: string]: string } = {
             online: "rgb(67, 181, 129)",
             dnd: "rgb(244, 70, 72)",
             idle: "rgb(248, 166, 25)",
             offline: "rgb(115, 126, 141)",
         }
-        
+
         var LOADING_PROGRESS: { [key: string]: boolean } = {
             LastFMIntergration: false,
             DiscordIntergration: false,
         }
-        
+
         const LENNYS: Array<string> = [
             "<mark style='background-color:transparent; color:blue;'>◑</mark>.<mark style='background-color:transparent; color:blue;'>◑</mark>",
             "<mark style='background-color:transparent; color:saddlebrown;'>ʕ•́ᴥ•̀ʔっ</mark><mark style='background-color:transparent; color:red;'>♡</mark>",
@@ -84,19 +76,7 @@
         
         function getRandomInterger(min:number, max:number): number {
             return Math.floor(Math.random() * (max - min) ) + min;
-        }
-        
-        function checkSongNameWithCover(name: string, data: LastFMData) {
-            if (SONGS[name]) {
-                data.recenttracks.track[0].image[2]["#text"] = SONGS[name]
-            }
-        }
-        
-        function checkAlbumNameWithCover(name: string, data: LastFMData) {
-            if (ALBUMS[name]) {
-                data.recenttracks.track[0].image[2]["#text"] = ALBUMS[name]
-            }
-        }    
+        }  
         
         //#endregion
         
@@ -254,43 +234,32 @@
         //#endregion
         
         //#region Listening To...
-        const AlbumImage = <HTMLImageElement>document.getElementById!("AlbumImage")
-        const BlurImage = <HTMLImageElement>document.getElementById!("BlurImage")
-        const SongName = <HTMLTextAreaElement>document.getElementById!("SongName")
-        const AlbumName = <HTMLTextAreaElement>document.getElementById!("AlbumName")
-        const ArtistName = <HTMLTextAreaElement>document.getElementById!("ArtistName")
-        const NowListening = <HTMLTextAreaElement>document.getElementById!("NowListening")
-        const Bars = Array.from(document.getElementsByClassName("bar") as HTMLCollectionOf<HTMLDivElement>)
         
         var lastTrack: string;
         var barInterval: Array<number> = [];
         var lastListeningStatus: string;
-        
+        Bars = Array.from(document.getElementsByClassName("bar") as HTMLCollectionOf<HTMLDivElement>)
+
         function HandleFMData(data: LastFMData) {
-        //  me explaining check so my brain doesn't shut down 
-        //                                 @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true OR            @attr doesn't exist         AND  lastListeningStatus was false
-        //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
+            //  me explaining check so my brain doesn't shut down 
+            //                                 @attr exists      AND       @attr has the "nowplaying"              AND  lastListeningStatus was true OR            @attr doesn't exist         AND  lastListeningStatus was false
+            //  console.log((data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false"))
         
             if ((lastTrack == data.recenttracks.track[0].name) && (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying && lastListeningStatus == 'true') ||  (!data.recenttracks.track[0]["@attr"] && lastListeningStatus == "false")) return
         
             lastTrack = data.recenttracks.track[0].name
-        
-            // Random stuff for Goonies/Boonies to make it look better lmao
-            if (data.recenttracks.track[0].name == "Goonies/Boonies (Prod. lil Judas)") {
-                data.recenttracks.track[0].album["#text"] = "Goonies/Boonies (Prod. lil Judas) - Single"
-                data.recenttracks.track[0].name = "Goonies/Boonies"
-            }
-        
-            // More random stuff to make methhead freestyle look better
-            if (data.recenttracks.track[0].name == "Methhead Freestyle (feat. Eric North, JOHNNASCUS, Half Metal Kaiba, BLCKK, Bruhmanegod, LiL CUBENSiS, Royalty the Kidd, Afourteen & WENDIGO)") {
-                data.recenttracks.track[0].album["#text"] = "Methhead Freestyle (feat. Spider Gang) - Single"
-                data.recenttracks.track[0].name = "Methhead Freestyle"
+
+            let nameReplacement = NAME_REPLACEMENT[data.recenttracks.track[0].name]
+
+            if (nameReplacement) {
+                data.recenttracks.track[0].album["#text"] = nameReplacement.album
+                data.recenttracks.track[0].name = nameReplacement.title
             }
         
             SongName.innerText = data.recenttracks.track[0].name
             AlbumName.innerText = data.recenttracks.track[0].album["#text"]
         
-            if (data.recenttracks.track[0]["@attr"] && data.recenttracks.track[0]["@attr"].nowplaying) {
+            if (data.recenttracks.track[0]["@attr"]?.nowplaying) {
                 lastListeningStatus = data.recenttracks.track[0]["@attr"].nowplaying
             
                 NowListening.innerText = "NOW LISTENING TO..."
@@ -321,9 +290,6 @@
                     el.style.display = "none"
                 })
             }
-        
-            checkSongNameWithCover(SongName.innerText, data)
-            checkAlbumNameWithCover(AlbumName.innerText, data)
         
             ArtistName.innerText = data.recenttracks.track[0].artist["#text"]
             AlbumImage.src = data.recenttracks.track[0].image[2]["#text"]
@@ -524,19 +490,19 @@
             </a>
         </div>
 
-        <div id="ListeningTo" class="relative z-50 flex flex-col items-center justify-start mt-5 3xl:mt-10 w-fit min-w-[85%] md:min-w-[60%] lg:max-w-[45%] lg:min-w-[40.333333%] 2xl:max-w-[30%] 2xl:min-w-[25%] h-fit min-h-[28%] 2xl:min-h-[26%]  bg-gray-800 rounded-md">
-            <div class="w-full flex flex-row justify-start items-center"> <h1 id="NowListening" class="font-bold pt-2 w-full text-left pl-3 font-mono" >Loading Module...</h1> 
+        <div  id="ListeningTo" class="relative z-50 flex flex-col items-center justify-start mt-5 3xl:mt-10 w-fit min-w-[85%] md:min-w-[60%] lg:max-w-[45%] lg:min-w-[40.333333%] 2xl:max-w-[30%] 2xl:min-w-[25%] h-fit min-h-[28%] 2xl:min-h-[26%]  bg-gray-800 rounded-md">
+            <div class="w-full flex flex-row justify-start items-center"> <h1 id="NowListening" bind:this={NowListening} class="font-bold pt-2 w-full text-left pl-3 font-mono" >Loading Module...</h1> 
                 <div class="bar w-[3px] h-6 bg-blue-600 mr-1 mt-2"></div>
                 <div class="bar w-[3px] h-3 bg-blue-600 mr-1 mt-2"></div>
                 <div class="bar w-[3px] h-5 bg-blue-600 mr-2 mt-2"></div>
             </div>
             <div class="flex w-full flex-row mt-4 justify-start items-center pl-6 relative">
-                <img id="BlurImage" crossorigin="anonymous" class="top-0 mb-auto h-[8.5rem] blur-lg rounded-md absolute" src="" alt="Loading Album Blur...">
-                <img id="AlbumImage" crossorigin="anonymous" class="ml-1.5 mb-auto h-32 rounded-md z-10" src="" alt="Loading Album...">
+                <img bind:this={BlurImage} id="BlurImage" crossorigin="anonymous" class="top-0 mb-auto h-[8.5rem] blur-lg rounded-md absolute" src="" alt="Loading Album Blur...">
+                <img bind:this={AlbumImage} id="AlbumImage" crossorigin="anonymous" class="ml-1.5 mb-auto h-32 rounded-md z-10" src="" alt="Loading Album...">
                 <div class="w-full flex flex-col items-center justify-center ml text-xl pl-5 text-center">
-                    <h1 id="SongName" class="pr-5 font-bold"> Loading... </h1>
-                    <p  id="AlbumName" class="text-sm pt-1 text-gray-400 pr-5">Loading...</p> 
-                    <p  id="ArtistName" class="text-sm pt-3 text-gray-400 pb-3 pr-5">Loading...</p>
+                    <h1 bind:this={SongName} id="SongName" class="pr-5 font-bold"> Loading... </h1>
+                    <p  bind:this={AlbumName} id="AlbumName" class="text-sm pt-1 text-gray-400 pr-5">Loading...</p> 
+                    <p  bind:this={ArtistName} id="ArtistName" class="text-sm pt-3 text-gray-400 pb-3 pr-5">Loading...</p>
                 </div>
             </div>
         </div>
