@@ -2,21 +2,26 @@ import { LASTFM_KEY } from "$env/static/private";
 import type { LastFMData } from "$lib/types/LastFMTypes";
 import { json } from "@sveltejs/kit";
 
-var payload = {
+const payload = {
     'method': 'user.getRecentTracks',
     'user': 'littlepriceonu',
     'limit': '1'
 }
 
-// Request = time in milliseconds since last request
-// Response = response of last request
-// Debounce = time in seconds to wait unil the server is allowed to make another request
+/**
+ * Time in MS since last request to Last.FM
+ */
 var lastFMRequest = 0
+/**
+ * Response of the last request
+ */
 var lastFMResponse: LastFMData
+/**
+ * Time in seconds to wait until the server is allowed to make another request to the Last.FM API.
+ */
 const lastFMDebounce = 2
 
 // rate limiting when >1 request : second
-// so I made the timeout before an update 5 secs just in case :shrug:
 function LastFMFetch(payload: any): Promise<LastFMData> {
     payload['api_key'] = LASTFM_KEY
     payload['format'] = 'json'
@@ -31,7 +36,7 @@ function LastFMFetch(payload: any): Promise<LastFMData> {
     })
     
     return new Promise((resolve, _reject) => {
-        if (FMTimeoutComplete()) {
+        if (Date.now() - lastFMRequest > lastFMDebounce * 1000) {
             fetch("https://ws.audioscrobbler.com/2.0/" + params, {
                 method: "GET",
                 mode: "cors",
@@ -46,12 +51,6 @@ function LastFMFetch(payload: any): Promise<LastFMData> {
             resolve(lastFMResponse)
         }
     })
-}
-
-function FMTimeoutComplete() {
-    if (Date.now() - lastFMRequest > lastFMDebounce * 1000) return true;
-    
-    return false
 }
 
 export async function GET() {

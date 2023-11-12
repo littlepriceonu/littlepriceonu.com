@@ -1,10 +1,10 @@
 <script lang="ts">
-    import Home from "$lib/components/base/pages/Home.svelte"; 
+    import Projects from "$lib/components/base/pages/Projects.svelte";
 </script>
 
 <svelte:head>
     <title>
-        Littlepriceonu
+        Littlepriceonu | Projects
     </title>
 
     <meta property="og:title" content="ACCESS GRANTED">
@@ -16,5 +16,5 @@
 </svelte:head>
 
 <div class="w-full h-full bg-black scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 relative overflow-hidden">
-    <Home/>
+    <Projects />
 </div>

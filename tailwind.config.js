@@ -1,36 +1,53 @@
-/** @type {import('tailwindcss').Config} */ 
-module.exports = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  theme: {
-    backgroundSize: {
-      gradientSize: '401% 401%',
-      miniGradientSize: '40% 40%'
-    },
-    extend: {
-      keyframes: {
-        scrollingGradientFrames: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%' : { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
+const defaultTheme = require("tailwindcss/defaultTheme")
+
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: ["./src/**/*.{html,js,svelte,ts,md}"],
+    theme: {
+      extend: {
+        fontFamily: {
+          "impact": "'Summer Dream Sans', cursive",
+          "social-media": "'Social Media', cursive"
         },
-        straightScrollingGradientFrames: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '200% 50%'}
-        }
-      },
+  
+        keyframes: {
+          "scrolling-gradient-frames": {
+            '0%': { backgroundPosition: '0% 50%' },
+            '50%' : { backgroundPosition: '100% 50%' },
+            '100%': { backgroundPosition: '0% 50%' },
+          }
+        },
+  
+        animation: {
+          "scrolling-gradient": 'scrolling-gradient-frames 15s ease infinite',
+          "fast-scrolling-gradient": 'scrolling-gradient-frames 5s ease infinite'
+        },
+  
+        width: {
+          "1/7": "14.2%",
+          "1/8": "12.5%",
+        },
+  
+        height: {
+          "30r":"30rem",
+          "1/7": "14.2%",
+          "1/8": "12.5%",
+        },
+  
+        backgroundSize: {
+          "scrolling-gradient-size": '400% 400%',
+        },
 
-      animation: {
-        scrollingGradient: 'scrollingGradientFrames 15s ease infinite',
-        fastScrollingGradient: 'scrollingGradientFrames 5s ease infinite',
-        straightScrollingGradient: 'straightScrollingGradientFrames 5s linear infinite'
       },
-
-      height: {
-        headerHeight: '10%',
+      screens: {
+        'xs': '475px',
+        ...defaultTheme.screens,
+        "3xl": '1600px',
+        "4xl": '2000px'
       }
     },
-  },
-    plugins: [
-      require('tailwind-scrollbar'),
-    ],
-}
+      plugins: [
+        require('tailwind-scrollbar')({ nocompatible: true }),
+      ],
+  }
+  

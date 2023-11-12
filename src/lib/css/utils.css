@@ -1,0 +1,4 @@
+.copyright::after {
+    content:"©️";
+    @apply inline-block text-xs align-text-top ml-0.5 scale-x-125
+}
