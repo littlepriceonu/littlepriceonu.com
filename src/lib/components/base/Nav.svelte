@@ -28,7 +28,7 @@
 <div class="w-[30%] left-[70%] h-full flex flex-col items-end justify-start bg-transparent absolute z-[60] pr-12 pt-12 pb-12">
     <nav aria-label="Navigation for the page" class=" px-2 pt-2 space-y-4 flex flex-col items-end justify-center font-impact pointer-events-auto">
         {#each pages as page}
-            <a class:selected={currentPage==page.leadsTo} href={page.leadsTo} class="backdrop-blur-[84px] px-6 pt-2 rounded-md border border-transparent hover:border-neutral-600 transition-all duration-500 text-center   ">
+            <a class:selected={currentPage==page.leadsTo} href={page.leadsTo} class="backdrop-blur-[84px] px-6 pt-2 rounded-md border border-transparent hover:border-neutral-600 transition-all duration-500 text-center leading-6 pb-1 text-sm">
                 {page.name}
             </a>
         {/each}

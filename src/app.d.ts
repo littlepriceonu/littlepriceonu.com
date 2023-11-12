@@ -8,7 +8,6 @@ declare global {
 		// interface Platform {}
 	}
 
-	// add these lines
 	interface ViewTransition {
 		updateCallbackDone: Promise<void>;
 		ready: Promise<void>;

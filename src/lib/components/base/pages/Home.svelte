@@ -1,6 +1,8 @@
 <script lang="ts">
     import { useLanyard } from 'sk-lanyard'
 	import Socials from './../../Socials.svelte';
+    import { ColorStore } from '$lib/components/stores/ColorStore';
+    
 
     let mark: HTMLElement
 
@@ -9,10 +11,12 @@
         "HUMAN",
         "SAFETY",
         "REALISTIC",
+        "ARTISTIC",
+        "WONDERFUL"
     ]
     
     function getRandomSlogan(): string {
-        let index = Math.round(Math.random() * slogans.length)
+        let index = Math.floor(Math.random() * slogans.length)
 
         if (index < 0) {
             index = 0
@@ -28,17 +32,41 @@
     }
 
     const presence = useLanyard({method: "ws", id: "526120594929090561"})
+
+    const ColorMap: {[status: string]: string} = {
+        "online": "rgb(34 197 94)",
+        "dnd": "rgb(239 68 68)",
+        "idle": "rgb(234 179 8)",
+        "offline": "rgb(107 114 128)",
+        "_": "rgb(255 255 255)"
+    }
+
+    let setColor = false
+
+    function MouseEnter() {
+        setColor = true
+        ColorStore.set({mainColor: ColorMap[$presence.discord_status ?? "_"]})
+    }
+
+    function MouseLeave() {
+        setColor = false
+        ColorStore.set({mainColor: ColorMap["_"]})
+    }
+
+    $: if (setColor) {
+        ColorStore.set({mainColor: ColorMap[$presence.discord_status ?? "_"]})
+    }
 </script>
 
-<div class="w-full h-full absolute flex flex-col pl-12 pt-12 pb-6 z-10">
-    <h1 class="text-4xl font-mono font-semibold">/HOME</h1>
+<div class="w-full h-full absolute flex flex-col pl-12 pt-12 pb-10 z-10">
+    <h1 class="title">/HOME</h1>
     <p class="">FOR ALL YOUR <mark bind:this={mark} class="px-1 copyright font-semibold font-mono">{getRandomSlogan()}</mark> NEEDS</p>
-    <p class="text-sm">STATUS: <mark class="font-mono font-bold" data-status={$presence?.discord_status ?? ""} >{$presence?.discord_status ?? ""}</mark></p>
+    <p class="text-sm">STATUS: <mark on:mouseleave={MouseLeave} on:mouseenter={MouseEnter} class="font-mono font-bold" data-status={$presence?.discord_status ?? ""} >{$presence?.discord_status ?? ""}</mark></p>
 
     <img src="/imgs/PFP.gif" alt="Littlepriceonu's PFP" class="aspect-square w-32 mb-4 mt-auto rounded-md ml-1">
 
     <Socials class="" />
-    <h1 class="font-impact text-5xl mt-6 v4">
+    <h1 class="font-impact text-4xl mt-4 v4">
         LITTLEPRICEONU
     </h1>
 </div>
@@ -46,7 +74,7 @@
 <style lang="postcss">
     .v4::after {
         content: "v4";
-        @apply inline-block text-lg -translate-y-[1.30rem] translate-x-1
+        @apply inline-block text-lg -translate-y-[1.05rem] translate-x-1
     }
 
     mark[data-status="online"] {

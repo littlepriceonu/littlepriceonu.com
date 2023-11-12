@@ -6,7 +6,7 @@ export default {
     theme: {
       extend: {
         fontFamily: {
-          "impact": "'Summer Dream Sans', cursive",
+          "impact": "'Ash', cursive",
           "social-media": "'Social Media', cursive"
         },
   

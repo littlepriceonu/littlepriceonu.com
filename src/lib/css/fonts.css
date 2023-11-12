@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 @font-face {
-    font-family: "Summer Dream Sans";
+    font-family: "Ash";
     font-display: swap;
     text-rendering: optimizeLegibility;
-    src: url("/fonts/SummerDreamSans.ttf") format("truetype");
+    src: url("/fonts/Ash.ttf") format("truetype");
 }
 
 @font-face {

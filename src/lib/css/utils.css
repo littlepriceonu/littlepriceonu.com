@@ -2,3 +2,7 @@
     content:"©️";
     @apply inline-block text-xs align-text-top ml-0.5 scale-x-125
 }
+
+.title {
+    @apply text-4xl font-mono font-semibold
+}

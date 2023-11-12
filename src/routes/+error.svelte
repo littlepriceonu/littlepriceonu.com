@@ -17,7 +17,7 @@
     <meta name="twitter:description" content="WHATS NEXT?">
 </svelte:head>
 
-<div class="w-full h-full bg-black scrollbar scrollbar-track-slate-900 scrollbar-thumb-stone-900 relative overflow-hidden px-6 py-6">
+<div class="w-full h-full bg-black scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-black scrollbar-thumb-neutral-800 relative overflow-hidden px-6 py-6">
     <div class="ml-4 mt-2">
         {#each code as number, index}
             <p class="text-6xl font-impact" style="transform: translateX({90 * index}px) translateY(20px)">
@@ -31,4 +31,8 @@
     <p class="mt-4">
         You're missing something out there.... 
     </p>
+
+    <div class="absolute w-full h-full flex items-center justify-center top-0 left-0">
+        <img src="/imgs/SKULL.gif" alt="A SKULL" class="opacity-[.025]">
+    </div>
 </div>
