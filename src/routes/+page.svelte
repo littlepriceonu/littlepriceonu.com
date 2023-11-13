@@ -15,10 +15,10 @@
     <meta name="twitter:description" content="WHATS NEXT?">
 </svelte:head>
 
-<div class="w-full h-full bg-black scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-black scrollbar-thumb-neutral-800 relative overflow-hidden">
+<div class="w-full h-[90%] md:h-full bg-black scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-black scrollbar-thumb-neutral-800 relative overflow-hidden">
     <Home/>
 
     <div class="absolute w-full h-full flex items-center justify-center">
-        <img src="/imgs/SKULL.gif" alt="A SKULL" class="opacity-[.025]">
+        <img src="/imgs/SKULL.gif" alt="A SKULL" class="opacity-[.10] md:opacity-[.025]">
     </div>
 </div>

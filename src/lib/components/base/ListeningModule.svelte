@@ -13,10 +13,16 @@
     let title: string = ""
     let album: string = ""
     let artist: string = ""
+    let url: string = ""
 
     const borderTemplate = "rgb([r] [g] [b] / 0.8)"
     let color = ""
     let secondColor = ""
+    let error: Error
+
+    const IMAGE_OVERRIDES: {[album: string]: string} = {
+        "Blind - Single": "https://i1.sndcdn.com/artworks-zMyZk0ZNsPVbAQyK-sdnleA-t500x500.jpg"
+    }
 
     const COLOR_OVERRIDES: {[album: string]: {color: string, secondColor: string, [label: string]: string}} = {
         "EIGHTY PROOF": {
@@ -53,33 +59,42 @@
     onMount(async ()=>{
         let data: LastFMData = await (await fetch("/api/getListeningData")).json()
 
-        if (data.recenttracks.track[0]["@attr"]?.nowplaying) {
+
+        let track = data.recenttracks.track[0]
+
+        if (track["@attr"]?.nowplaying) {
             isListeningNow = true
         }
 
-        let nameReplacement = NAME_MAP[data.recenttracks.track[0].name]
+        let nameReplacement = NAME_MAP[track.name]
 
         if (nameReplacement) {
-            data.recenttracks.track[0].name = nameReplacement.title
-            data.recenttracks.track[0].album["#text"] = nameReplacement.album
+            track.name = nameReplacement.title
+            track.album["#text"] = nameReplacement.album
         }
 
-        let track = data.recenttracks.track[0]
+        let imageReplace = IMAGE_OVERRIDES[track.album['#text']]
+
+        if (imageReplace) {
+            track.image[2]['#text'] = imageReplace
+        }
 
         image = track.image[2]['#text']
         title = track.name
         album = track.album['#text']
         artist = track.artist['#text']
+        url = track.url
 
-        let palette = await Vibrant.from(image).getPalette()
-
-        color = ConstructRGBfromArray(palette.Vibrant!.rgb, album, "color")
-        secondColor = ConstructRGBfromArray(palette.Muted!.rgb, album, "secondColor")
+        Vibrant.from(image).getPalette().then((palette)=>{
+            color = ConstructRGBfromArray(palette.Vibrant!.rgb, album, "color")
+            secondColor = ConstructRGBfromArray(palette.Muted!.rgb, album, "secondColor")
+        }).catch((e)=>{
+            loaded = true
+            error = e
+        })
     })
 
     function onMouseEnter() {
-        console.log("Mouse Enter!")
-
         ColorStore.set({
             mainColor: color
         })
@@ -97,7 +112,7 @@
     $: hideAlbum = album.toLowerCase().includes(title.toLowerCase()) && album.toLowerCase().includes("single")
 </script>
 
-<div aria-label="Displays Littlepriceonu's recent music listening status"  class="{clazz} rounded-md border w-80 h-36 px-2 py-2 bg-black bg-opacity-80 backdrop-blur-3xl flex flex-col overflow-clip pointer-events-auto select-none" style="border-color: {color}">
+<a on:mouseenter={onMouseEnter} on:mouseleave={onMouseLeave} href={url} aria-label="Displays Littlepriceonu's recent music listening status"  class="{clazz} rounded-md border w-80 h-36 px-2 py-2 bg-black bg-opacity-80 backdrop-blur-3xl flex flex-col overflow-clip" style="border-color: {color}">
     <div class="flex px-1">
         <h1 class="text-sm font-bold z-10" style="color: {color}"> {isListeningNow ? "Listening To..." : "Last Listened To..."} </h1>
 
@@ -120,17 +135,26 @@
     </div>
 
     {#if !loaded}
-        <div class="w-full h-full absolute z-20 flex flex-col items-center justify-center bg-black">
+        <div class="w-full h-full translate-x-[-.5rem] translate-y-[-.5rem] absolute z-20 flex flex-col items-center justify-center bg-black">
             <div class="w-8 h-8 rounded-full border-2 border-black border-t-white animate-spin"/>
             <p class="font-mono text-xs mt-4">
                 Loading Your Next Experience...
             </p>
         </div>
     {/if}
-</div>
+
+    {#if error}
+        <div class="w-full h-full translate-x-[-.5rem] translate-y-[-.5rem] absolute z-30 flex flex-col items-center justify-center bg-black">
+            <p class="font-mono text-xs mt-4 text-red-600 px-4 text-center">
+                Something went wrong!
+                A Last.FM oopsie caused this module to load incorrectly. 
+            </p>
+        </div>
+    {/if}
+</a>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" absolute w-80 h-36 rounded-md top-[80%] scale-125 scale-y-150 pointer-events-auto z-20">
+<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 rounded-md top-[80%] scale-125 scale-y-150 -z-10">
 
 </div>
 

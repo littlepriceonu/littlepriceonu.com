@@ -31,12 +31,16 @@
     scale = 1
 }} />
 
-<div class:show class="overflow-hidden z-10 absolute opacity-0 w-20 h-20 bg-white rounded-full pointer-events-none blur-3xl transition-all duration-[0.3s] ease-[cubic-bezier(.33,.64,.44,.73)]" style="transform: translateY({y - yOffset}px) translateX({x - xOffset}px) scale({scale}); background-color: {CursorColor};">
-
-</div>
+<div class:show class="cursor overflow-hidden z-10 absolute opacity-0 w-20 h-20 bg-white rounded-full pointer-events-none blur-3xl transition-all duration-[0.3s] ease-[cubic-bezier(.33,.64,.44,.73)]" style="transform: translateY({y - yOffset}px) translateX({x - xOffset}px) scale({scale}); background-color: {CursorColor};" />
 
 <style lang="postcss">
     .show {
         @apply opacity-50;
+    }
+
+    @media (pointer: coarse) {
+        .cursor {
+            display: none;
+        }
     }
 </style>

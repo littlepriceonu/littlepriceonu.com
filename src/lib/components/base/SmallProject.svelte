@@ -1,14 +1,27 @@
 <script lang="ts">
     import type { ProjectData } from "$lib/types/Main";
+    import { ColorStore } from "../stores/ColorStore";
 
     export let project: ProjectData
 
     const defaultColor = "rgb(25 25 25)"
+
+    function MouseEnter() {
+        ColorStore.set({
+            mainColor: project.color ?? defaultColor
+        })
+    }
+
+    function MouseLeave() {
+        ColorStore.set({
+            mainColor: "rgb(255 255 255)"
+        })
+    }
 </script>
 
-<a href={project.href}>
-    <div style="border-color: {project.color ?? defaultColor}" class="min-w-[815px] max-w-[815px] min-h-[100px] rounded-md border border-neutral-800 bg-black bg-opacity-50 transition-all duration-500 ease-in-out backdrop-blur-[84px] flex overflow-clip">
-        <div class="w-[40px]" style="background-color: {project.color ?? defaultColor}"/>
+<a href={project.href} on:mouseenter={MouseEnter} on:mouseleave={MouseLeave} class="w-fit min-w-[100%] min-[880px]:min-w-[815px] min-[880px]:max-w-[815px] min-h-[100px]">
+    <div style="border-color: {project.color ?? defaultColor}" class="rounded-md border border-neutral-800 bg-black bg-opacity-50 transition-all duration-500 ease-in-out backdrop-blur-[84px] flex flex-col md:flex-row overflow-clip">
+        <div class="w-full h-[25px] md:h-auto md:w-[40px]" style="background-color: {project.color ?? defaultColor}"/>
 
         <div class="flex-grow pt-1 pl-2">
             <div class="flex">
@@ -17,11 +30,11 @@
                 </h1>
                 
                 {#if project.icon}
-                    <div style="-webkit-mask: url({project.icon}) center no-repeat;" class="bg-white ml-2 h-7 w-7" />
+                    <img src={project.icon} alt="{project.name}'s Icon" class="ml-auto mr-3 translate-y-0.5 min-[880px]:translate-y-1 h-7 w-7" />
                 {/if}
             </div>
 
-            <p class="leading-[1.1rem]">
+            <p class="leading-[1.1rem] mt-1 min-[880px]:mt-0">
                 {project.description}
             </p>
 

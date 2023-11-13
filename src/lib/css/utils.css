@@ -1,6 +1,10 @@
 .copyright::after {
-    content:"©️";
-    @apply inline-block text-xs align-text-top ml-0.5 scale-x-125
+    content:"©";
+    @apply inline-block text-xs align-text-top ml-0.5;
+
+    @media (min-width: 768px) {
+        @apply scale-x-125;
+    }
 }
 
 .title {

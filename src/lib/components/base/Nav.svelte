@@ -20,25 +20,34 @@
         }
     })
 
+    let width: number
+
     onMount(()=>{
         currentPage = document.location.pathname
+        width = innerWidth
+
+        addEventListener("resize", ()=>{
+            width = innerWidth
+        })
     })
 </script>
 
-<div class="w-[30%] left-[70%] h-full flex flex-col items-end justify-start bg-transparent absolute z-[60] pr-12 pt-12 pb-12">
-    <nav aria-label="Navigation for the page" class=" px-2 pt-2 space-y-4 flex flex-col items-end justify-center font-impact pointer-events-auto">
+<div class="bg-black md:bg-transparent border-b border-b-neutral-600 md:border-b-0 w-[100%] xl:w-[30%] xl:left-[70%] h-[10%] xl:h-full flex items-center justify-center md:flex-col md:items-end md:justify-start md:absolute z-[60] md:pr-12 md:py-12">
+    <nav aria-label="Navigation for the page" class=" md:px-2 md:pt-2 space-x-4 xl:space-y-4 flex xl:flex-col items-end justify-center font-impact pointer-events-auto">
         {#each pages as page}
-            <a class:selected={currentPage==page.leadsTo} href={page.leadsTo} class="backdrop-blur-[84px] px-6 pt-2 rounded-md border border-transparent hover:border-neutral-600 transition-all duration-500 text-center leading-6 pb-1 text-sm">
+            <a class:selected={currentPage==page.leadsTo} href={page.leadsTo} class="select-none backdrop-blur-[84px] px-6 pt-2 rounded-md border border-transparent hover:border-neutral-600 transition-all duration-500 text-center leading-6 pb-1 text-sm">
                 {page.name}
             </a>
         {/each}
     </nav>
 
-    <ListeningModule class="mt-auto"/>
+    {#if width > 1280}
+        <ListeningModule class="mt-auto"/>
+    {/if}
 </div>
 
 <style lang="postcss">
     .selected {
-        @apply bg-black bg-opacity-30 border-neutral-800 
+        @apply  border-neutral-800 
     }
 </style>
