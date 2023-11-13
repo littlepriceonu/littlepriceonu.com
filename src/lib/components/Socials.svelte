@@ -28,7 +28,7 @@
 
 </script>
 
-<div aria-label="Littlepriceonu's Socials" class="flex items-center space-x-4 pl-1 {clazz}">
+<div aria-label="Littlepriceonu's Socials" class="flex items-center space-x-4 {clazz}">
     {#each SocialMediaLinks as link}
         <a href={link.leadsTo} class="aspect-square w-9 h-9 rounded-full transition-all duration-500 hover:scale-110 outline-none focus-within:outline-none focus-within:scale-110">
             <img class="invert" src={link.icon} alt="A link to Littlepriceonu's {link.name}">

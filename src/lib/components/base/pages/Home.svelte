@@ -63,12 +63,11 @@
     <p class="">FOR ALL YOUR <mark bind:this={mark} class="px-1 copyright font-semibold font-mono">{getRandomSlogan()}</mark> NEEDS</p>
     <p class="text-sm">STATUS: <mark on:mouseleave={MouseLeave} on:mouseenter={MouseEnter} class="font-mono font-bold" data-status={$presence?.discord_status ?? ""} >{$presence?.discord_status ?? ""}</mark></p>
 
-    <img src="/imgs/PFP.gif" alt="Littlepriceonu's PFP" class="aspect-square w-32 mb-4 mt-auto rounded-md ml-1">
-
-    <Socials class="" />
+    <Socials class="mt-auto" />
     <h1 class="font-impact text-4xl mt-4 v4">
         LITTLEPRICEONU
     </h1>
+    <h2 class="font-mono font-semibold">FULL STACK DEVELOPER</h2>
 </div>
 
 <style lang="postcss">
