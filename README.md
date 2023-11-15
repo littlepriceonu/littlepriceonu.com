@@ -6,5 +6,5 @@ THIS REDESIGN TOOK ABOUT 3ISH DAYS TO MAKE.
 
 ENJOY.
 
-![SAFETY FIRST](https://github.com/littlepriceonu/littlepriceonu.com/assets/63677850/70703ec4-bc20-4784-86e3-0dac18930715)
+[![SAFETY FIRST](https://github.com/littlepriceonu/littlepriceonu.com/assets/63677850/70703ec4-bc20-4784-86e3-0dac18930715)](https://littlepriceonu.com)
 
