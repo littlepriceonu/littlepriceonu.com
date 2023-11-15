@@ -3,6 +3,9 @@
     import "../app.css"
     import Nav from "$lib/components/base/Nav.svelte";
     import { onNavigate } from '$app/navigation';
+    import { navigating } from '$app/stores';
+    import { ColorStore } from '$lib/components/stores/ColorStore';
+    
 
     // totally not copied from the svelte docs
     onNavigate((navigation) => {
@@ -15,6 +18,12 @@
         	});
 	    });
     });
+
+    navigating.subscribe(()=>{
+        ColorStore.set({
+            mainColor: "rgb(255 255 255)"
+        })
+    })
 </script>
 
 <svelte:head>

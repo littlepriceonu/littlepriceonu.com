@@ -22,7 +22,7 @@
         name: "Lost Noise",
         image: "/imgs/projects/LostNoise.png",
         description: "The official Lost Noise website, uses alot of cool technologies.",
-        href: "",
+        href: "/not-ready",
         color: "rgb(255, 0, 0)",
         technologies: [...TheSiteUsual]
         }, 
@@ -93,7 +93,7 @@
     
         <h2 class="mt-12 title text-3xl">FEATURED</h2>
         <p>THE REALLY COOL <mark class="font-mono copyright font-semibold">STUFF</mark></p>
-        
+
         <div class="mt-2 w-[51rem] grid min-[880px]:grid-cols-2 gap-4 ">
             {#each Featured as project}
                 <BigProject {project}/>
