@@ -1,10 +1,10 @@
 <script lang="ts">
-    import Home from "$lib/components/base/pages/Home.svelte"; 
+    import Projects from "$lib/components/base/pages/Projects.svelte";
 </script>
 
 <svelte:head>
     <title>
-        Littlepriceonu
+        Littlepriceonu | Projects
     </title>
 
     <meta property="og:title" content="ACCESS GRANTED">
@@ -16,7 +16,7 @@
 </svelte:head>
 
 <div class="w-full h-[90%] md:h-full bg-black scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-black scrollbar-thumb-neutral-800 relative overflow-hidden">
-    <Home/>
+    <Projects />
 
     <div class="absolute w-full h-full flex items-center justify-center">
         <img src="/imgs/SKULL.gif" alt="A SKULL" class="opacity-[.10] md:opacity-[.025]">
