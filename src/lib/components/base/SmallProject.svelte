@@ -19,8 +19,8 @@
     }
 </script>
 
-<a href={project.href} on:mouseenter={MouseEnter} on:mouseleave={MouseLeave} class="w-fit min-w-[100%] min-[880px]:min-w-[815px] min-[880px]:max-w-[815px] min-h-[100px]">
-    <div style="border-color: {project.color ?? defaultColor}" class="rounded-md border border-neutral-800 bg-black bg-opacity-50 transition-all duration-500 ease-in-out backdrop-blur-[84px] flex flex-col md:flex-row overflow-clip">
+<a href={project.href} on:mouseenter={MouseEnter} on:mouseleave={MouseLeave} class="w-fit min-w-[100%] min-[880px]:min-w-[815px] min-[880px]:max-w-[815px] antialiased">
+    <div style="border-color: {project.color ?? defaultColor}" class="w-full h-full rounded-md border border-neutral-800 bg-black bg-opacity-50 transition-all duration-500 ease-in-out backdrop-blur-[84px] flex flex-col md:flex-row overflow-clip">
         <div class="w-full h-[25px] md:h-auto md:w-[40px]" style="background-color: {project.color ?? defaultColor}"/>
 
         <div class="flex-grow pt-1 pl-2">

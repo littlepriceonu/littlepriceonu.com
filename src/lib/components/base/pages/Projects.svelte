@@ -19,26 +19,20 @@
     ]
 
     const Featured: FeaturedProjectData[] = [{
-            name: "Lost Noise",
-            image: "/imgs/projects/LostNoise.png",
-            description: "The official Lost Noise website, uses alot of cool technologies.",
-            href: "",
-            color: "rgb(255, 0, 0)",
-            technologies: [...TheSiteUsual]
-        }, {
-            name: "Billy Sane",
-            image: "/imgs/projects/BillySane.png",
-            description: "The official Billy Sane website, had a lot of artistic freedom with this one.",
-            href: "",
-            color: "rgb(44, 132, 240)",
-            technologies: [...TheSiteUsual]
-        }
+        name: "Lost Noise",
+        image: "/imgs/projects/LostNoise.png",
+        description: "The official Lost Noise website, uses alot of cool technologies.",
+        href: "",
+        color: "rgb(255, 0, 0)",
+        technologies: [...TheSiteUsual]
+        }, 
+        // ANOTHER ONE I CANT LIST JUST YET
     ]
 
     const OpenSource: ProjectData[] = [{
             name: "Littlepriceonu.com",
             description: "You're looking at it.",
-            icon: "/imgs/SKULL.png",
+            //icon: "/imgs/SKULL.png",
             color: "rgb(215 215 215)",
             technologies: [...TheSiteUsual],
             href: "https://github.com/littlepriceonu/littlepriceonu.com"
@@ -99,11 +93,20 @@
     
         <h2 class="mt-12 title text-3xl">FEATURED</h2>
         <p>THE REALLY COOL <mark class="font-mono copyright font-semibold">STUFF</mark></p>
-        <div class="mt-2 w-[51rem] grid min-[880px]:grid-cols-2 gap-4 ">
-            {#each Featured as project}
-                <BigProject {project}/>
-            {/each}
-        </div>
+        {#if Featured.length == 0}
+            <div class="min-w-[24rem] max-w-[24rem] h-[320px] border border-yellow-400 rounded-md mt-2 flex flex-col items-center justify-center bg-black text-center">
+                <h1 class="font-impact text-[.9rem] px-4 text-yellow-400">
+                    THERE WILL BE SOMETHING HERE SOON
+                </h1>
+                <p class="text-yellow-400 text-sm">WORKING ON SOME BIG COOL THINGS</p>
+            </div>
+        {:else}
+            <div class="mt-2 w-[51rem] grid min-[880px]:grid-cols-2 gap-4 ">
+                {#each Featured as project}
+                    <BigProject {project}/>
+                {/each}
+            </div>
+        {/if}
     
         <h2 class="mt-12 title">OPEN SOURCE</h2>
         <p>THE SLIGHTLY LESS COOL <mark class="font-mono copyright font-semibold">STUFF</mark></p>

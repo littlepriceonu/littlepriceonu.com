@@ -22,7 +22,6 @@
                 {#each project.technologies as technology}
                     <div style="-webkit-mask: url({technology.icon}) center no-repeat; background-color: {project.color}" class="icon h-7 w-7" />
                 {/each}
-    
 
                 <svg style="color: {project.color};" class="!ml-auto rounded-md text-center translate-y-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
             </div>
@@ -35,6 +34,5 @@
 </a>
 
 <style lang="postcss">
-    .icon {
-    }
+    
 </style>

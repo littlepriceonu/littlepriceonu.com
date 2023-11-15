@@ -6,24 +6,28 @@
 
     const SocialMediaLinks: {icon: string, name: string, leadsTo: string}[] = [{
         name: "Github",
-        icon: "/imgs/github.png",
+        icon: "/imgs/socials/github.png",
         leadsTo: "https://github.com/littlepriceonu"
     },{
         name: "Discord",
-        icon: "/imgs/discord.png",
+        icon: "/imgs/socials/discord.png",
         leadsTo: "https://discord.com/users/526120594929090561"
     },{
         name: "LastFM",
-        icon: "/imgs/lastfm.png",
+        icon: "/imgs/socials/lastfm.png",
         leadsTo: "https://www.last.fm/user/littlepriceonu/library"
     },{
         name: "Steam",
-        icon: "/imgs/steam.png",
+        icon: "/imgs/socials/steam.png",
         leadsTo: "https://steamcommunity.com/id/littlepriceonu"
     },{
         name: "Email",
-        icon: "/imgs/email.png",
+        icon: "/imgs/socials/email.png",
         leadsTo: "mailto:me@littlepriceonu.com"
+    },{
+        name: "Instagram",
+        icon: "/imgs/socials/instagram.png",
+        leadsTo: "https://instagram.com/littlepriceonu"
     }] 
 
 </script>
