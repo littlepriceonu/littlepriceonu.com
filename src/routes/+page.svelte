@@ -10,7 +10,7 @@
     <meta property="og:title" content="VERSION 4">
     <meta property="og:description" content="FOR ALL YOUR NEEDS.">
     <meta property="og:image" content="https://littlepriceonu.com/imgs/SKULL.gif">
-    <meta property="og:image:alt" content="WHAT ARE YOU LOOKING AT?">
+    <meta property="og:image:alt" content="SAFETY FIRST">
 
     <meta name="twitter:description" content="WHATS NEXT?">
 </svelte:head>
