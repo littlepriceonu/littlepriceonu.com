@@ -10,9 +10,9 @@
     </title>
 
     <meta property="og:title" content="{$page.status.toString()}">
-    <meta property="og:description" content="SOMETHING HAPPENED!">
-    <meta property="og:image" content="https://littlepriceonu.com/PFP.gif">
-    <meta property="og:image:alt" content="fake.">
+    <meta property="og:description" content="YOU'RE MISSING SOMETHING OUT THERE">
+    <meta property="og:image" content="https://littlepriceonu.com/imgs/SKULL.gif">
+    <meta property="og:image:alt" content="SAFETY FIRST">
 
     <meta name="twitter:description" content="WHATS NEXT?">
 </svelte:head>

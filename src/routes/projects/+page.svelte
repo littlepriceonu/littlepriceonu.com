@@ -7,9 +7,9 @@
         Littlepriceonu | Projects
     </title>
 
-    <meta property="og:title" content="ACCESS GRANTED">
-    <meta property="og:description" content="FOREIGN CONNECTION DETECTED.">
-    <meta property="og:image" content="https://littlepriceonu.com/PFP.gif">
+    <meta property="og:title" content="PROJECTS">
+    <meta property="og:description" content="BUILDING YOUR NEXT EXPERIENCE.">
+    <meta property="og:image" content="https://littlepriceonu.com/imgs/SKULL.gif">
     <meta property="og:image:alt" content="WHAT ARE YOU LOOKING AT?">
 
     <meta name="twitter:description" content="WHATS NEXT?">

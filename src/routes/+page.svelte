@@ -7,9 +7,9 @@
         Littlepriceonu
     </title>
 
-    <meta property="og:title" content="ACCESS GRANTED">
-    <meta property="og:description" content="FOREIGN CONNECTION DETECTED.">
-    <meta property="og:image" content="https://littlepriceonu.com/PFP.gif">
+    <meta property="og:title" content="VERSION 4">
+    <meta property="og:description" content="FOR ALL YOUR NEEDS.">
+    <meta property="og:image" content="https://littlepriceonu.com/imgs/SKULL.gif">
     <meta property="og:image:alt" content="WHAT ARE YOU LOOKING AT?">
 
     <meta name="twitter:description" content="WHATS NEXT?">
