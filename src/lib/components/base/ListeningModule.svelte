@@ -115,9 +115,7 @@
     } else {
         displayTitle = title
     }
-
-    $: console.log(title, album, "i want to die")
-
+    
     $: hideAlbum = album.toLowerCase().includes(title.toLowerCase()) && album.toLowerCase().includes("single")
 </script>
 
