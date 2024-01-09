@@ -14,6 +14,7 @@
     let album: string = ""
     let artist: string = ""
     let url: string = ""
+    let displayTitle: string = ""
 
     const borderTemplate = "rgb([r] [g] [b] / 0.8)"
     let color = ""
@@ -109,6 +110,14 @@
     let loaded = false
     let hideAlbum = false
 
+    $: if (title.length > 40) {
+        displayTitle = title.substring(0, 40) + "..."
+    } else {
+        displayTitle = title
+    }
+
+    $: console.log(title, album, "i want to die")
+
     $: hideAlbum = album.toLowerCase().includes(title.toLowerCase()) && album.toLowerCase().includes("single")
 </script>
 
@@ -128,7 +137,7 @@
         <img class="w-[5.5rem] aspect-square rounded-md absolute scale-110 opacity-60 blur-md" src={image} aria-hidden="true" alt="Blur for {title}">
 
         <div class="flex flex-col h-full pl-3 pt-2 pb-2 text-xs overflow-clip text-neutral-400">
-            <h1 style="color: {color}" class="font-semibold text-base text-white z-10">{title}</h1>
+            <h1 style="color: {color}" class="font-semibold text-base text-white z-10">{displayTitle}</h1>
             <p style="color: {secondColor}" class:hide={hideAlbum} class="mt-auto z-10 font-semibold">On: {album}</p>
             <p style="color: {secondColor}" class:mt-auto={hideAlbum} class="z-10  font-semibold"> By: {artist} </p>
         </div>
