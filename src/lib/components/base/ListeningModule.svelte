@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Vibrant from 'node-vibrant';
-    import type { LastFMData, Track } from "$lib/types/LastFMTypes";
+    import type { LastFMData } from "$lib/types/LastFMTypes";
     import { onMount } from "svelte";
     import { ColorStore } from '../stores/ColorStore'
-    import type { ColorStoreData } from '$lib/types/Colors';
 
     let clazz: string = ""
 
@@ -20,6 +19,8 @@
     let color = ""
     let secondColor = ""
     let error: Error
+    let checkbackLater: boolean = false
+    let enableClickage: boolean = true
 
     const IMAGE_OVERRIDES: {[album: string]: string} = {
         "Blind - Single": "https://i1.sndcdn.com/artworks-zMyZk0ZNsPVbAQyK-sdnleA-t500x500.jpg"
@@ -60,6 +61,12 @@
     onMount(async ()=>{
         let data: LastFMData = await (await fetch("/api/getListeningData")).json()
 
+        if (!data.recenttracks?.track) {
+            checkbackLater = true
+            color = "rgb(255,0,0)"
+            enableClickage = false
+            return
+        }
 
         let track = data.recenttracks.track[0]
 
@@ -119,7 +126,7 @@
     $: hideAlbum = album.toLowerCase().includes(title.toLowerCase()) && album.toLowerCase().includes("single")
 </script>
 
-<a on:mouseenter={onMouseEnter} on:mouseleave={onMouseLeave} href={url} aria-label="Displays Littlepriceonu's recent music listening status"  class="{clazz} rounded-md border w-80 h-36 px-2 py-2 bg-black bg-opacity-80 backdrop-blur-3xl flex flex-col overflow-clip" style="border-color: {color}">
+<a on:mouseenter={onMouseEnter} on:mouseleave={onMouseLeave} href={url} aria-label="Displays Littlepriceonu's recent music listening status"  class="{clazz} rounded-md border w-80 h-36 px-2 py-2 bg-black bg-opacity-80 backdrop-blur-3xl flex flex-col overflow-clip" style="border-color: {color}; pointer-events: {enableClickage ? "auto" : "none"}">
     <div class="flex px-1">
         <h1 class="text-sm font-bold z-10" style="color: {color}"> {isListeningNow ? "Listening To..." : "Last Listened To..."} </h1>
 
@@ -130,7 +137,7 @@
         </div>
     </div>
     
-    <div  class="flex mt-2 ml-2 items-center flex-grow relative">
+    <div class="flex mt-2 ml-2 items-center flex-grow relative">
         <img on:load={()=>{loaded = true}} class="w-[5.5rem] aspect-square rounded-md z-10" src={image} alt="Album art for {title}">
         <img class="w-[5.5rem] aspect-square rounded-md absolute scale-110 opacity-60 blur-md" src={image} aria-hidden="true" alt="Blur for {title}">
 
@@ -155,6 +162,18 @@
             <p class="font-mono text-xs mt-4 text-red-600 px-4 text-center">
                 Something went wrong!
                 A Last.FM oopsie caused this module to load incorrectly. 
+            </p>
+        </div>
+    {/if}
+
+    {#if checkbackLater}
+        <div class="w-full h-full absolute translate-x-[-.5rem] translate-y-[-.5rem] z-50 flex flex-col items-center justify-center bg-black">
+            <h1 class="font-mono text-red-700 px-4 text-center font-bold">
+                Check Back Later.
+            </h1>
+            <p class="mt-4 px-6 text-xs text-red-700 text-center font-mono font-semibold">
+                My recent tracks are turned off right now.
+                They'll be back later.
             </p>
         </div>
     {/if}
