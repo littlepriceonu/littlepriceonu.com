@@ -157,17 +157,11 @@
         </div>
     {/if}
 
-    {#if error}
-        <div class="w-full h-full translate-x-[-.5rem] translate-y-[-.5rem] absolute z-30 flex flex-col items-center justify-center bg-black">
-            <p class="font-mono text-xs mt-4 text-red-600 px-4 text-center">
-                Something went wrong!
-                A Last.FM oopsie caused this module to load incorrectly. 
-            </p>
-        </div>
-    {/if}
-
+    <!-- The translates on these overlay divs are to counter-act the padding of the parent div. -->
+    
     {#if checkbackLater}
-        <div class="w-full h-full absolute translate-x-[-.5rem] translate-y-[-.5rem] z-50 flex flex-col items-center justify-center bg-black">
+        <div class="w-full h-full absolute translate-x-[-.5rem] translate-y-[-.5rem] z-30 flex flex-col items-center justify-center bg-black">
+
             <h1 class="font-mono text-red-700 px-4 text-center font-bold">
                 Check Back Later.
             </h1>
@@ -177,10 +171,25 @@
             </p>
         </div>
     {/if}
+
+    {#if error}
+        <div class="w-full h-full translate-x-[-.5rem] translate-y-[-.5rem] absolute z-40 flex flex-col items-center justify-center bg-black">
+            <p class="font-mono text-xs mt-4 text-red-600 px-4 text-center">
+                Something went wrong!
+                A Last.FM oopsie caused this module to load incorrectly. 
+            </p>
+        </div>
+    {/if}
+
+    {#if !loaded}
+        <div class="w-full h-full absolute z-[60]">
+            <p class="text-[11px] 3xl:text-xs 4xl:text-sm font-mono" style="color: {color};">Listening Module v1.2.1</p>  
+        </div>
+    {/if}
 </a>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 rounded-md top-[80%] scale-125 scale-y-150 -z-10">
+<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 rounded-md top-[80%] scale-125 scale-y-125 2xl:scale-y-150 -z-10">
 
 </div>
 
