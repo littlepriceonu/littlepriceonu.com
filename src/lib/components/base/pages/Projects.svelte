@@ -85,7 +85,7 @@
     ]
 </script>
 
-<div class="w-full h-full absolute flex flex-col pl-4 md:pl-14 pt-6 md:pt-12 z-10 overflow-y-auto scrollbar-thin scrollbar-track-transparent scale-x-[-1]">
+<div class="w-full h-full absolute flex flex-col pl-4 md:pl-14 pt-6 md:pt-12 z-10 overflow-y-auto scrollbar-fix scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-800 scrollbar-thumb-rounded-md scale-x-[-1]">
     <!-- The good old sleeve tactic to flip the scrollbar (scale-x-[-1]) -->
     <div class="scale-x-[-1] w-full h-full pl-4 md:pl-10 pb-10">
         <h1 class="title">/PROJECTS</h1>

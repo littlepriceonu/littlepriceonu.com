@@ -15,7 +15,7 @@
     <meta name="twitter:description" content="WHATS NEXT?">
 </svelte:head>
 
-<div class="w-full h-[90%] md:h-full bg-black scrollbar-thin scrollbar-thumb-rounded-md scrollbar-track-black scrollbar-thumb-neutral-800 relative overflow-hidden">
+<div class="w-full h-[90%] md:h-full bg-black  relative overflow-hidden">
     <Projects />
 
     <div class="absolute w-full h-full flex items-center justify-center">

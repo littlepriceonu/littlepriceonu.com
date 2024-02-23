@@ -8,3 +8,8 @@ mark {
     background-color: transparent;
     color: white;
 }
+
+.scrollbar-fix {
+    scrollbar-width: auto !important;
+    scrollbar-color: auto !important;
+}
