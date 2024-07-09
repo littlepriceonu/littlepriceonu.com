@@ -26,7 +26,18 @@
         color: "rgb(255, 0, 0)",
         technologies: [...TheSiteUsual]
         }, 
-        // ANOTHER ONE I CANT LIST JUST YET
+        {
+            name: "Billy Sane",
+            image: "/imgs/projects/BillySane.png",
+            description: "Billy Sane's music, merch, and biography site.",
+            href: "https://billysane.com",
+            color: "rgb(213, 201, 157)",
+            technologies: [...TheSiteUsual, {
+                name: "Three.js",
+                icon: "/imgs/icons/frameworks/Three.js.svg"
+            }]
+        }
+        // & MANY MORE I CANT LIST JUST YET
     ]
 
     const OpenSource: ProjectData[] = [{

@@ -21,7 +21,7 @@
 
         <p>THE THING YOU'RE LOOKING FOR ISN'T <marK class="font-semibold font-mono copyright">READY</marK> YET.</p>
     
-        <a href="/" class="mt-auto title">
+        <a href="/projects" class="mt-auto title">
             GO BACK
         </a>
     </div>
