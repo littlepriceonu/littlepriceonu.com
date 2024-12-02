@@ -19,6 +19,22 @@
     ]
 
     const Featured: FeaturedProjectData[] = [{
+            name: "Shock Stars",
+            image: "/imgs/projects/ShockStars.png",
+            description: "SHOCKSTARS ©️ 2004 along with the Gore Street website",
+            href: "https://shockstars.net",
+            color: "rgb(194, 185, 172)",
+            technologies: [...TheSiteUsual]
+        },
+        {
+            name: "Heffy",
+            image: "/imgs/projects/Heffy.png",
+            description: "Offical Heffy merch & music website.",
+            href: "https://shockstars.net",
+            color: "rgb(55, 167, 162)",
+            technologies: [...TheSiteUsual]
+        },
+        {
             name: "Lost Noise",
             image: "/imgs/projects/LostNoise.png",
             description: "The official Lost Noise website, uses alot of cool technologies.",
@@ -36,14 +52,6 @@
                 name: "Three.js",
                 icon: "/imgs/icons/frameworks/Three.js.svg"
             }]
-        },
-        {
-            name: "Shock Stars",
-            image: "/imgs/projects/ShockStars.png",
-            description: "SHOCKSTARS ©️ 2004 along with the Gore Street website",
-            href: "https://shockstars.net",
-            color: "rgb(149, 61, 48)",
-            technologies: [...TheSiteUsual]
         }
         // & MANY MORE I CANT LIST JUST YET
     ]

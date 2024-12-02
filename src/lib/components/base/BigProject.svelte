@@ -28,7 +28,7 @@
         </div>
     
         <div class="absolute w-full h-[calc(100%-98px)] z-20 top-0 left-0 p-2 flex flex-col items-start justify-end">
-            <h1 style="color: {project.color};" class="font-impact text-xl ">{project.name}</h1>
+            <h1 style="color: {project.color};" class="font-impact text-xl">{project.name}</h1>
         </div>
     </div>
 </a>
