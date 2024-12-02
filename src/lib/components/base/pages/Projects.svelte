@@ -30,7 +30,7 @@
             name: "Heffy",
             image: "/imgs/projects/Heffy.png",
             description: "Offical Heffy merch & music website.",
-            href: "https://shockstars.net",
+            href: "/not-ready",
             color: "rgb(55, 167, 162)",
             technologies: [...TheSiteUsual]
         },
