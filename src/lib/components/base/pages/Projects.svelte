@@ -29,7 +29,7 @@
         {
             name: "Heffy",
             image: "/imgs/projects/Heffy.png",
-            description: "Offical Heffy merch & music website.",
+            description: "Official Heffy merch & music website.",
             href: "/not-ready",
             color: "rgb(55, 167, 162)",
             technologies: [...TheSiteUsual]
