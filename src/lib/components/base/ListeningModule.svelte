@@ -183,13 +183,13 @@
 
     {#if !loaded}
         <div class="w-full h-full absolute z-[60]">
-            <p class="text-[11px] 3xl:text-xs 4xl:text-sm font-mono" style="color: {color};">Listening Module v1.2.1</p>  
+            <p class="text-[11px] 3xl:text-xs 4xl:text-sm font-mono" style="color: {color};">Listening Module v1.2.2</p>  
         </div>
     {/if}
 </a>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 rounded-md top-[80%] scale-125 scale-y-125 2xl:scale-y-150 -z-10">
+<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 2xl:h-42 rounded-md top-[80%] scale-125 scale-y-125 2xl:scale-y-150 -z-10">
 
 </div>
 

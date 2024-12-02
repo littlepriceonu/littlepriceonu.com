@@ -19,12 +19,12 @@
     ]
 
     const Featured: FeaturedProjectData[] = [{
-        name: "Lost Noise",
-        image: "/imgs/projects/LostNoise.png",
-        description: "The official Lost Noise website, uses alot of cool technologies.",
-        href: "/not-ready",
-        color: "rgb(255, 0, 0)",
-        technologies: [...TheSiteUsual]
+            name: "Lost Noise",
+            image: "/imgs/projects/LostNoise.png",
+            description: "The official Lost Noise website, uses alot of cool technologies.",
+            href: "/not-ready",
+            color: "rgb(255, 0, 0)",
+            technologies: [...TheSiteUsual]
         }, 
         {
             name: "Billy Sane",
@@ -36,6 +36,14 @@
                 name: "Three.js",
                 icon: "/imgs/icons/frameworks/Three.js.svg"
             }]
+        },
+        {
+            name: "Shock Stars",
+            image: "/imgs/projects/ShockStars.png",
+            description: "SHOCKSTARS ©️ 2004 along with the Gore Street website",
+            href: "https://shockstars.net",
+            color: "rgb(149, 61, 48)",
+            technologies: [...TheSiteUsual]
         }
         // & MANY MORE I CANT LIST JUST YET
     ]
@@ -49,7 +57,7 @@
             href: "https://github.com/littlepriceonu/littlepriceonu.com"
         },{
             name: "LilYTDownloader",
-            description: "Download Youtube videos on your own computer, without forced website limitations.",
+            description: "Download Youtube videos on your own computer, without forced website limitations. [Deprecated]",
             color: "rgb(15, 23, 42)",
             icon: "/imgs/icons/projects/LilYTDownloader.svg",
             technologies: [{
@@ -69,7 +77,7 @@
             href: "https://github.com/littlepriceonu/LilYTDownloader"
         }, {
             name: "Pls Donate Self Bot",
-            description: "A self bot for the Roblox experience 'Pls Donate', V2 was discontinued due to Byfron. ",
+            description: "A self bot for the Roblox experience 'Pls Donate', V2 was discontinued due to Byfron. [Deprecated]",
             technologies: [{
                     name: "Lua",
                     icon: "/imgs/icons/languages/Lua.svg"
@@ -81,7 +89,7 @@
             href: "https://github.com/littlepriceonu/Pls-Donate-Self-Bot"
         }, {
             name: "(Slightly) Better V3rm",
-            description: "A Tampermonkey script to make v3rmillion.net look less bad, also adds some cool features.",
+            description: "A Tampermonkey script to make v3rmillion.net look less bad, also adds some cool features. [Deprecated]",
             href: "https://github.com/littlepriceonu/-Slightly-Better-V3rm",
             color: "rgb(100, 0, 0)",
             technologies: [{

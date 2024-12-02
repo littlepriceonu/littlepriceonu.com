@@ -26,7 +26,7 @@
         {/each}
     </div>
 
-    <p class="font-mono bg-neutral-900 rounded-md w-fit px-2 py-2 mt-auto md:mt-6">{$page.error?.message}</p>
+    <p class="font-mono bg-neutral-900 rounded-md w-fit px-2 py-1 mt-auto md:mt-6">{$page.error?.message}</p>
 
     <p class="mt-4">
         You're missing something out there.... 
