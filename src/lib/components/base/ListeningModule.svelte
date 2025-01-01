@@ -142,7 +142,7 @@
         <img class="w-[5.5rem] aspect-square rounded-md absolute scale-110 opacity-60 blur-md" src={image} aria-hidden="true" alt="Blur for {title}">
 
         <div class="flex flex-col h-full pl-3 pt-2 pb-2 text-xs overflow-clip text-neutral-400">
-            <h1 style="color: {color}" class="font-semibold text-base text-white z-10">{displayTitle}</h1>
+            <h1 style="color: {color}" class="font-semibold text-base text-white z-10 line-clamp-2">{displayTitle}</h1>
             <p style="color: {secondColor}" class:hide={hideAlbum} class="mt-auto z-10 font-semibold">On: {album}</p>
             <p style="color: {secondColor}" class:mt-auto={hideAlbum} class="z-10  font-semibold"> By: {artist} </p>
         </div>
@@ -183,7 +183,7 @@
 
     {#if !loaded}
         <div class="w-full h-full absolute z-[60]">
-            <p class="text-[11px] 3xl:text-xs 4xl:text-sm font-mono" style="color: {color};">Listening Module v1.2.2</p>  
+            <p class="text-[11px] 3xl:text-xs 4xl:text-sm font-mono" style="color: {color};">Listening Module v1.2.3</p>  
         </div>
     {/if}
 </a>
