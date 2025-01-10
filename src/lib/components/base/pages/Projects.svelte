@@ -52,6 +52,14 @@
                 name: "Three.js",
                 icon: "/imgs/icons/frameworks/Three.js.svg"
             }]
+        },
+        {
+            name: "Noot Archived",
+            image: "/imgs/projects/NootArchived.png",
+            description: "Browse Noot's Archive of high quality editing assets.",
+            href: "https://nootarchived.com",
+            color: "rgb(235, 241, 240)",
+            technologies: [...TheSiteUsual]
         }
         // & MANY MORE I CANT LIST JUST YET
     ]
