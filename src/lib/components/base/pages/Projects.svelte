@@ -60,6 +60,23 @@
             href: "https://nootarchived.com",
             color: "rgb(235, 241, 240)",
             technologies: [...TheSiteUsual]
+        },
+        {
+            name: "FATAL",
+            image: "/imgs/projects/FATAL.gif",
+            description: "Dedicated to delivering the best Garry's Mod Dark RP experience.",
+            href: "https://fatal.gg",
+            color: "rgb(255, 255, 255)",
+            technologies: [{
+                name: "PHP",
+                icon: "/imgs/icons/frameworks/PHP.svg"
+            }, {
+                name: "MySQL",
+                icon: "/imgs/icons/etc/MySQL.svg"
+            }, {
+                name: "Tailwind",
+                icon: "/imgs/icons/languages/Tailwind.svg"
+            }]
         }
         // & MANY MORE I CANT LIST JUST YET
     ]

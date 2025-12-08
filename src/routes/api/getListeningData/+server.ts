@@ -22,7 +22,7 @@ var lastFMResponse: LastFMData
 const lastFMDebounce = 2
 
 // rate limiting when >1 request : second
-function LastFMFetch(payload: any): Promise<LastFMData> {
+function LastFMFetch(payload: any, fetch: any): Promise<LastFMData> {
     payload['api_key'] = LASTFM_KEY
     payload['format'] = 'json'
 
@@ -40,7 +40,7 @@ function LastFMFetch(payload: any): Promise<LastFMData> {
             fetch("https://ws.audioscrobbler.com/2.0/" + params, {
                 method: "GET",
                 mode: "cors",
-            }).then(data => data.json()).then(data => {
+            }).then((data: any) => data.json()).then((data: any) => {
                 lastFMResponse = data; 
                 lastFMRequest = Date.now();
 
@@ -53,8 +53,8 @@ function LastFMFetch(payload: any): Promise<LastFMData> {
     })
 }
 
-export async function GET() {
-    var data = await LastFMFetch(payload)
+export async function GET({ fetch }) {
+    var data = await LastFMFetch(payload, fetch)
     
     return json(data)
 }
