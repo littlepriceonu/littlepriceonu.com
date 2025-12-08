@@ -5,6 +5,11 @@
     import { onNavigate } from '$app/navigation';
     import { navigating } from '$app/stores';
     import { ColorStore } from '$lib/components/stores/ColorStore';
+    interface Props {
+        children?: import('svelte').Snippet;
+    }
+
+    let { children }: Props = $props();
     
 
     // totally not copied from the svelte docs
@@ -38,4 +43,4 @@
 
 <Nav/>
 
-<slot />
+{@render children?.()}

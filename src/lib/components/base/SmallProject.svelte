@@ -2,7 +2,11 @@
     import type { ProjectData } from "$lib/types/Main";
     import { ColorStore } from "../stores/ColorStore";
 
-    export let project: ProjectData
+    interface Props {
+        project: ProjectData;
+    }
+
+    let { project }: Props = $props();
 
     const defaultColor = "rgb(25 25 25)"
 
@@ -19,9 +23,9 @@
     }
 </script>
 
-<a href={project.href} on:mouseenter={MouseEnter} on:mouseleave={MouseLeave} class="w-fit min-w-[100%] min-[880px]:min-w-[815px] min-[880px]:max-w-[815px] antialiased">
+<a href={project.href} onmouseenter={MouseEnter} onmouseleave={MouseLeave} class="w-fit min-w-[100%] min-[880px]:min-w-[815px] min-[880px]:max-w-[815px] antialiased">
     <div style="border-color: {project.color ?? defaultColor}" class="w-full h-full rounded-md border border-neutral-800 bg-black bg-opacity-50 transition-all duration-500 ease-in-out backdrop-blur-[84px] flex flex-col md:flex-row overflow-clip">
-        <div class="w-full h-[25px] md:h-auto md:w-[40px]" style="background-color: {project.color ?? defaultColor}"/>
+        <div class="w-full h-[25px] md:h-auto md:w-[40px]" style="background-color: {project.color ?? defaultColor}"></div>
 
         <div class="flex-grow pt-1 pl-2">
             <div class="flex">
@@ -44,7 +48,7 @@
                 </p>
 
                 {#each project.technologies as technology}
-                    <div style="-webkit-mask: url({technology.icon}) center no-repeat;" class="icon h-6 w-6 bg-white" />
+                    <div style="-webkit-mask: url({technology.icon}) center no-repeat;" class="icon h-6 w-6 bg-white"></div>
                 {/each}
             </div>
         </div>

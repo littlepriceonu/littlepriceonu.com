@@ -1,8 +1,12 @@
 <script lang="ts">
 
-    let clazz: string = ""
+    interface Props {
+        class?: string;
+    }
 
-    export {clazz as class}
+    let { class: clazz = "" }: Props = $props();
+
+    
 
     const SocialMediaLinks: {icon: string, name: string, leadsTo: string}[] = [{
         name: "Github",

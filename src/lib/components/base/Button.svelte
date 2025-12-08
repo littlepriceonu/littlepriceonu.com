@@ -2,22 +2,34 @@
     import { offset, flip, shift, type Placement } from "svelte-floating-ui/dom";
     import {createFloatingActions} from 'svelte-floating-ui'
 
-    export let text: string = "Button"
-    export let tooltip: {
-        text: string,
-        placement?: Placement 
-    } = {text: ""}
-    export let disabled = false
-    export let onclick: Function = () => {}
-    export let show: boolean = true
 
     let clickFunction = onclick as any
 
-    let clazz = ""
-    let stylez = ""
-    export {clazz as class, stylez as style}
+    interface Props {
+        text?: string;
+        tooltip?: {
+        text: string,
+        placement?: Placement 
+    };
+        disabled?: boolean;
+        onclick?: Function;
+        show?: boolean;
+        class?: string;
+        style?: string;
+    }
 
-    let showToolTip = false
+    let {
+        text = "Button",
+        tooltip = {text: ""},
+        disabled = false,
+        onclick = () => {},
+        show = true,
+        class: clazz = "",
+        style: stylez = ""
+    }: Props = $props();
+    
+
+    let showToolTip = $state(false)
 
     const [floatingRef, floatingContent] = createFloatingActions({
         strategy: "absolute",
@@ -30,7 +42,7 @@
     })
 </script>
 
-<button class:hidden={!show} on:mouseenter={()=>{showToolTip = true}} on:focus={()=>{showToolTip=true}} on:focusout={()=>{showToolTip=false}} on:mouseleave={()=>{showToolTip=false}} use:floatingRef {disabled} on:click={clickFunction} on:keypress={clickFunction} class=" bg-black px-4 py-2 border border-neutral-600 rounded-md {clazz} hover:bg-neutral-800 active:bg-neutral-900 focus-visible:bg-neutral-800 outline-none focus-within:outline-none" style={stylez}>
+<button class:hidden={!show} onmouseenter={()=>{showToolTip = true}} onfocus={()=>{showToolTip=true}} onfocusout={()=>{showToolTip=false}} onmouseleave={()=>{showToolTip=false}} use:floatingRef {disabled} onclick={clickFunction} onkeypress={clickFunction} class=" bg-black px-4 py-2 border border-neutral-600 rounded-md {clazz} hover:bg-neutral-800 active:bg-neutral-900 focus-visible:bg-neutral-800 outline-none focus-within:outline-none" style={stylez}>
     {text}
 </button>
 

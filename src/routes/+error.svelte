@@ -1,15 +1,15 @@
 <script lang="ts">
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
 
-    let code: string[] = $page.status.toString().split("")
+    let code: string[] = page.status.toString().split("")
 </script>
 
 <svelte:head>
     <title>
-        {$page.status}
+        {page.status}
     </title>
 
-    <meta property="og:title" content="{$page.status.toString()}">
+    <meta property="og:title" content="{page.status.toString()}">
     <meta property="og:description" content="YOU'RE MISSING SOMETHING OUT THERE">
     <meta property="og:image" content="https://littlepriceonu.com/imgs/SKULL.gif">
     <meta property="og:image:alt" content="SAFETY FIRST">
@@ -26,7 +26,7 @@
         {/each}
     </div>
 
-    <p class="font-mono bg-neutral-900 rounded-md w-fit px-2 py-1 mt-auto md:mt-6">{$page.error?.message}</p>
+    <p class="font-mono bg-neutral-900 rounded-md w-fit px-2 py-1 mt-auto md:mt-6">{page.error?.message}</p>
 
     <p class="mt-4">
         You're missing something out there.... 

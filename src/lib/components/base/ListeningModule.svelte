@@ -1,26 +1,32 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
 	import Vibrant from 'node-vibrant';
     import type { LastFMData } from "$lib/types/LastFMTypes";
     import { onMount } from "svelte";
     import { ColorStore } from '../stores/ColorStore'
 
-    let clazz: string = ""
+    interface Props {
+        class?: string;
+    }
 
-    export {clazz as class}
+    let { class: clazz = "" }: Props = $props();
 
-    let image: string = ""
-    let title: string = ""
-    let album: string = ""
-    let artist: string = ""
-    let url: string = ""
+    
+
+    let image: string = $state("")
+    let title: string = $state("")
+    let album: string = $state("")
+    let artist: string = $state("")
+    let url: string = $state("")
     let displayTitle: string = ""
 
     const borderTemplate = "rgb([r] [g] [b] / 0.8)"
-    let color = ""
-    let secondColor = ""
-    let error: Error
-    let checkbackLater: boolean = false
-    let enableClickage: boolean = true
+    let color = $state("")
+    let secondColor = $state("")
+    let error: Error = $state()
+    let checkbackLater: boolean = $state(false)
+    let enableClickage: boolean = $state(true)
 
     const IMAGE_OVERRIDES: {[album: string]: string} = {
         "Blind - Single": "https://i1.sndcdn.com/artworks-zMyZk0ZNsPVbAQyK-sdnleA-t500x500.jpg"
@@ -37,7 +43,7 @@
         }
     }
 
-    let isListeningNow: boolean = false
+    let isListeningNow: boolean = $state(false)
 
     const NAME_MAP: {[title: string]: {album: string, title: string}} = {
         "Methhead Freestyle (feat. Eric North, JOHNNASCUS, Half Metal Kaiba, BLCKK, Bruhmanegod, LiL CUBENSiS, Royalty the Kidd, Afourteen & WENDIGO)": {
@@ -114,25 +120,27 @@
         })
     }
     
-    let loaded = false
-    let hideAlbum = false
+    let loaded = $state(false)
+    let hideAlbum = $state(false)
     
-    $: hideAlbum = album.toLowerCase().includes(title.toLowerCase()) && album.toLowerCase().includes("single")
+    run(() => {
+        hideAlbum = album.toLowerCase().includes(title.toLowerCase()) && album.toLowerCase().includes("single")
+    });
 </script>
 
-<a on:mouseenter={onMouseEnter} on:mouseleave={onMouseLeave} href={url} aria-label="Displays Littlepriceonu's recent music listening status"  class="{clazz} rounded-md border w-80 h-36 px-2 py-2 bg-black bg-opacity-80 backdrop-blur-3xl flex flex-col overflow-clip" style="border-color: {color}; pointer-events: {enableClickage ? "auto" : "none"}">
+<a onmouseenter={onMouseEnter} onmouseleave={onMouseLeave} href={url} aria-label="Displays Littlepriceonu's recent music listening status"  class="{clazz} rounded-md border w-80 h-36 px-2 py-2 bg-black bg-opacity-80 backdrop-blur-3xl flex flex-col overflow-clip" style="border-color: {color}; pointer-events: {enableClickage ? "auto" : "none"}">
     <div class="flex px-1">
         <h1 class="text-sm font-bold z-10" style="color: {color}"> {isListeningNow ? "Listening To..." : "Last Listened To..."} </h1>
 
         <div class="ml-auto flex items-end space-x-0.5" class:hide={!isListeningNow}>
-            <div style="background-color: {color}" class="w-1 h-2"/>
-            <div style="background-color: {color}" class="w-1 h-1"/>
-            <div style="background-color: {color}" class="w-1 h-3"/>
+            <div style="background-color: {color}" class="w-1 h-2"></div>
+            <div style="background-color: {color}" class="w-1 h-1"></div>
+            <div style="background-color: {color}" class="w-1 h-3"></div>
         </div>
     </div>
     
     <div class="flex mt-2 ml-2 items-center flex-grow relative">
-        <img on:load={()=>{loaded = true}} class="w-[5.5rem] aspect-square rounded-md z-10" src={image} alt="Album art for {title}">
+        <img onload={()=>{loaded = true}} class="w-[5.5rem] aspect-square rounded-md z-10" src={image} alt="Album art for {title}">
         <img class="w-[5.5rem] aspect-square rounded-md absolute scale-110 opacity-60 blur-md" src={image} aria-hidden="true" alt="Blur for {title}">
 
         <div class="flex flex-col h-full pl-3 pt-2 pb-2 text-xs overflow-clip text-neutral-400">
@@ -144,7 +152,7 @@
 
     {#if !loaded}
         <div class="w-full h-full translate-x-[-.5rem] translate-y-[-.5rem] absolute z-20 flex flex-col items-center justify-center bg-black">
-            <div class="w-8 h-8 rounded-full border-2 border-black border-t-white animate-spin"/>
+            <div class="w-8 h-8 rounded-full border-2 border-black border-t-white animate-spin"></div>
             <p class="font-mono text-xs mt-4">
                 Loading Your Next Experience...
             </p>
@@ -182,8 +190,8 @@
     {/if}
 </a>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div on:mouseleave={onMouseLeave} on:mouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 2xl:h-42 rounded-md top-[80%] scale-125 scale-y-125 2xl:scale-y-150 -z-10">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div onmouseleave={onMouseLeave} onmouseenter={onMouseEnter} class=" pointer-events-auto absolute w-80 h-36 2xl:h-42 rounded-md top-[80%] scale-125 scale-y-125 2xl:scale-y-150 -z-10">
 
 </div>
 

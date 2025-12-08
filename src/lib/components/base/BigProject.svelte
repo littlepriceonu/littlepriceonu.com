@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { FeaturedProjectData } from '$lib/types/Main.d.ts';
     import { ColorStore } from '../stores/ColorStore';
-    export let project: FeaturedProjectData
+    interface Props {
+        project: FeaturedProjectData;
+    }
+
+    let { project }: Props = $props();
 
     function MouseEnter() {
         ColorStore.set({mainColor: project.color})
@@ -12,7 +16,7 @@
     }
 </script>
 
-<a style="--project-color: {project.color}" class="w-fit antialiased transition-all duration-500 ease-in-out" on:mouseenter={MouseEnter} on:mouseleave={MouseLeave} href={project.href}>
+<a style="--project-color: {project.color}" class="w-fit antialiased transition-all duration-500 ease-in-out" onmouseenter={MouseEnter} onmouseleave={MouseLeave} href={project.href}>
     <div class="min-w-[24rem] max-w-[24rem] h-[320px] rounded-md border overflow-clip relative border-neutral-600" style="border-color: {project.color};">
         <img style="border-color: {project.color};" class="border-b border-neutral-600" src={project.image} alt="{project.name}'s thumbnail">
     
@@ -20,7 +24,7 @@
             <h2 class="text-sm font-semibold" style="color: {project.color}">{project.description}</h2>
             <div class="flex mt-auto items-center space-x-1.5 w-full mb-1">
                 {#each project.technologies as technology}
-                    <div style="-webkit-mask: url({technology.icon}) center no-repeat; background-color: {project.color}" class="icon h-7 w-7" />
+                    <div style="-webkit-mask: url({technology.icon}) center no-repeat; background-color: {project.color}" class="icon h-7 w-7"></div>
                 {/each}
 
                 <svg style="color: {project.color};" class="!ml-auto rounded-md text-center translate-y-1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>

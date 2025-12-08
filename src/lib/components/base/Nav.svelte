@@ -12,7 +12,7 @@
         name: "Projects"
     }]
 
-    let currentPage = ""
+    let currentPage = $state("")
 
     navigating.subscribe((e)=>{
         if (e?.to?.url?.pathname) {
@@ -20,7 +20,7 @@
         }
     })
 
-    let width: number
+    let width: number = $state()
 
     onMount(()=>{
         currentPage = document.location.pathname
