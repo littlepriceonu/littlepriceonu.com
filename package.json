@@ -30,8 +30,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@yuna0x0/sk-lanyard": "^0.4.2",
 		"node-vibrant": "^3.1.6",
-		"sk-lanyard": "^0.2.7",
 		"svelte-floating-ui": "^1.5.5"
 	}
 }

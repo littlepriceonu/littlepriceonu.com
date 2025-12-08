@@ -1,12 +1,11 @@
 <script lang="ts">
     import { run } from 'svelte/legacy';
 
-    import { useLanyard } from 'sk-lanyard'
+    import { useLanyard } from '@yuna0x0/sk-lanyard'
 	import Socials from './../Socials.svelte';
     import { ColorStore } from '$lib/components/stores/ColorStore';
-    
 
-    let mark: HTMLElement = $state()
+    let mark: HTMLElement = $state()!
 
     let slogans = [
         "DESIGN",
